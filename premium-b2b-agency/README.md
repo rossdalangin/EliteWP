@@ -21,7 +21,7 @@ Most WordPress themes are bloated with page builders and heavy plugins. We built
 
 ### 3. 🛠️ Full Customizer Manageability
 - **100% manageable**: Change every headline, button, and color without touching a line of code.
-- **Instant Preview**: Optimized for the WordPress Customizer Engine API for a "What You See Is What You Get" experience.
+- **Instant Preview**: Optimized with `Selective Refresh` and `postMessage` for a "What You See Is What You Get" experience.
 
 ### 4. 📈 SEO & Accessibility Excellence
 - **Semantic Nesting**: Strict adherence to HTML5 standards for maximum crawlability.
@@ -45,7 +45,16 @@ Most WordPress themes are bloated with page builders and heavy plugins. We built
 ### Step 3: Global Branding
 1. In the Customizer, navigate to **Theme Colors**.
 2. Set your **Primary Color** (Deep Navy recommended) and **Accent Color** (Vibrant Indigo recommended).
-3. These will globally update all buttons, icons, and UI elements.
+3. These will globally update all buttons, icons, and UI elements in real-time.
+
+---
+
+## 🏗️ The B2B Framework Manifesto
+This framework is built on the principle of **Minimum Friction, Maximum Authority**.
+- **Authority** is established through clean typography, elite spacing, and high-performance loading.
+- **Friction** is reduced by removing unnecessary animations, bulky scripts, and complex navigation.
+
+By using this theme, you are positioning your agency as a premium player in the B2B market.
 
 ---
 
@@ -60,15 +69,20 @@ Most WordPress themes are bloated with page builders and heavy plugins. We built
 ### Customizer Logic
 All content is handled via the `premium_b2b_customize_register` function in `functions.php`. Content is safely output using `esc_html()` and `get_theme_mod()`.
 
-### Live Site vs Preview
-The theme uses a robust `postMessage` architecture (optional enhancement) and efficient `wp_head` style injection to ensure consistency between the live site and the preview window.
+### Live Site vs Preview Consistency
+The theme implements `Selective Refresh Partials` for headlines and `postMessage` transport for CSS variables. This ensures that the preview window exactly matches the live site output without full page reloads.
 
 ---
 
-## 📢 Marketing Materials for Your Agency
+## 📢 Sales & Marketing Materials for Your Agency
 
-### Pitching This to Your Client:
-> "We aren't just giving you a website; we are deploying a **Client Acquisition Engine**. This system is built for the high-ticket B2B market, where speed equals trust and design reflects authority. With zero dependencies and strict SEO standards, your agency will outperform 99% of competitors on the market."
+### Value Proposition
+> "Stop building websites. Start deploying Client Acquisition Engines. Our framework is optimized for the only metric that matters: B2B Conversion."
+
+### Key Selling Points for Clients:
+1. **Speed = Trust**: A site that loads in <1s signals technical authority.
+2. **SEO Optimized**: Built-in schema means Google understands exactly what you sell.
+3. **Manageability**: Your team can update any word on the site in seconds, no developer required.
 
 ---
 

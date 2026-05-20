@@ -16,6 +16,7 @@ function premium_b2b_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'customize-selective-refresh-widgets' );
 	add_theme_support(
 		'html5',
 		array(
@@ -299,6 +300,26 @@ function premium_b2b_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'contact_email', array( 'label' => __( 'Contact Email', 'premium-b2b' ), 'section' => 'premium_b2b_contact' ) );
 
+	// --- Selective Refresh Partials ---
+	if ( isset( $wp_customize->selective_refresh ) ) {
+		$wp_customize->selective_refresh->add_partial( 'hero_headline', array(
+			'selector'        => '.hero-content h1',
+			'render_callback' => function() { return get_theme_mod( 'hero_headline' ); },
+		) );
+		$wp_customize->selective_refresh->add_partial( 'agitation_headline', array(
+			'selector'        => '.agitation-section .section-header h2',
+			'render_callback' => function() { return get_theme_mod( 'agitation_headline' ); },
+		) );
+		$wp_customize->selective_refresh->add_partial( 'mechanism_headline', array(
+			'selector'        => '.mechanism-section .section-header h2',
+			'render_callback' => function() { return get_theme_mod( 'mechanism_headline' ); },
+		) );
+		$wp_customize->selective_refresh->add_partial( 'capture_headline', array(
+			'selector'        => '.capture-section h2',
+			'render_callback' => function() { return get_theme_mod( 'capture_headline' ); },
+		) );
+	}
+
 	// Enable Live Preview transport for specific settings
 	$wp_customize->get_setting( 'hero_headline' )->transport   = 'postMessage';
 	$wp_customize->get_setting( 'hero_subheadline' )->transport = 'postMessage';
@@ -428,6 +449,39 @@ function premium_b2b_handle_regeneration() {
 	}
 }
 add_action( 'customize_save_after', 'premium_b2b_handle_regeneration' );
+
+/**
+ * Add an Elite B2B Dashboard Widget.
+ */
+function premium_b2b_add_dashboard_widgets() {
+	wp_add_dashboard_widget(
+		'premium_b2b_dashboard_widget',
+		__( 'Elite B2B Framework - Quick Start', 'premium-b2b' ),
+		'premium_b2b_dashboard_widget_render'
+	);
+}
+add_action( 'wp_dashboard_setup', 'premium_b2b_add_dashboard_widgets' );
+
+/**
+ * Render the Elite B2B Dashboard Widget.
+ */
+function premium_b2b_dashboard_widget_render() {
+	?>
+	<div class="elite-b2b-widget">
+		<p>Welcome to the <strong>Premium B2B Client Acquisition Framework</strong>. Your site is currently running on the world's most optimized agency engine.</p>
+		<hr>
+		<h4>🚀 Quick Actions</h4>
+		<ul>
+			<li><a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary">Customize Brand & Copy</a></li>
+			<li><a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[section]=premium_b2b_setup' ) ); ?>" class="button">Regenerate Sample Data</a></li>
+		</ul>
+		<hr>
+		<h4>📚 Tutorials & Documentation</h4>
+		<p>Need help scaling? Check the <code>README.md</code> in your theme folder for the full B2B Framework Manifesto.</p>
+		<p><em>Elite Tip: Ensure your primary color has a high contrast ratio to maintain W3C accessibility compliance.</em></p>
+	</div>
+	<?php
+}
 
 /**
  * Output Custom Styles in Header.
