@@ -161,6 +161,41 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'section'  => 'premium_b2b_colors',
 	) ) );
 
+	$wp_customize->add_setting( 'enable_dark_mode', array(
+		'default'           => false,
+		'sanitize_callback' => 'premium_b2b_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'enable_dark_mode', array(
+		'label'   => __( 'Enable Dark Mode', 'premium-b2b' ),
+		'section' => 'premium_b2b_colors',
+		'type'    => 'checkbox',
+	) );
+
+	// --- Trust Bar (Social Proof) ---
+	$wp_customize->add_section( 'premium_b2b_trust', array(
+		'title'    => __( 'Trust Bar (Logos)', 'premium-b2b' ),
+		'priority' => 31,
+	) );
+
+	$wp_customize->add_setting( 'trust_headline', array(
+		'default'           => __( 'Trusted by Industry Leaders', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'trust_headline', array( 'label' => __( 'Headline', 'premium-b2b' ), 'section' => 'premium_b2b_trust' ) );
+
+	// --- Testimonials ---
+	$wp_customize->add_section( 'premium_b2b_testimonials', array(
+		'title'    => __( 'Testimonials', 'premium-b2b' ),
+		'priority' => 34,
+	) );
+
+	for ( $i = 1; $i <= 2; $i++ ) {
+		$wp_customize->add_setting( "testimonial_{$i}_text", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "testimonial_{$i}_text", array( 'label' => "Testimonial $i", 'section' => 'premium_b2b_testimonials', 'type' => 'textarea' ) );
+		$wp_customize->add_setting( "testimonial_{$i}_author", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "testimonial_{$i}_author", array( 'label' => "Author $i", 'section' => 'premium_b2b_testimonials' ) );
+	}
+
 	// --- Agitation Section ---
 	$wp_customize->add_section( 'premium_b2b_agitation', array(
 		'title'    => __( 'Agitation Grid', 'premium-b2b' ),
@@ -533,8 +568,14 @@ function premium_b2b_output_header_scripts() {
 
 	$primary_color = get_theme_mod( 'primary_color', '#0F172A' );
 	$accent_color = get_theme_mod( 'accent_color', '#2563EB' );
+	$dark_mode = get_theme_mod( 'enable_dark_mode', false );
 
-	echo '<style>:root { --color-primary: ' . esc_attr( $primary_color ) . '; --color-accent: ' . esc_attr( $accent_color ) . '; }</style>';
+	echo '<style>:root { --color-primary: ' . esc_attr( $primary_color ) . '; --color-accent: ' . esc_attr( $accent_color ) . '; }';
+	if ( $dark_mode ) {
+		echo 'body { --color-bg: #020617; --color-text: #F8FAFC; --color-white: #0F172A; --color-border: rgba(255,255,255,0.1); }';
+		echo '.site-header.is-scrolled { background: rgba(15, 23, 42, 0.9); }';
+	}
+	echo '</style>';
 }
 add_action( 'wp_head', 'premium_b2b_output_header_scripts' );
 

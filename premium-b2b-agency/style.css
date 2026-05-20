@@ -3,7 +3,7 @@ Theme Name: Premium B2B Client Acquisition Agency
 Theme URI: https://example.com/premium-b2b-theme
 Description: A production-grade, highly optimized, and modern custom WordPress theme designed for premium B2B Client Acquisition Agencies.
 Author: Jules (Elite WordPress Core Engineer)
-Version: 1.1.0
+Version: 1.2.0
 License: GNU General Public License v2 or later
 Text Domain: premium-b2b
 Tags: b2b, agency, customizer, fast-loading, accessibility-ready, schema
@@ -22,6 +22,7 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text);
     min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 img, picture, video, canvas, svg { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; }
@@ -195,6 +196,14 @@ h4 { font-size: var(--fs-md); }
 /* Cards & Grids */
 .post-grid, .agitation-grid {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+@media (min-width: 1024px) {
+    .featured-post {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 5rem;
+        align-items: center;
+    }
 }
 
 .mechanism-steps .step {

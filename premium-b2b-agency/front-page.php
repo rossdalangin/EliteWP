@@ -39,6 +39,21 @@ get_header(); ?>
 		</div>
 	</section>
 
+	<!-- Section 1.5: Trust Bar (Social Proof) -->
+	<section class="trust-bar section" style="padding-block: 4rem; background: var(--color-white); border-bottom: 1px solid var(--color-border);">
+		<div class="container">
+			<p class="text-center text-light" style="font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; margin-bottom: 2.5rem; letter-spacing: 0.1em;">
+				<?php echo esc_html( get_theme_mod( 'trust_headline', __( 'Trusted by Industry Leaders', 'premium-b2b' ) ) ); ?>
+			</p>
+			<div class="flex-center" style="flex-wrap: wrap; gap: 4rem; opacity: 0.5; filter: grayscale(1);">
+				<!-- Placeholder Logos -->
+				<?php for($i=1; $i<=5; $i++): ?>
+					<div style="font-weight: 900; font-size: var(--fs-md);">LOGO <?php echo $i; ?></div>
+				<?php endfor; ?>
+			</div>
+		</div>
+	</section>
+
 	<!-- Section 2: The Agitation Grid -->
 	<section class="agitation-section section">
 		<div class="container">
@@ -64,6 +79,22 @@ get_header(); ?>
 					</div>
 				<?php endfor; ?>
 			</div>
+		</div>
+	</section>
+
+	<!-- Section 2.5: Testimonials (Authority) -->
+	<section class="testimonials-section section" style="background: var(--color-primary); color: var(--color-white);">
+		<div class="container grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+			<?php for ( $i = 1; $i <= 2; $i++ ) :
+				$text = get_theme_mod( "testimonial_{$i}_text" );
+				$author = get_theme_mod( "testimonial_{$i}_author" );
+				if ( $text ) :
+			?>
+				<div class="testimonial-card">
+					<p style="font-size: var(--fs-md); font-style: italic; margin-bottom: 2rem;">&ldquo;<?php echo esc_html( $text ); ?>&rdquo;</p>
+					<cite style="font-weight: 700; font-style: normal;">&mdash; <?php echo esc_html( $author ); ?></cite>
+				</div>
+			<?php endif; endfor; ?>
 		</div>
 	</section>
 

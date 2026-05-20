@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const inner = heroGraphic.querySelector('.hero-graphic-inner');
             if (inner) {
-                inner.style.transform = `perspective(1000px) rotateX(${y * 10}deg) rotateY(${x * 10}deg) translateZ(20px)`;
+                inner.style.transform = `perspective(1000px) rotateX(${y * 20}deg) rotateY(${x * 20}deg) translateZ(50px)`;
+                inner.style.boxShadow = `${-x * 30}px ${-y * 30}px 50px rgba(0,0,0,0.2)`;
             }
         });
 
