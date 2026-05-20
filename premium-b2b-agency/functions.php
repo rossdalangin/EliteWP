@@ -299,6 +299,12 @@ function premium_b2b_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'contact_email', array( 'label' => __( 'Contact Email', 'premium-b2b' ), 'section' => 'premium_b2b_contact' ) );
 
+	// Enable Live Preview transport for specific settings
+	$wp_customize->get_setting( 'hero_headline' )->transport   = 'postMessage';
+	$wp_customize->get_setting( 'hero_subheadline' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'primary_color' )->transport    = 'postMessage';
+	$wp_customize->get_setting( 'accent_color' )->transport     = 'postMessage';
+
 	// --- Scripts Block ---
 	$wp_customize->add_section( 'premium_b2b_scripts', array(
 		'title'    => __( 'Custom Scripts', 'premium-b2b' ),
@@ -334,6 +340,14 @@ function premium_b2b_sanitize_scripts( $value ) {
 	}
 	return wp_kses_post( $value );
 }
+
+/**
+ * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ */
+function premium_b2b_customize_preview_js() {
+	wp_enqueue_script( 'premium-b2b-customizer', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '1.2.0', true );
+}
+add_action( 'customize_preview_init', 'premium_b2b_customize_preview_js' );
 
 /**
  * Handle Content Regeneration.

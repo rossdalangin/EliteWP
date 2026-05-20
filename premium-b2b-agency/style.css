@@ -181,6 +181,12 @@ h4 { font-size: var(--fs-md); }
     background: radial-gradient(circle at top right, #f1f5f9 0%, #ffffff 100%);
 }
 
+.hero-section .container {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: center;
+    min-height: 70vh;
+}
+
 .hero-graphic-wrapper {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     overflow: hidden;
@@ -189,6 +195,17 @@ h4 { font-size: var(--fs-md); }
 /* Cards & Grids */
 .post-grid, .agitation-grid {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.mechanism-steps .step {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: center;
+    gap: 5rem;
+}
+
+@media (min-width: 1024px) {
+    .step.reverse .step-content { order: 2; }
+    .step.reverse .step-image { order: 1; }
 }
 
 @media (min-width: 1024px) {

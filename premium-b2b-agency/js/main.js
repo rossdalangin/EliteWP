@@ -72,10 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'all 0.6s ease-out';
         revealObserver.observe(el);
     });
-});
 
-// Helper for scroll reveal
-document.addEventListener('DOMContentLoaded', () => {
+    // 5. Helper for scroll reveal
     const style = document.createElement('style');
     style.innerHTML = `
         .reveal-active {
