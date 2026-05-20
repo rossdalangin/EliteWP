@@ -1,0 +1,31 @@
+# ELITE B2B AGENCY - RECOMMENDED MENU STRUCTURE
+
+To maintain high conversion and authority, we recommend the following menu hierarchies:
+
+## 1. PRIMARY NAVIGATION (Header)
+The goal is to move prospects from "Curious" to "Committed" with minimum friction.
+
+1. **Home** - The central hub of the acquisition framework.
+2. **About** - Establishes agency mission, authority, and team expertise.
+3. **Services** - Detailed breakdown of your proprietary B2B frameworks.
+4. **Insights** - (Blog) SEO-rich content that demonstrates your market mastery.
+5. **Contact** - (CTA) The primary frictionless capture point.
+
+## 2. FOOTER NAVIGATION
+Focused on legal compliance, social proof, and secondary deep-dives.
+
+*   **Column 1: Brand**
+    *   Home
+    *   About Us
+*   **Column 2: Systems**
+    *   Our Services
+    *   Case Studies (Template coming soon)
+*   **Column 3: Resources**
+    *   Latest Insights
+    *   Contact Support
+*   **Column 4: Legal**
+    *   Privacy Policy
+    *   Terms of Service
+
+## 🎯 ELITE TIP:
+Keep your Primary Menu limited to 5-6 items max. Use the Customizer to ensure the "Contact" link is always highlighted as the primary Action button.

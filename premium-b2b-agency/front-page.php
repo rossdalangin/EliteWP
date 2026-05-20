@@ -64,9 +64,9 @@ get_header(); ?>
 			<div class="grid agitation-grid">
 				<?php
 				$agitation_defaults = array(
-					1 => array( 't' => 'Content Fatigue', 'd' => 'Spending hours on content that fails to generate meaningful engagement.' ),
-					2 => array( 't' => 'Brand Degradation', 'd' => 'Inconsistent messaging that turns away premium clients.' ),
-					3 => array( 't' => 'Empty Pipelines', 'd' => 'Living month-to-month without predictable acquisition.' ),
+					1 => array( 't' => 'Stagnant Pipelines', 'd' => 'Living project-to-project without a predictable, automated system for high-ticket acquisition.' ),
+					2 => array( 't' => 'Brand Degradation', 'd' => 'Inconsistent messaging and outdated design that signal low authority to premium prospects.' ),
+					3 => array( 't' => 'Conversion Leakage', 'd' => 'Spending thousands on traffic that hits non-optimized pages, resulting in zero ROI.' ),
 				);
 				for ( $i = 1; $i <= 3; $i++ ) :
 					$title = get_theme_mod( "agitation_c{$i}_title", $agitation_defaults[$i]['t'] );
@@ -85,9 +85,14 @@ get_header(); ?>
 	<!-- Section 2.5: Testimonials (Authority) -->
 	<section class="testimonials-section section" style="background: var(--color-primary); color: var(--color-white);">
 		<div class="container grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-			<?php for ( $i = 1; $i <= 2; $i++ ) :
-				$text = get_theme_mod( "testimonial_{$i}_text" );
-				$author = get_theme_mod( "testimonial_{$i}_author" );
+			<?php
+			$test_defaults = array(
+				1 => array( 't' => 'This framework transformed our lead flow. In 3 months, we secured more high-ticket partners than in the previous two years.', 'a' => 'David Chen, CEO of CloudScale' ),
+				2 => array( 't' => 'The most technical and conversion-optimized theme we have ever deployed. It reflects the authority we need in the B2B space.', 'a' => 'Sarah Jenkins, Director of Operations' ),
+			);
+			for ( $i = 1; $i <= 2; $i++ ) :
+				$text = get_theme_mod( "testimonial_{$i}_text", $test_defaults[$i]['t'] );
+				$author = get_theme_mod( "testimonial_{$i}_author", $test_defaults[$i]['a'] );
 				if ( $text ) :
 			?>
 				<div class="testimonial-card">
@@ -102,15 +107,15 @@ get_header(); ?>
 	<section class="mechanism-section section">
 		<div class="container">
 			<div class="section-header text-center">
-				<h2 style="max-width: 800px; margin-inline: auto;"><?php echo esc_html( get_theme_mod( 'mechanism_headline', __( 'Our Premium 3-Step Framework', 'premium-b2b' ) ) ); ?></h2>
+				<h2 style="max-width: 800px; margin-inline: auto;"><?php echo esc_html( get_theme_mod( 'mechanism_headline', __( 'Our Elite 3-Step Acquisition Framework', 'premium-b2b' ) ) ); ?></h2>
 			</div>
 
 			<div class="mechanism-steps grid">
 				<?php
 				$mechanism_defaults = array(
-					1 => array( 't' => 'Strategic Audit', 'd' => 'We deep-dive into your operations to identify leakage.' ),
-					2 => array( 't' => 'System Build', 'd' => 'We architect your bespoke acquisition engine.' ),
-					3 => array( 't' => 'Scale & ROI', 'd' => 'We scale traffic and optimize for maximum partnership growth.' ),
+					1 => array( 't' => 'Strategic Positioning Audit', 'd' => 'We identify leakage in your current brand positioning and realign your authority for the high-ticket market.' ),
+					2 => array( 't' => 'Conversion Engine Build', 'd' => 'We architect your bespoke acquisition engine, ensuring every pixel is optimized for B2B conversion.' ),
+					3 => array( 't' => 'Scalable Growth Injection', 'd' => 'Once the foundation is solid, we inject high-intent traffic to scale your ROI predictably.' ),
 				);
 				for ( $i = 1; $i <= 3; $i++ ) :
 					$title = get_theme_mod( "mechanism_s{$i}_title", $mechanism_defaults[$i]['t'] );
@@ -134,7 +139,7 @@ get_header(); ?>
 	<section class="capture-section section">
 		<div class="container">
 			<h2><?php echo esc_html( get_theme_mod( 'capture_headline', __( 'Ready to Secure Your Next 5 High-Ticket Partners?', 'premium-b2b' ) ) ); ?></h2>
-			<p><?php echo esc_html( get_theme_mod( 'capture_subheadline', __( 'Book your discovery call below to see if your agency is a fit.', 'premium-b2b' ) ) ); ?></p>
+			<p><?php echo esc_html( get_theme_mod( 'capture_subheadline', __( 'Initiate your strategy session below. We only partner with agencies we are certain we can scale.', 'premium-b2b' ) ) ); ?></p>
 
 			<div class="capture-widget">
 				<?php

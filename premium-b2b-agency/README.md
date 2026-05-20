@@ -40,7 +40,7 @@ Most WordPress themes are bloated with page builders and heavy plugins. We built
 1. Go to **Appearance > Customize**.
 2. Locate the **Theme Setup** section.
 3. Check the **Regenerate Sample Content** box and click **Publish**.
-4. This will automatically generate your Home, About, Services, and Contact pages with high-converting copy.
+4. This will automatically generate your Home, About, Services, Insights, and Contact pages with high-converting copy, and automatically setup your **Primary and Footer Menus**.
 
 ### Step 3: Global Branding
 1. In the Customizer, navigate to **Theme Colors**.
