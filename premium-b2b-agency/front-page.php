@@ -50,20 +50,20 @@ get_header(); ?>
 				<!-- Card 1 -->
 				<div class="agitation-card">
 					<div class="icon">📉</div>
-					<h3><?php echo esc_html__( 'Content Fatigue', 'premium-b2b' ); ?></h3>
-					<p class="text-light"><?php echo esc_html__( 'Spending hours on content that fails to generate meaningful engagement or leads.', 'premium-b2b' ); ?></p>
+					<h3><?php echo esc_html( get_theme_mod( 'agitation_c1_title', __( 'Content Fatigue', 'premium-b2b' ) ) ); ?></h3>
+					<p class="text-light"><?php echo esc_html( get_theme_mod( 'agitation_c1_desc', __( 'Spending hours on content that fails to generate meaningful engagement or leads.', 'premium-b2b' ) ) ); ?></p>
 				</div>
 				<!-- Card 2 -->
 				<div class="agitation-card">
 					<div class="icon">⚠️</div>
-					<h3><?php echo esc_html__( 'Brand Degradation', 'premium-b2b' ); ?></h3>
-					<p class="text-light"><?php echo esc_html__( 'Inconsistent messaging and poor visual identity that turns away premium clients.', 'premium-b2b' ); ?></p>
+					<h3><?php echo esc_html( get_theme_mod( 'agitation_c2_title', __( 'Brand Degradation', 'premium-b2b' ) ) ); ?></h3>
+					<p class="text-light"><?php echo esc_html( get_theme_mod( 'agitation_c2_desc', __( 'Inconsistent messaging and poor visual identity that turns away premium clients.', 'premium-b2b' ) ) ); ?></p>
 				</div>
 				<!-- Card 3 -->
 				<div class="agitation-card">
 					<div class="icon">🛑</div>
-					<h3><?php echo esc_html__( 'Empty Pipelines', 'premium-b2b' ); ?></h3>
-					<p class="text-light"><?php echo esc_html__( 'Living month-to-month without a predictable system for high-ticket client acquisition.', 'premium-b2b' ); ?></p>
+					<h3><?php echo esc_html( get_theme_mod( 'agitation_c3_title', __( 'Empty Pipelines', 'premium-b2b' ) ) ); ?></h3>
+					<p class="text-light"><?php echo esc_html( get_theme_mod( 'agitation_c3_desc', __( 'Living month-to-month without a predictable system for high-ticket client acquisition.', 'premium-b2b' ) ) ); ?></p>
 				</div>
 			</div>
 		</div>
@@ -81,8 +81,8 @@ get_header(); ?>
 				<div class="step grid">
 					<div class="step-content">
 						<span class="step-number">STEP 01</span>
-						<h3><?php echo esc_html__( 'Strategic Audit & Positioning', 'premium-b2b' ); ?></h3>
-						<p class="text-light"><?php echo esc_html__( 'We deep-dive into your current operations to identify leakage and define your unique value proposition in the high-ticket market.', 'premium-b2b' ); ?></p>
+						<h3><?php echo esc_html( get_theme_mod( 'mechanism_s1_title', __( 'Strategic Audit & Positioning', 'premium-b2b' ) ) ); ?></h3>
+						<p class="text-light"><?php echo esc_html( get_theme_mod( 'mechanism_s1_desc', __( 'We deep-dive into your current operations to identify leakage and define your unique value proposition in the high-ticket market.', 'premium-b2b' ) ) ); ?></p>
 					</div>
 					<div class="step-image"></div>
 				</div>
@@ -92,8 +92,8 @@ get_header(); ?>
 					<div class="step-image"></div>
 					<div class="step-content">
 						<span class="step-number">STEP 02</span>
-						<h3><?php echo esc_html__( 'Conversion-Led System Build', 'premium-b2b' ); ?></h3>
-						<p class="text-light"><?php echo esc_html__( 'We architect your bespoke acquisition engine, from high-converting landing pages to automated lead nurturing sequences.', 'premium-b2b' ); ?></p>
+						<h3><?php echo esc_html( get_theme_mod( 'mechanism_s2_title', __( 'Conversion-Led System Build', 'premium-b2b' ) ) ); ?></h3>
+						<p class="text-light"><?php echo esc_html( get_theme_mod( 'mechanism_s2_desc', __( 'We architect your bespoke acquisition engine, from high-converting landing pages to automated lead nurturing sequences.', 'premium-b2b' ) ) ); ?></p>
 					</div>
 				</div>
 
@@ -101,8 +101,8 @@ get_header(); ?>
 				<div class="step grid">
 					<div class="step-content">
 						<span class="step-number">STEP 03</span>
-						<h3><?php echo esc_html__( 'Scale & Optimization', 'premium-b2b' ); ?></h3>
-						<p class="text-light"><?php echo esc_html__( 'Once the foundation is solid, we scale your traffic and optimize every touchpoint for maximum ROI and long-term partnership growth.', 'premium-b2b' ); ?></p>
+						<h3><?php echo esc_html( get_theme_mod( 'mechanism_s3_title', __( 'Scale & Optimization', 'premium-b2b' ) ) ); ?></h3>
+						<p class="text-light"><?php echo esc_html( get_theme_mod( 'mechanism_s3_desc', __( 'Once the foundation is solid, we scale your traffic and optimize every touchpoint for maximum ROI and long-term partnership growth.', 'premium-b2b' ) ) ); ?></p>
 					</div>
 					<div class="step-image"></div>
 				</div>
