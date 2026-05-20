@@ -72,7 +72,7 @@ a {
     --color-border: #E2E8F0;
 
     /* Typography */
-    --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-primary: 'Google Sans', 'Inter', system-ui, -apple-system, sans-serif;
 
     /* Responsive Font Sizes using clamp */
     --fs-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
