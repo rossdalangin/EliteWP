@@ -13,28 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Sets up theme defaults and registers support for various WordPress features.
  */
 function premium_b2b_setup() {
-	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
 	add_theme_support( 'title-tag' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
 	add_theme_support( 'post-thumbnails' );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
 	add_theme_support(
 		'html5',
 		array(
@@ -48,7 +29,6 @@ function premium_b2b_setup() {
 		)
 	);
 
-	// Register navigation menus.
 	register_nav_menus(
 		array(
 			'menu-1'      => esc_html__( 'Primary Menu', 'premium-b2b' ),
@@ -56,7 +36,6 @@ function premium_b2b_setup() {
 		)
 	);
 
-	// Add support for core custom logo.
 	add_theme_support(
 		'custom-logo',
 		array(
@@ -73,9 +52,8 @@ add_action( 'after_setup_theme', 'premium_b2b_setup' );
  * Enqueue scripts and styles.
  */
 function premium_b2b_scripts() {
-	wp_enqueue_style( 'premium-b2b-style', get_stylesheet_uri(), array(), '1.0.0' );
-
-	wp_enqueue_script( 'premium-b2b-main', get_template_directory_uri() . '/js/main.js', array(), '1.0.0', true );
+	wp_enqueue_style( 'premium-b2b-style', get_stylesheet_uri(), array(), '1.2.0' );
+	wp_enqueue_script( 'premium-b2b-main', get_template_directory_uri() . '/js/main.js', array(), '1.2.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'premium_b2b_scripts' );
 
@@ -94,7 +72,25 @@ add_filter( 'script_loader_tag', 'premium_b2b_defer_scripts', 10, 3 );
  * Register Customizer settings.
  */
 function premium_b2b_customize_register( $wp_customize ) {
-	// Hero Section
+
+	// --- Theme Setup & Regeneration ---
+	$wp_customize->add_section( 'premium_b2b_setup', array(
+		'title'    => __( 'Theme Setup', 'premium-b2b' ),
+		'priority' => 20,
+	) );
+
+	$wp_customize->add_setting( 'regen_sample_content', array(
+		'default'           => false,
+		'sanitize_callback' => 'premium_b2b_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'regen_sample_content', array(
+		'label'       => __( 'Regenerate Sample Content', 'premium-b2b' ),
+		'description' => __( 'Check this and save to purge old sample data and generate fresh premium B2B content.', 'premium-b2b' ),
+		'section'     => 'premium_b2b_setup',
+		'type'        => 'checkbox',
+	) );
+
+	// --- Hero Section ---
 	$wp_customize->add_section( 'premium_b2b_hero', array(
 		'title'    => __( 'Hero Section', 'premium-b2b' ),
 		'priority' => 30,
@@ -140,7 +136,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'type'     => 'url',
 	) );
 
-	// Colors
+	// --- Colors ---
 	$wp_customize->add_section( 'premium_b2b_colors', array(
 		'title'    => __( 'Theme Colors', 'premium-b2b' ),
 		'priority' => 35,
@@ -164,9 +160,9 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'section'  => 'premium_b2b_colors',
 	) ) );
 
-	// Agitation Section
+	// --- Agitation Section ---
 	$wp_customize->add_section( 'premium_b2b_agitation', array(
-		'title'    => __( 'Agitation Section', 'premium-b2b' ),
+		'title'    => __( 'Agitation Grid', 'premium-b2b' ),
 		'priority' => 31,
 	) );
 
@@ -175,77 +171,20 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( 'agitation_headline', array(
-		'label'    => __( 'Headline', 'premium-b2b' ),
+		'label'    => __( 'Section Headline', 'premium-b2b' ),
 		'section'  => 'premium_b2b_agitation',
-		'type'     => 'text',
 	) );
 
-	// Card 1
-	$wp_customize->add_setting( 'agitation_c1_title', array(
-		'default'           => __( 'Content Fatigue', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'agitation_c1_title', array(
-		'label'    => __( 'Card 1 Title', 'premium-b2b' ),
-		'section'  => 'premium_b2b_agitation',
-		'type'     => 'text',
-	) );
+	for ( $i = 1; $i <= 3; $i++ ) {
+		$wp_customize->add_setting( "agitation_c{$i}_title", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "agitation_c{$i}_title", array( 'label' => "Card $i Title", 'section' => 'premium_b2b_agitation' ) );
+		$wp_customize->add_setting( "agitation_c{$i}_desc", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "agitation_c{$i}_desc", array( 'label' => "Card $i Description", 'section' => 'premium_b2b_agitation', 'type' => 'textarea' ) );
+	}
 
-	$wp_customize->add_setting( 'agitation_c1_desc', array(
-		'default'           => __( 'Spending hours on content that fails to generate meaningful engagement or leads.', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'agitation_c1_desc', array(
-		'label'    => __( 'Card 1 Description', 'premium-b2b' ),
-		'section'  => 'premium_b2b_agitation',
-		'type'     => 'textarea',
-	) );
-
-	// Card 2
-	$wp_customize->add_setting( 'agitation_c2_title', array(
-		'default'           => __( 'Brand Degradation', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'agitation_c2_title', array(
-		'label'    => __( 'Card 2 Title', 'premium-b2b' ),
-		'section'  => 'premium_b2b_agitation',
-		'type'     => 'text',
-	) );
-
-	$wp_customize->add_setting( 'agitation_c2_desc', array(
-		'default'           => __( 'Inconsistent messaging and poor visual identity that turns away premium clients.', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'agitation_c2_desc', array(
-		'label'    => __( 'Card 2 Description', 'premium-b2b' ),
-		'section'  => 'premium_b2b_agitation',
-		'type'     => 'textarea',
-	) );
-
-	// Card 3
-	$wp_customize->add_setting( 'agitation_c3_title', array(
-		'default'           => __( 'Empty Pipelines', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'agitation_c3_title', array(
-		'label'    => __( 'Card 3 Title', 'premium-b2b' ),
-		'section'  => 'premium_b2b_agitation',
-		'type'     => 'text',
-	) );
-
-	$wp_customize->add_setting( 'agitation_c3_desc', array(
-		'default'           => __( 'Living month-to-month without a predictable system for high-ticket client acquisition.', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'agitation_c3_desc', array(
-		'label'    => __( 'Card 3 Description', 'premium-b2b' ),
-		'section'  => 'premium_b2b_agitation',
-		'type'     => 'textarea',
-	) );
-
-	// Mechanism Section
+	// --- Mechanism Section ---
 	$wp_customize->add_section( 'premium_b2b_mechanism', array(
-		'title'    => __( 'Mechanism Section', 'premium-b2b' ),
+		'title'    => __( 'Mechanism Z-Pattern', 'premium-b2b' ),
 		'priority' => 32,
 	) );
 
@@ -254,77 +193,20 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( 'mechanism_headline', array(
-		'label'    => __( 'Headline', 'premium-b2b' ),
+		'label'    => __( 'Section Headline', 'premium-b2b' ),
 		'section'  => 'premium_b2b_mechanism',
-		'type'     => 'text',
 	) );
 
-	// Step 1
-	$wp_customize->add_setting( 'mechanism_s1_title', array(
-		'default'           => __( 'Strategic Audit & Positioning', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'mechanism_s1_title', array(
-		'label'    => __( 'Step 1 Title', 'premium-b2b' ),
-		'section'  => 'premium_b2b_mechanism',
-		'type'     => 'text',
-	) );
+	for ( $i = 1; $i <= 3; $i++ ) {
+		$wp_customize->add_setting( "mechanism_s{$i}_title", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "mechanism_s{$i}_title", array( 'label' => "Step $i Title", 'section' => 'premium_b2b_mechanism' ) );
+		$wp_customize->add_setting( "mechanism_s{$i}_desc", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "mechanism_s{$i}_desc", array( 'label' => "Step $i Description", 'section' => 'premium_b2b_mechanism', 'type' => 'textarea' ) );
+	}
 
-	$wp_customize->add_setting( 'mechanism_s1_desc', array(
-		'default'           => __( 'We deep-dive into your current operations to identify leakage and define your unique value proposition in the high-ticket market.', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'mechanism_s1_desc', array(
-		'label'    => __( 'Step 1 Description', 'premium-b2b' ),
-		'section'  => 'premium_b2b_mechanism',
-		'type'     => 'textarea',
-	) );
-
-	// Step 2
-	$wp_customize->add_setting( 'mechanism_s2_title', array(
-		'default'           => __( 'Conversion-Led System Build', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'mechanism_s2_title', array(
-		'label'    => __( 'Step 2 Title', 'premium-b2b' ),
-		'section'  => 'premium_b2b_mechanism',
-		'type'     => 'text',
-	) );
-
-	$wp_customize->add_setting( 'mechanism_s2_desc', array(
-		'default'           => __( 'We architect your bespoke acquisition engine, from high-converting landing pages to automated lead nurturing sequences.', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'mechanism_s2_desc', array(
-		'label'    => __( 'Step 2 Description', 'premium-b2b' ),
-		'section'  => 'premium_b2b_mechanism',
-		'type'     => 'textarea',
-	) );
-
-	// Step 3
-	$wp_customize->add_setting( 'mechanism_s3_title', array(
-		'default'           => __( 'Scale & Optimization', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'mechanism_s3_title', array(
-		'label'    => __( 'Step 3 Title', 'premium-b2b' ),
-		'section'  => 'premium_b2b_mechanism',
-		'type'     => 'text',
-	) );
-
-	$wp_customize->add_setting( 'mechanism_s3_desc', array(
-		'default'           => __( 'Once the foundation is solid, we scale your traffic and optimize every touchpoint for maximum ROI and long-term partnership growth.', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'mechanism_s3_desc', array(
-		'label'    => __( 'Step 3 Description', 'premium-b2b' ),
-		'section'  => 'premium_b2b_mechanism',
-		'type'     => 'textarea',
-	) );
-
-	// Capture Section
+	// --- Capture Section ---
 	$wp_customize->add_section( 'premium_b2b_capture', array(
-		'title'    => __( 'Capture Section', 'premium-b2b' ),
+		'title'    => __( 'Capture Block', 'premium-b2b' ),
 		'priority' => 33,
 	) );
 
@@ -333,9 +215,8 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( 'capture_headline', array(
-		'label'    => __( 'Headline', 'premium-b2b' ),
+		'label'    => __( 'Capture Headline', 'premium-b2b' ),
 		'section'  => 'premium_b2b_capture',
-		'type'     => 'text',
 	) );
 
 	$wp_customize->add_setting( 'capture_subheadline', array(
@@ -343,7 +224,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( 'capture_subheadline', array(
-		'label'    => __( 'Subheadline', 'premium-b2b' ),
+		'label'    => __( 'Capture Subheadline', 'premium-b2b' ),
 		'section'  => 'premium_b2b_capture',
 		'type'     => 'textarea',
 	) );
@@ -358,7 +239,67 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'type'     => 'textarea',
 	) );
 
-	// Scripts Block
+	// --- Post CTA Card ---
+	$wp_customize->add_section( 'premium_b2b_cta_card', array(
+		'title'    => __( 'Single Post CTA', 'premium-b2b' ),
+		'priority' => 40,
+	) );
+
+	$wp_customize->add_setting( 'cta_card_title', array(
+		'default'           => __( 'Ready to Automate Your Pipeline?', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'cta_card_title', array( 'label' => __( 'Title', 'premium-b2b' ), 'section' => 'premium_b2b_cta_card' ) );
+
+	$wp_customize->add_setting( 'cta_card_desc', array(
+		'default'           => __( 'Book a discovery call today and see how we can help you scale.', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'cta_card_desc', array( 'label' => __( 'Description', 'premium-b2b' ), 'section' => 'premium_b2b_cta_card', 'type' => 'textarea' ) );
+
+	// --- About Page Settings ---
+	$wp_customize->add_section( 'premium_b2b_about', array(
+		'title'    => __( 'About Page', 'premium-b2b' ),
+		'priority' => 100,
+	) );
+
+	$wp_customize->add_setting( 'about_mission_headline', array(
+		'default'           => __( 'Our Mission: Transforming B2B Acquisition', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'about_mission_headline', array( 'label' => __( 'Mission Headline', 'premium-b2b' ), 'section' => 'premium_b2b_about' ) );
+
+	$wp_customize->add_setting( 'about_mission_text', array(
+		'default'           => __( 'We empower agencies to achieve predictable growth by bridging the gap between high-value prospects and sustainable conversion systems.', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'about_mission_text', array( 'label' => __( 'Mission Text', 'premium-b2b' ), 'section' => 'premium_b2b_about', 'type' => 'textarea' ) );
+
+	// --- Services Page Settings ---
+	$wp_customize->add_section( 'premium_b2b_services', array(
+		'title'    => __( 'Services Page', 'premium-b2b' ),
+		'priority' => 110,
+	) );
+
+	$wp_customize->add_setting( 'services_headline', array(
+		'default'           => __( 'Precision-Engineered Acquisition Services', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'services_headline', array( 'label' => __( 'Services Headline', 'premium-b2b' ), 'section' => 'premium_b2b_services' ) );
+
+	// --- Contact Page Settings ---
+	$wp_customize->add_section( 'premium_b2b_contact', array(
+		'title'    => __( 'Contact Page', 'premium-b2b' ),
+		'priority' => 120,
+	) );
+
+	$wp_customize->add_setting( 'contact_email', array(
+		'default'           => 'partner@agency.com',
+		'sanitize_callback' => 'sanitize_email',
+	) );
+	$wp_customize->add_control( 'contact_email', array( 'label' => __( 'Contact Email', 'premium-b2b' ), 'section' => 'premium_b2b_contact' ) );
+
+	// --- Scripts Block ---
 	$wp_customize->add_section( 'premium_b2b_scripts', array(
 		'title'    => __( 'Custom Scripts', 'premium-b2b' ),
 		'priority' => 160,
@@ -374,34 +315,15 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'section'     => 'premium_b2b_scripts',
 		'type'        => 'textarea',
 	) );
-
-	// Global CTA Card (for Single Posts)
-	$wp_customize->add_section( 'premium_b2b_cta_card', array(
-		'title'    => __( 'Post CTA Card', 'premium-b2b' ),
-		'priority' => 40,
-	) );
-
-	$wp_customize->add_setting( 'cta_card_title', array(
-		'default'           => __( 'Ready to Automate Your Pipeline?', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'cta_card_title', array(
-		'label'    => __( 'CTA Card Title', 'premium-b2b' ),
-		'section'  => 'premium_b2b_cta_card',
-		'type'     => 'text',
-	) );
-
-	$wp_customize->add_setting( 'cta_card_desc', array(
-		'default'           => __( 'Book a discovery call today and see how we can help you scale.', 'premium-b2b' ),
-		'sanitize_callback' => 'sanitize_text_field',
-	) );
-	$wp_customize->add_control( 'cta_card_desc', array(
-		'label'    => __( 'CTA Card Description', 'premium-b2b' ),
-		'section'  => 'premium_b2b_cta_card',
-		'type'     => 'textarea',
-	) );
 }
 add_action( 'customize_register', 'premium_b2b_customize_register' );
+
+/**
+ * Checkbox Sanitization.
+ */
+function premium_b2b_sanitize_checkbox( $checked ) {
+	return ( ( isset( $checked ) && true == $checked ) ? true : false );
+}
 
 /**
  * Script Sanitization.
@@ -414,7 +336,87 @@ function premium_b2b_sanitize_scripts( $value ) {
 }
 
 /**
- * Output Custom Scripts in Header.
+ * Handle Content Regeneration.
+ */
+function premium_b2b_handle_regeneration() {
+	if ( get_theme_mod( 'regen_sample_content' ) ) {
+
+		// 1. Purge Old Sample Data
+		$old_samples = get_posts( array(
+			'post_type'  => array( 'page', 'post' ),
+			'meta_key'   => '_premium_b2b_sample',
+			'numberposts' => -1,
+			'post_status' => 'any'
+		) );
+
+		foreach ( $old_samples as $sample ) {
+			wp_delete_post( $sample->ID, true );
+		}
+
+		// 2. Generate New Sample Pages
+		$pages = array(
+			'Home' => array(
+				'content' => 'High-converting landing page content...',
+				'template' => 'front-page.php'
+			),
+			'About Us' => array(
+				'content' => 'Premium B2B agency story...',
+				'template' => 'template-about.php'
+			),
+			'Our Services' => array(
+				'content' => 'Detailed acquisition frameworks...',
+				'template' => 'template-services.php'
+			),
+			'Contact' => array(
+				'content' => 'Lead capture application form...',
+				'template' => 'template-contact.php'
+			),
+			'Insights' => array(
+				'content' => '',
+				'template' => 'index.php'
+			)
+		);
+
+		foreach ( $pages as $title => $data ) {
+			$page_id = wp_insert_post( array(
+				'post_title'   => $title,
+				'post_content' => $data['content'],
+				'post_status'  => 'publish',
+				'post_type'    => 'page',
+				'meta_input'   => array(
+					'_premium_b2b_sample' => true,
+					'_wp_page_template'   => $data['template']
+				)
+			) );
+
+			if ( 'Home' === $title ) {
+				update_option( 'show_on_front', 'page' );
+				update_option( 'page_on_front', $page_id );
+			}
+			if ( 'Insights' === $title ) {
+				update_option( 'page_for_posts', $page_id );
+			}
+		}
+
+		// 3. Generate Sample Posts
+		for ( $i = 1; $i <= 3; $i++ ) {
+			wp_insert_post( array(
+				'post_title'   => "Sample B2B Insight #$i",
+				'post_content' => 'Deep dive into client acquisition strategies...',
+				'post_status'  => 'publish',
+				'post_type'    => 'post',
+				'meta_input'   => array( '_premium_b2b_sample' => true )
+			) );
+		}
+
+		// Reset the trigger
+		set_theme_mod( 'regen_sample_content', false );
+	}
+}
+add_action( 'customize_save_after', 'premium_b2b_handle_regeneration' );
+
+/**
+ * Output Custom Styles in Header.
  */
 function premium_b2b_output_header_scripts() {
 	$scripts = get_theme_mod( 'header_scripts' );
@@ -436,28 +438,11 @@ function premium_b2b_reading_time() {
 	$content = get_post_field( 'post_content', get_the_ID() );
 	$word_count = str_word_count( strip_tags( $content ) );
 	$reading_time = ceil( $word_count / 200 );
-
-	if ( 1 === $reading_time ) {
-		$timer = __( ' min read', 'premium-b2b' );
-	} else {
-		$timer = __( ' mins read', 'premium-b2b' );
-	}
-
-	return $reading_time . $timer;
+	return $reading_time . ( ( 1 === (int)$reading_time ) ? __( ' min read', 'premium-b2b' ) : __( ' mins read', 'premium-b2b' ) );
 }
 
 /**
- * Custom Excerpt Length.
+ * Custom Excerpt.
  */
-function premium_b2b_excerpt_length( $length ) {
-	return 25;
-}
-add_filter( 'excerpt_length', 'premium_b2b_excerpt_length', 999 );
-
-/**
- * Custom Excerpt More.
- */
-function premium_b2b_excerpt_more( $more ) {
-	return '...';
-}
-add_filter( 'excerpt_more', 'premium_b2b_excerpt_more' );
+add_filter( 'excerpt_length', function() { return 25; }, 999 );
+add_filter( 'excerpt_more', function() { return '...'; } );
