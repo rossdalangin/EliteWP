@@ -276,6 +276,13 @@ function premium_b2b_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'about_mission_text', array( 'label' => __( 'Mission Text', 'premium-b2b' ), 'section' => 'premium_b2b_about', 'type' => 'textarea' ) );
 
+	for ( $i = 1; $i <= 3; $i++ ) {
+		$wp_customize->add_setting( "value_{$i}_title", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "value_{$i}_title", array( 'label' => "Value $i Title", 'section' => 'premium_b2b_about' ) );
+		$wp_customize->add_setting( "value_{$i}_desc", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "value_{$i}_desc", array( 'label' => "Value $i Description", 'section' => 'premium_b2b_about', 'type' => 'textarea' ) );
+	}
+
 	// --- Services Page Settings ---
 	$wp_customize->add_section( 'premium_b2b_services', array(
 		'title'    => __( 'Services Page', 'premium-b2b' ),
@@ -288,6 +295,13 @@ function premium_b2b_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'services_headline', array( 'label' => __( 'Services Headline', 'premium-b2b' ), 'section' => 'premium_b2b_services' ) );
 
+	for ( $i = 1; $i <= 3; $i++ ) {
+		$wp_customize->add_setting( "service_{$i}_title", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "service_{$i}_title", array( 'label' => "Service $i Title", 'section' => 'premium_b2b_services' ) );
+		$wp_customize->add_setting( "service_{$i}_desc", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "service_{$i}_desc", array( 'label' => "Service $i Description", 'section' => 'premium_b2b_services', 'type' => 'textarea' ) );
+	}
+
 	// --- Contact Page Settings ---
 	$wp_customize->add_section( 'premium_b2b_contact', array(
 		'title'    => __( 'Contact Page', 'premium-b2b' ),
@@ -299,6 +313,31 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_email',
 	) );
 	$wp_customize->add_control( 'contact_email', array( 'label' => __( 'Contact Email', 'premium-b2b' ), 'section' => 'premium_b2b_contact' ) );
+
+	// --- Footer & Social ---
+	$wp_customize->add_section( 'premium_b2b_footer', array(
+		'title'    => __( 'Footer & Social', 'premium-b2b' ),
+		'priority' => 130,
+	) );
+
+	$wp_customize->add_setting( 'footer_copyright', array(
+		'default'           => sprintf( '&copy; %s %s. All rights reserved.', date( 'Y' ), get_bloginfo( 'name' ) ),
+		'sanitize_callback' => 'wp_kses_post',
+	) );
+	$wp_customize->add_control( 'footer_copyright', array(
+		'label'   => __( 'Copyright Text', 'premium-b2b' ),
+		'section' => 'premium_b2b_footer',
+		'type'    => 'textarea',
+	) );
+
+	$socials = array( 'linkedin', 'twitter', 'instagram' );
+	foreach ( $socials as $social ) {
+		$wp_customize->add_setting( "social_{$social}", array( 'sanitize_callback' => 'esc_url_raw' ) );
+		$wp_customize->add_control( "social_{$social}", array(
+			'label'   => ucfirst( $social ) . ' URL',
+			'section' => 'premium_b2b_footer',
+		) );
+	}
 
 	// --- Selective Refresh Partials ---
 	if ( isset( $wp_customize->selective_refresh ) ) {

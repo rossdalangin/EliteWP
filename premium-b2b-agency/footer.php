@@ -12,6 +12,18 @@
 			<div class="footer-branding">
 				<h2 style="color: var(--color-white); font-size: var(--fs-lg);"><?php bloginfo( 'name' ); ?></h2>
 				<p style="opacity: 0.7; max-width: 30ch;"><?php bloginfo( 'description' ); ?></p>
+
+				<div class="social-links flex" style="margin-top: 2rem;">
+					<?php
+					$socials = array( 'linkedin', 'twitter', 'instagram' );
+					foreach ( $socials as $social ) :
+						$url = get_theme_mod( "social_{$social}" );
+						if ( $url ) :
+							printf( '<a href="%s" target="_blank" rel="noopener noreferrer" style="text-transform: capitalize;">%s</a>', esc_url( $url ), esc_html( $social ) );
+						endif;
+					endforeach;
+					?>
+				</div>
 			</div>
 			<div class="footer-links">
 				<h4 style="color: var(--color-white); margin-bottom: 1rem;"><?php esc_html_e( 'Quick Links', 'premium-b2b' ); ?></h4>
@@ -36,7 +48,7 @@
 
 		<div class="container site-info" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: var(--fs-xs); opacity: 0.5;">
 			<p>
-				&copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'name' ); ?>.
+				<?php echo wp_kses_post( get_theme_mod( 'footer_copyright', sprintf( '&copy; %s %s. All rights reserved.', date( 'Y' ), get_bloginfo( 'name' ) ) ) ); ?>
 				<?php printf( esc_html__( 'Built with %s.', 'premium-b2b' ), '<a href="https://wordpress.org/" style="color: inherit; text-decoration: underline;">WordPress</a>' ); ?>
 			</p>
 		</div><!-- .site-info -->

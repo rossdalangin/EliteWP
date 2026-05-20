@@ -20,19 +20,22 @@ get_header(); ?>
 
 	<section class="values-section section" style="background-color: var(--color-bg);">
 		<div class="container">
-			<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+			<div class="grid agitation-grid">
+				<?php
+				$value_defaults = array(
+					1 => array( 't' => '01. Precision', 'd' => 'Every strategy is data-driven and targeted specifically for your ideal client profile.' ),
+					2 => array( 't' => '02. Excellence', 'd' => 'We maintain elite standards in every touchpoint of the acquisition framework.' ),
+					3 => array( 't' => '03. Growth', 'd' => "Our ultimate metric is the measurable growth of your agency's revenue." ),
+				);
+				for ( $i = 1; $i <= 3; $i++ ) :
+					$title = get_theme_mod( "value_{$i}_title", $value_defaults[$i]['t'] );
+					$desc = get_theme_mod( "value_{$i}_desc", $value_defaults[$i]['d'] );
+				?>
 				<div class="value-card" style="background: var(--color-white); padding: 3rem; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-					<h3 class="text-accent">01. Precision</h3>
-					<p class="text-light">Every strategy is data-driven and targeted specifically for your ideal client profile.</p>
+					<h3 class="text-accent"><?php echo esc_html( $title ); ?></h3>
+					<p class="text-light"><?php echo esc_html( $desc ); ?></p>
 				</div>
-				<div class="value-card" style="background: var(--color-white); padding: 3rem; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-					<h3 class="text-accent">02. Excellence</h3>
-					<p class="text-light">We maintain elite standards in every touchpoint of the acquisition framework.</p>
-				</div>
-				<div class="value-card" style="background: var(--color-white); padding: 3rem; border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-					<h3 class="text-accent">03. Growth</h3>
-					<p class="text-light">Our ultimate metric is the measurable growth of your agency's revenue.</p>
-				</div>
+				<?php endfor; ?>
 			</div>
 		</div>
 	</section>

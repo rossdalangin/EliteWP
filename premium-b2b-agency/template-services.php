@@ -18,22 +18,23 @@ get_header(); ?>
 
 	<section class="services-grid section" style="background-color: var(--color-white);">
 		<div class="container">
-			<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+			<div class="grid agitation-grid">
+				<?php
+				$service_defaults = array(
+					1 => array( 't' => 'Strategic Positioning', 'd' => 'We redefine your market presence to attract high-ticket B2B partners exclusively.' ),
+					2 => array( 't' => 'Lead Generation Systems', 'd' => 'Automated engines that deliver qualified prospects into your pipeline daily.' ),
+					3 => array( 't' => 'Conversion Architecture', 'd' => 'Optimized landing pages and nurturing sequences that drive immediate action.' ),
+				);
+				for ( $i = 1; $i <= 3; $i++ ) :
+					$title = get_theme_mod( "service_{$i}_title", $service_defaults[$i]['t'] );
+					$desc = get_theme_mod( "service_{$i}_desc", $service_defaults[$i]['d'] );
+				?>
 				<div class="service-card" style="padding: 3rem; border: 1px solid var(--color-border); border-radius: var(--radius);">
-					<span class="text-accent" style="font-weight: 800; font-size: var(--fs-lg);">01</span>
-					<h3 style="margin: 1rem 0;">Strategic Positioning</h3>
-					<p class="text-light">We redefine your market presence to attract high-ticket B2B partners exclusively.</p>
+					<span class="text-accent" style="font-weight: 800; font-size: var(--fs-lg);">0<?php echo $i; ?></span>
+					<h3 style="margin: 1rem 0;"><?php echo esc_html( $title ); ?></h3>
+					<p class="text-light"><?php echo esc_html( $desc ); ?></p>
 				</div>
-				<div class="service-card" style="padding: 3rem; border: 1px solid var(--color-border); border-radius: var(--radius);">
-					<span class="text-accent" style="font-weight: 800; font-size: var(--fs-lg);">02</span>
-					<h3 style="margin: 1rem 0;">Lead Generation Systems</h3>
-					<p class="text-light">Automated engines that deliver qualified prospects into your pipeline daily.</p>
-				</div>
-				<div class="service-card" style="padding: 3rem; border: 1px solid var(--color-border); border-radius: var(--radius);">
-					<span class="text-accent" style="font-weight: 800; font-size: var(--fs-lg);">03</span>
-					<h3 style="margin: 1rem 0;">Conversion Architecture</h3>
-					<p class="text-light">Optimized landing pages and nurturing sequences that drive immediate action.</p>
-				</div>
+				<?php endfor; ?>
 			</div>
 		</div>
 	</section>

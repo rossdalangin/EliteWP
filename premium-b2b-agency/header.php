@@ -5,6 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
+	<!-- Performance Hints -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 	<?php wp_head(); ?>
 </head>
 
@@ -15,14 +19,14 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'premium-b2b' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="container flex" style="justify-content: space-between; align-items: center; padding-top: 1.5rem; padding-bottom: 1.5rem;">
+		<div class="container flex">
 			<div class="site-branding">
 				<?php
 				if ( has_custom_logo() ) :
 					the_custom_logo();
 				else :
 					?>
-					<h1 class="site-title" style="font-size: var(--fs-lg); margin-bottom: 0;">
+					<h1 class="site-title">
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 					</h1>
 					<?php

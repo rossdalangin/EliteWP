@@ -51,8 +51,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Reveal Animation on Scroll (Basic implementation)
-    const revealElements = document.querySelectorAll('.agitation-card, .service-card, .value-card');
+    // 4. Interactive Hero Graphic
+    const heroGraphic = document.querySelector('.hero-graphic-wrapper');
+    if (heroGraphic) {
+        heroGraphic.addEventListener('mousemove', (e) => {
+            const { left, top, width, height } = heroGraphic.getBoundingClientRect();
+            const x = (e.clientX - left) / width - 0.5;
+            const y = (e.clientY - top) / height - 0.5;
+
+            const inner = heroGraphic.querySelector('.hero-graphic-inner');
+            if (inner) {
+                inner.style.transform = `perspective(1000px) rotateX(${y * 10}deg) rotateY(${x * 10}deg) translateZ(20px)`;
+            }
+        });
+
+        heroGraphic.addEventListener('mouseleave', () => {
+            const inner = heroGraphic.querySelector('.hero-graphic-inner');
+            if (inner) {
+                inner.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+            }
+        });
+    }
+
+    // 5. Reveal Animation on Scroll
+    const revealElements = document.querySelectorAll('.agitation-card, .service-card, .value-card, .step');
     const observerOptions = {
         threshold: 0.1
     };
@@ -73,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // 5. Helper for scroll reveal
+    // 6. Helper for scroll reveal
     const style = document.createElement('style');
     style.innerHTML = `
         .reveal-active {
