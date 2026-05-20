@@ -322,6 +322,42 @@ function premium_b2b_customize_register( $wp_customize ) {
 		'type'     => 'textarea',
 	) );
 
+	// Capture Section
+	$wp_customize->add_section( 'premium_b2b_capture', array(
+		'title'    => __( 'Capture Section', 'premium-b2b' ),
+		'priority' => 33,
+	) );
+
+	$wp_customize->add_setting( 'capture_headline', array(
+		'default'           => __( 'Ready to Secure Your Next 5 High-Ticket Partners?', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'capture_headline', array(
+		'label'    => __( 'Headline', 'premium-b2b' ),
+		'section'  => 'premium_b2b_capture',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'capture_subheadline', array(
+		'default'           => __( 'Book your discovery call below to see if your agency is a fit for our acquisition framework.', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'capture_subheadline', array(
+		'label'    => __( 'Subheadline', 'premium-b2b' ),
+		'section'  => 'premium_b2b_capture',
+		'type'     => 'textarea',
+	) );
+
+	$wp_customize->add_setting( 'capture_embed', array(
+		'default'           => '',
+		'sanitize_callback' => 'premium_b2b_sanitize_scripts',
+	) );
+	$wp_customize->add_control( 'capture_embed', array(
+		'label'    => __( 'Embed Code (Form/Calendar)', 'premium-b2b' ),
+		'section'  => 'premium_b2b_capture',
+		'type'     => 'textarea',
+	) );
+
 	// Scripts Block
 	$wp_customize->add_section( 'premium_b2b_scripts', array(
 		'title'    => __( 'Custom Scripts', 'premium-b2b' ),

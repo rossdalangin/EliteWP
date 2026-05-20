@@ -113,17 +113,26 @@ get_header(); ?>
 	<!-- Section 4: The Frictionless Capture Block -->
 	<section class="capture-section section">
 		<div class="container">
-			<h2><?php echo esc_html__( 'Ready to Secure Your Next 5 High-Ticket Partners?', 'premium-b2b' ); ?></h2>
-			<p><?php echo esc_html__( 'Book your discovery call below to see if your agency is a fit for our acquisition framework.', 'premium-b2b' ); ?></p>
+			<h2><?php echo esc_html( get_theme_mod( 'capture_headline', __( 'Ready to Secure Your Next 5 High-Ticket Partners?', 'premium-b2b' ) ) ); ?></h2>
+			<p><?php echo esc_html( get_theme_mod( 'capture_subheadline', __( 'Book your discovery call below to see if your agency is a fit for our acquisition framework.', 'premium-b2b' ) ) ); ?></p>
 
 			<div class="capture-widget">
-				<!-- Placeholder for Lead Form / Calendar App -->
-				<div class="text-center">
-					<p class="text-light" style="margin-bottom: 1.5rem;"><?php echo esc_html__( '[Calendar Application / Lead Form Embed Area]', 'premium-b2b' ); ?></p>
-					<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
-						<?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Get a Free Strategy Session', 'premium-b2b' ) ) ); ?>
-					</a>
-				</div>
+				<?php
+				$capture_embed = get_theme_mod( 'capture_embed' );
+				if ( ! empty( $capture_embed ) ) :
+					echo $capture_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				else :
+					?>
+					<!-- Default CTA if no embed code provided -->
+					<div class="text-center">
+						<p class="text-light" style="margin-bottom: 1.5rem;"><?php echo esc_html__( '[Calendar Application / Lead Form Embed Area]', 'premium-b2b' ); ?></p>
+						<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
+							<?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Get a Free Strategy Session', 'premium-b2b' ) ) ); ?>
+						</a>
+					</div>
+					<?php
+				endif;
+				?>
 			</div>
 		</div>
 	</section>
