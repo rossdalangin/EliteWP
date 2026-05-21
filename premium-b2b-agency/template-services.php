@@ -21,9 +21,9 @@ get_header(); ?>
 			<div class="grid agitation-grid">
 				<?php
 				$service_defaults = array(
-					1 => array( 't' => 'Strategic Positioning', 'd' => 'We redefine your market presence to attract high-ticket B2B partners exclusively.' ),
-					2 => array( 't' => 'Lead Generation Systems', 'd' => 'Automated engines that deliver qualified prospects into your pipeline daily.' ),
-					3 => array( 't' => 'Conversion Architecture', 'd' => 'Optimized landing pages and nurturing sequences that drive immediate action.' ),
+					1 => array( 't' => 'Authority Positioning', 'd' => 'Strategic realignment of your agency brand to attract $50k+ partners exclusively.' ),
+					2 => array( 't' => 'Automated Lead Engines', 'd' => 'Deployment of custom LinkedIn and Cold Email systems that deliver qualified calls daily.' ),
+					3 => array( 't' => 'Conversion Ecosystems', 'd' => 'High-performance landing pages and VSLs designed for radical B2B persuasion.' ),
 				);
 				for ( $i = 1; $i <= 3; $i++ ) :
 					$title = get_theme_mod( "service_{$i}_title", $service_defaults[$i]['t'] );

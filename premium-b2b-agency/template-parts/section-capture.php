@@ -8,7 +8,7 @@
 <section class="capture-section section">
     <div class="container">
         <h2 class="text-center"><?php echo esc_html( get_theme_mod( 'capture_headline', 'Ready to Secure Your Next 5 High-Ticket Partners?' ) ); ?></h2>
-        <p><?php echo esc_html( get_theme_mod( 'capture_subheadline', 'Initiate your strategy session below. We only partner with agencies we are certain we can scale.' ) ); ?></p>
+        <p class="text-center"><?php echo esc_html( get_theme_mod( 'capture_subheadline', 'Initiate your strategy session below. We only partner with agencies we are certain we can scale.' ) ); ?></p>
 
         <div class="capture-widget">
             <?php

@@ -23,9 +23,9 @@ get_header(); ?>
 			<div class="grid agitation-grid">
 				<?php
 				$value_defaults = array(
-					1 => array( 't' => '01. Precision', 'd' => 'Every strategy is data-driven and targeted specifically for your ideal client profile.' ),
-					2 => array( 't' => '02. Excellence', 'd' => 'We maintain elite standards in every touchpoint of the acquisition framework.' ),
-					3 => array( 't' => '03. Growth', 'd' => "Our ultimate metric is the measurable growth of your agency's revenue." ),
+					1 => array( 't' => '01. Absolute Precision', 'd' => 'Every variable in our framework is tested and optimized for high-ticket B2B conversion.' ),
+					2 => array( 't' => '02. Radical Authority', 'd' => 'We position your agency as the only logical choice in your vertical.' ),
+					3 => array( 't' => '03. Scalable Systems', 'd' => 'Our acquisition engines are built to handle high volume without operational breakdown.' ),
 				);
 				for ( $i = 1; $i <= 3; $i++ ) :
 					$title = get_theme_mod( "value_{$i}_title", $value_defaults[$i]['t'] );
