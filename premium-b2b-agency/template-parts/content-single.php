@@ -40,6 +40,14 @@
         ?>
     </div>
 
+    <!-- Post Navigation -->
+    <nav class="post-navigation container section" style="border-top: 1px solid var(--color-border); margin-top: 4rem;">
+        <div class="flex" style="justify-content: space-between;">
+            <div class="nav-prev"><?php previous_post_link( '%link', '&larr; Previous Insight' ); ?></div>
+            <div class="nav-next"><?php next_post_link( '%link', 'Next Insight &rarr;' ); ?></div>
+        </div>
+    </nav>
+
     <!-- Social Sharing -->
     <?php if ( get_theme_mod( 'enable_social_sharing', true ) ) : ?>
         <div class="container social-sharing section" style="padding-top: 2rem;">

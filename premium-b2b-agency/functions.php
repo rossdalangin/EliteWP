@@ -19,6 +19,9 @@ function premium_b2b_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'customize-selective-refresh-widgets' );
 	add_theme_support( 'core-block-patterns' );
+	add_theme_support( 'editor-styles' );
+	add_theme_support( 'wp-block-styles' );
+	add_theme_support( 'responsive-embeds' );
 	add_theme_support(
 		'html5',
 		array(
@@ -113,6 +116,16 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'enable_mobile_cta', array( 'label' => 'Enable Sticky Mobile CTA', 'section' => 'premium_b2b_setup', 'type' => 'checkbox' ) );
 
 	// --- Branding ---
+	$primary_color = get_theme_mod( 'primary_color', '#0F172A' );
+	$accent_color = get_theme_mod( 'accent_color', '#2563EB' );
+
+	add_theme_support( 'editor-color-palette', array(
+		array( 'name' => __( 'Primary', 'premium-b2b' ), 'slug' => 'primary', 'color' => $primary_color ),
+		array( 'name' => __( 'Accent', 'premium-b2b' ), 'slug' => 'accent', 'color' => $accent_color ),
+		array( 'name' => __( 'White', 'premium-b2b' ), 'slug' => 'white', 'color' => '#FFFFFF' ),
+		array( 'name' => __( 'Dark', 'premium-b2b' ), 'slug' => 'dark', 'color' => '#020617' ),
+	) );
+
 	$wp_customize->add_section( 'premium_b2b_colors', array(
 		'title'    => __( 'Global Branding', 'premium-b2b' ),
 		'priority' => 20,
@@ -302,6 +315,10 @@ function premium_b2b_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'enable_social_sharing', array( 'default' => true, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
 	$wp_customize->add_control( 'enable_social_sharing', array( 'label' => 'Enable Social Sharing', 'section' => 'premium_b2b_cta_card', 'type' => 'checkbox' ) );
+
+    $wp_customize->add_section( 'premium_b2b_whitelabel', array( 'title' => 'White Label & Dev', 'priority' => 10 ) );
+    $wp_customize->add_setting( 'whitelabel_agency_name', array( 'default' => 'Elite Framework', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'whitelabel_agency_name', array( 'label' => 'Framework Label', 'section' => 'premium_b2b_whitelabel' ) );
 
 	$wp_customize->add_section( 'premium_b2b_scripts', array( 'title' => 'Developer: Custom Scripts', 'priority' => 160 ) );
 	$wp_customize->add_setting( 'header_scripts', array( 'default' => '', 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );

@@ -20,14 +20,17 @@
 
 	<header id="masthead" class="site-header">
 		<div class="container flex">
-			<div class="site-branding">
+			<div class="site-branding" style="max-width: 250px;">
 				<?php
 				if ( has_custom_logo() ) :
 					the_custom_logo();
 				else :
 					?>
-					<h1 class="site-title">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+					<h1 class="site-title" style="margin-bottom: 0;">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span class="logo-icon" style="color: var(--color-accent); font-weight: 900;">&lt;/&gt;</span>
+                            <?php bloginfo( 'name' ); ?>
+                        </a>
 					</h1>
 					<?php
 				endif;

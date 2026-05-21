@@ -356,6 +356,14 @@ a, button, [role="button"] {
     }
 }
 
+/* Block Editor Colors */
+.has-primary-color { color: var(--color-primary); }
+.has-primary-background-color { background-color: var(--color-primary); }
+.has-accent-color { color: var(--color-accent); }
+.has-accent-background-color { background-color: var(--color-accent); }
+.has-white-color { color: var(--color-white); }
+.has-white-background-color { background-color: var(--color-white); }
+
 /* Accessibility */
 .screen-reader-text {
     position: absolute;
