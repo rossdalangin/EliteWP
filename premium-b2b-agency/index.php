@@ -38,6 +38,7 @@ get_header(); ?>
 					// Featured Post Layout
 					?>
 					<article id="post-<?php the_ID(); ?>" <?php post_class( 'featured-post grid' ); ?> itemscope itemtype="https://schema.org/BlogPosting">
+						<meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>">
 						<?php if ( has_post_thumbnail() ) : ?>
 							<div class="post-thumbnail">
 								<a href="<?php the_permalink(); ?>">
@@ -58,6 +59,7 @@ get_header(); ?>
 					<div class="post-grid grid">
 				<?php else : ?>
 					<article id="post-<?php the_ID(); ?>" <?php post_class( 'grid-post' ); ?> itemscope itemtype="https://schema.org/BlogPosting">
+						<meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>">
 						<?php if ( has_post_thumbnail() ) : ?>
 							<div class="post-thumbnail">
 								<a href="<?php the_permalink(); ?>">

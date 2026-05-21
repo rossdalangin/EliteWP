@@ -7,6 +7,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="https://schema.org/BlogPosting">
+    <meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>">
     <header class="entry-header section">
         <div class="container">
             <div class="entry-meta">

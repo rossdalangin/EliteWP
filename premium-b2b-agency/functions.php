@@ -216,9 +216,9 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'agitation_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_agitation' ) );
 
     $agitation_defaults = array(
-        1 => array( 't' => 'Stagnant Pipelines', 'd' => 'Living project-to-project without a predictable, automated system for high-ticket acquisition.' ),
-        2 => array( 't' => 'Brand Degradation', 'd' => 'Inconsistent messaging and outdated design that signal low authority to premium prospects.' ),
-        3 => array( 't' => 'Conversion Leakage', 'd' => 'Spending thousands on traffic that hits non-optimized pages, resulting in zero ROI.' ),
+        1 => array( 't' => 'Content Fatigue', 'd' => 'The constant demand for volume has degraded your message, causing high-value partners to tune out.' ),
+        2 => array( 't' => 'Brand Degradation', 'd' => 'Inconsistent authority signals and outdated positioning are actively repelling premium, high-ticket prospects.' ),
+        3 => array( 't' => 'Empty Pipelines', 'd' => 'Relying on inconsistent referrals and word-of-mouth rather than a predictable, engineering-grade acquisition machine.' ),
     );
     for ( $i = 1; $i <= 3; $i++ ) {
 		$wp_customize->add_setting( "agitation_c{$i}_title", array( 'default' => $agitation_defaults[$i]['t'], 'sanitize_callback' => 'sanitize_text_field' ) );
@@ -247,9 +247,9 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'mechanism_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_mechanism' ) );
 
     $mechanism_defaults = array(
-        1 => array( 't' => 'Strategic Positioning Audit', 'd' => 'We identify leakage in your current brand positioning and realign your authority for the high-ticket market.' ),
-        2 => array( 't' => 'Conversion Engine Build', 'd' => 'We architect your bespoke acquisition engine, ensuring every pixel is optimized for B2B conversion.' ),
-        3 => array( 't' => 'Scalable Growth Injection', 'd' => 'Once the foundation is solid, we inject high-intent traffic to scale your ROI predictably.' ),
+        1 => array( 't' => 'Authority Architecture Audit', 'd' => 'We deconstruct your current positioning and architect a high-authority brand identity that commands premium fees.' ),
+        2 => array( 't' => 'The Alpha Engine Build', 'd' => 'We deploy our proprietary conversion ecosystem, transforming your brand into a scientific lead-capture machine.' ),
+        3 => array( 't' => 'Precision Scale Injection', 'd' => 'With the infrastructure solidified, we inject surgical multi-channel traffic to scale your pipeline predictably.' ),
     );
     for ( $i = 1; $i <= 3; $i++ ) {
 		$wp_customize->add_setting( "mechanism_s{$i}_title", array( 'default' => $mechanism_defaults[$i]['t'], 'sanitize_callback' => 'sanitize_text_field' ) );

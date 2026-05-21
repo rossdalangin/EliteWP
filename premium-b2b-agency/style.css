@@ -42,7 +42,7 @@ a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
     --color-border: #E2E8F0;
 
     /* Typography */
---font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+--font-primary: 'Inter', 'Google Sans', 'Inter Variable', system-ui, -apple-system, sans-serif;
 
     /* Fluid Sizing */
     --fs-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
