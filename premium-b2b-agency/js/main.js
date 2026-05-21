@@ -150,7 +150,21 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // 6. Helper for scroll reveal
+    // 6. Reading Progress Bar
+    const progressBar = document.createElement('div');
+    progressBar.id = 'reading-progress';
+    progressBar.style.cssText = 'position:fixed;top:0;left:0;height:4px;background:var(--color-accent);z-index:10001;width:0%;transition:width 0.1s ease;';
+    if (document.body.classList.contains('single-post')) {
+        document.body.appendChild(progressBar);
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+        });
+    }
+
+    // 7. Helper for scroll reveal
     const style = document.createElement('style');
     style.innerHTML = `
         .reveal-active {

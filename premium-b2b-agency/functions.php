@@ -662,3 +662,39 @@ add_filter( 'the_content', 'premium_b2b_inject_mid_cta' );
 
 add_filter( 'excerpt_length', function() { return 25; }, 999 );
 add_filter( 'excerpt_more', function() { return '...'; } );
+
+/**
+ * Custom Dashboard Widget for Agency Owner.
+ */
+function premium_b2b_dashboard_widget() {
+	wp_add_dashboard_widget(
+		'premium_b2b_agency_stats',
+		'Agency Acquisition Dashboard',
+		'premium_b2b_dashboard_widget_render'
+	);
+}
+add_action( 'wp_dashboard_setup', 'premium_b2b_dashboard_widget' );
+
+function premium_b2b_dashboard_widget_render() {
+	echo '<div class="premium-b2b-stats" style="padding: 10px;">';
+	echo '<p><strong>System Status:</strong> <span style="color: green;">Operational</span></p>';
+	echo '<p>Ready to scale. Your acquisition engine is active. Manage your leads and conversion settings via the <a href="' . esc_url( admin_url( 'customize.php' ) ) . '">Customizer</a>.</p>';
+	echo '</div>';
+}
+
+/**
+ * Custom Login Branding.
+ */
+function premium_b2b_login_branding() {
+	$primary_color = get_theme_mod( 'primary_color', '#0F172A' );
+	$accent_color = get_theme_mod( 'accent_color', '#2563EB' );
+	?>
+	<style type="text/css">
+		body.login { background-color: <?php echo esc_attr( $primary_color ); ?>; }
+		#login h1 a, .login h1 a { background-image: none; display: none; }
+		.login #loginform { border-radius: 12px; border: none; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); }
+		.login #wp-submit { background: <?php echo esc_attr( $accent_color ); ?>; border: none; text-shadow: none; box-shadow: none; }
+	</style>
+	<?php
+}
+add_action( 'login_enqueue_scripts', 'premium_b2b_login_branding' );
