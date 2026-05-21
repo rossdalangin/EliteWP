@@ -70,7 +70,13 @@
 	</div>
 </div><!-- #page -->
 
-<?php wp_footer(); ?>
+<?php
+$f_scripts = get_theme_mod( 'footer_scripts' );
+if ( $f_scripts ) {
+    echo $f_scripts; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+wp_footer();
+?>
 
 </body>
 </html>
