@@ -152,7 +152,7 @@ h4 { font-size: var(--fs-md); }
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 9999; /* Highest priority layer */
     background: transparent;
     transition: all 0.4s ease;
 }
@@ -297,7 +297,7 @@ a, button, [role="button"] {
         background: var(--color-white);
         padding: 3rem var(--container-padding);
         box-shadow: var(--shadow-lg);
-        z-index: 1500;
+        z-index: 9998; /* Under header, above content */
         overflow-y: auto;
     }
     .main-navigation ul.is-active { display: flex; }
@@ -309,7 +309,7 @@ a, button, [role="button"] {
         border: none;
         background: none;
         position: relative;
-        z-index: 1600;
+        z-index: 10000; /* Above ul */
     }
 
     body.menu-open {
@@ -340,7 +340,7 @@ a, button, [role="button"] {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     border-top: 1px solid var(--color-border);
-    z-index: 2000;
+    z-index: 9000; /* High, but below header/menu */
 }
 
 .mobile-sticky-cta .btn {
