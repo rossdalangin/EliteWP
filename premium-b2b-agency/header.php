@@ -58,3 +58,11 @@
 			</div>
 		</div>
 	</header><!-- #masthead -->
+
+	<?php if ( get_theme_mod( 'enable_mobile_cta', true ) ) : ?>
+		<div class="mobile-sticky-cta">
+			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
+				<?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Book Strategy Session', 'premium-b2b' ) ) ); ?>
+			</a>
+		</div>
+	<?php endif; ?>

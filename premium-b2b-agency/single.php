@@ -14,63 +14,46 @@ get_header(); ?>
 	<?php
 	while ( have_posts() ) :
 		the_post();
-		?>
 
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="https://schema.org/BlogPosting">
-			<header class="entry-header section">
-				<div class="container">
-					<div class="entry-meta">
-						<?php the_category( ', ' ); ?>
-					</div>
-					<?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
-					<div class="post-metadata">
-						<span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><?php echo esc_html__( 'By ', 'premium-b2b' ) . get_the_author(); ?></span></span> &bull;
-						<time datetime="<?php echo get_the_date( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_date(); ?></time> &bull;
-						<span><?php echo premium_b2b_reading_time(); ?></span>
-					</div>
-				</div>
-			</header>
+		get_template_part( 'template-parts/content', 'single' );
 
-			<?php if ( has_post_thumbnail() ) : ?>
-				<div class="container single-post-thumbnail">
-					<?php the_post_thumbnail( 'full' ); ?>
-				</div>
-			<?php endif; ?>
-
-			<div class="entry-content container" itemprop="articleBody">
-				<?php
-				the_content();
-
-				wp_link_pages(
-					array(
-						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'premium-b2b' ),
-						'after'  => '</div>',
-					)
-				);
+		// Related Insights
+		$categories = wp_get_post_categories( get_the_ID() );
+		if ( $categories ) {
+			$args = array(
+				'category__in' => $categories,
+				'post__not_in' => array( get_the_ID() ),
+				'posts_per_page' => 3,
+				'ignore_sticky_posts' => 1
+			);
+			$related_query = new WP_Query( $args );
+			if ( $related_query->have_posts() ) :
 				?>
-			</div>
+				<section class="related-insights section" style="background: var(--color-bg); border-top: 1px solid var(--color-border);">
+					<div class="container">
+						<h2 style="margin-bottom: 3rem;"><?php esc_html_e( 'Related Insights', 'premium-b2b' ); ?></h2>
+						<div class="grid agitation-grid">
+							<?php while ( $related_query->have_posts() ) : $related_query->the_post(); ?>
+								<article class="grid-post" style="background: var(--color-white); padding: 2rem; border-radius: var(--radius);">
+									<h3 style="font-size: var(--fs-md);"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+									<time style="font-size: var(--fs-xs); color: var(--color-text-light);"><?php echo get_the_date(); ?></time>
+								</article>
+							<?php endwhile; wp_reset_postdata(); ?>
+						</div>
+					</div>
+				</section>
+				<?php
+			endif;
+		}
 
-			<footer class="entry-footer container">
-				<!-- CTA Card Widget -->
-				<div class="cta-card">
-					<h3><?php echo esc_html( get_theme_mod( 'cta_card_title', __( 'Ready to Automate Your Pipeline?', 'premium-b2b' ) ) ); ?></h3>
-					<p><?php echo esc_html( get_theme_mod( 'cta_card_desc', __( 'Book a discovery call today and see how we can help you scale.', 'premium-b2b' ) ) ); ?></p>
-					<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary"><?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Get a Free Strategy Session', 'premium-b2b' ) ) ); ?></a>
-				</div>
-			</footer>
-
-		</article>
-
-		<?php
-		// If comments are open or we have at least one comment, load up the comment template.
 		if ( comments_open() || get_comments_number() ) :
 			comments_template();
 		endif;
 
-	endwhile; // End of the loop.
+	endwhile;
 	?>
 
-</main><!-- #primary -->
+</main>
 
 <?php
 get_footer();
