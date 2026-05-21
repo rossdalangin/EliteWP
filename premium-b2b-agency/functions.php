@@ -13,10 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Sets up theme defaults and registers support for various WordPress features.
  */
 function premium_b2b_setup() {
+	load_theme_textdomain( 'premium-b2b', get_template_directory() . '/languages' );
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'customize-selective-refresh-widgets' );
+	add_theme_support( 'core-block-patterns' );
 	add_theme_support(
 		'html5',
 		array(
@@ -246,6 +248,16 @@ function premium_b2b_customize_register( $wp_customize ) {
 	}
 
     $wp_customize->add_section( 'premium_b2b_cta_card', array( 'title' => 'Single Post CTA', 'priority' => 140 ) );
+
+	// Lead Magnet
+	$wp_customize->add_section( 'premium_b2b_magnet', array( 'title' => 'Global Lead Magnet', 'priority' => 145 ) );
+	$wp_customize->add_setting( 'magnet_headline', array( 'default' => 'Get the B2B Acquisition Roadmap', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'magnet_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_magnet' ) );
+	$wp_customize->add_setting( 'magnet_desc', array( 'default' => 'Join 5,000+ agency owners receiving our weekly scaling insights.', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'magnet_desc', array( 'label' => 'Description', 'section' => 'premium_b2b_magnet', 'type' => 'textarea' ) );
+	$wp_customize->add_setting( 'magnet_embed', array( 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );
+	$wp_customize->add_control( 'magnet_embed', array( 'label' => 'Form Embed Code', 'section' => 'premium_b2b_magnet', 'type' => 'textarea' ) );
+
 	$wp_customize->add_setting( 'cta_card_title', array( 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'cta_card_title', array( 'label' => 'Title', 'section' => 'premium_b2b_cta_card' ) );
 	$wp_customize->add_setting( 'cta_card_desc', array( 'sanitize_callback' => 'sanitize_text_field' ) );

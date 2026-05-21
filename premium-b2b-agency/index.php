@@ -79,6 +79,8 @@ get_header(); ?>
 
 			</div><!-- .post-grid -->
 
+            <?php get_template_part( 'template-parts/section', 'magnet' ); ?>
+
 			<div class="pagination-wrapper section">
 				<?php
 				the_posts_pagination( array(

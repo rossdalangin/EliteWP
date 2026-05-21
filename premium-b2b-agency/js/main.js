@@ -31,6 +31,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
             });
         });
+
+        // Accessibility: Trap focus in mobile menu
+        siteNavigation.addEventListener('keydown', (e) => {
+            if (!menuList.classList.contains('is-active')) return;
+
+            const focusableElements = siteNavigation.querySelectorAll('a, button');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+            if (e.key === 'Escape') {
+                menuList.classList.remove('is-active');
+                body.classList.remove('menu-open');
+                menuToggle.focus();
+            }
+        });
     }
 
     // Set header height variable for CSS
