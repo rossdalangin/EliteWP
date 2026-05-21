@@ -11,15 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (menuToggle && siteNavigation) {
         const menuList = siteNavigation.querySelector('ul');
+        const body = document.body;
 
         menuToggle.addEventListener('click', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             menuList.classList.toggle('is-active');
+            body.classList.toggle('menu-open');
 
-            // Animation for hamburger icon if implemented
+            // Animation for hamburger icon
             menuToggle.classList.toggle('is-open');
         });
+
+        // Close menu on link click
+        menuList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuList.classList.remove('is-active');
+                body.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    // Set header height variable for CSS
+    const header = document.getElementById('masthead');
+    if (header) {
+        document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
     }
 
     // 2. Smooth Scroll for Anchor Links

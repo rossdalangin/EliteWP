@@ -7,6 +7,7 @@
 ?>
 <section class="trust-bar section" style="padding-block: 4rem; background: var(--color-white); border-bottom: 1px solid var(--color-border);">
     <div class="container">
+        <h2 class="screen-reader-text"><?php esc_html_e( 'Social Proof & Partners', 'premium-b2b' ); ?></h2>
         <p class="text-center text-light" style="font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; margin-bottom: 2.5rem; letter-spacing: 0.1em;">
             <?php echo esc_html( get_theme_mod( 'trust_headline', 'Trusted by Industry-Leading B2B Organizations' ) ); ?>
         </p>

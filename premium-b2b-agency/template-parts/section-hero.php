@@ -5,7 +5,7 @@
  * @package Premium_B2B
  */
 ?>
-<section class="hero-section section">
+<section class="hero-section section" fetchpriority="high">
     <div class="container grid">
         <div class="hero-content">
             <div class="hero-highlights flex" style="margin-bottom: 2rem;">

@@ -441,6 +441,39 @@ function premium_b2b_output_header_scripts() {
 }
 add_action( 'wp_head', 'premium_b2b_output_header_scripts' );
 
+/**
+ * SEO & Social Meta Tags
+ */
+function premium_b2b_seo_meta_tags() {
+	$description = get_bloginfo( 'description' );
+	if ( is_singular() ) {
+		$post = get_post();
+		if ( ! empty( $post->post_excerpt ) ) {
+			$description = $post->post_excerpt;
+		} else {
+			$description = wp_trim_words( $post->post_content, 25 );
+		}
+	}
+
+	echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
+
+	// Open Graph
+	echo '<meta property="og:title" content="' . esc_attr( wp_get_document_title() ) . '">' . "\n";
+	echo '<meta property="og:description" content="' . esc_attr( $description ) . '">' . "\n";
+	echo '<meta property="og:type" content="' . ( is_singular() ? 'article' : 'website' ) . '">' . "\n";
+	echo '<meta property="og:url" content="' . esc_url( get_permalink() ) . '">' . "\n";
+	echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '">' . "\n";
+
+	if ( has_post_thumbnail() ) {
+		$img_url = get_the_post_thumbnail_url( null, 'large' );
+		echo '<meta property="og:image" content="' . esc_url( $img_url ) . '">' . "\n";
+	}
+
+	// Twitter
+	echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+}
+add_action( 'wp_head', 'premium_b2b_seo_meta_tags', 1 );
+
 function premium_b2b_reading_time() {
 	$content = get_post_field( 'post_content', get_the_ID() );
 	$word_count = str_word_count( strip_tags( $content ) );
