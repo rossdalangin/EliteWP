@@ -11,7 +11,7 @@ get_header(); ?>
 
 	<section class="case-studies-hero section">
 		<div class="container text-center">
-			<h1><?php echo esc_html( get_theme_mod( 'case_studies_headline', __( 'Client Success Stories & ROI Proof', 'premium-b2b' ) ) ); ?></h1>
+			<h1><?php echo esc_html( get_theme_mod( 'case_studies_headline', 'Client Success Stories & ROI Proof' ) ); ?></h1>
 			<p class="text-light" style="max-width: 600px; margin: 1.5rem auto 0;"><?php echo esc_html__( 'Explore how we have scaled agencies from stagnant revenue to high-ticket market leaders.', 'premium-b2b' ); ?></p>
 		</div>
 	</section>
@@ -20,23 +20,21 @@ get_header(); ?>
 		<div class="container">
 			<div class="grid agitation-grid">
 				<?php
-				$case_defaults = array(
-					1 => array( 't' => 'CloudScale SaaS Expansion', 'k' => '+250% SQL Growth', 'd' => 'Implementing an automated LinkedIn engine to secure enterprise-level cloud partnerships.' ),
-					2 => array( 't' => 'Alpha Logic Retention', 'k' => '$1.2M LTV Increase', 'd' => 'Strategic repositioning for a software house to target high-retention B2B clients.' ),
-					3 => array( 't' => 'NexGen Pipeline Build', 'k' => '15+ Demos / Week', 'd' => 'Architecting a conversion ecosystem for a boutique B2B consultancy.' ),
-				);
-				for ( $i = 1; $i <= 3; $i++ ) :
-					$title = get_theme_mod( "case_{$i}_title", $case_defaults[$i]['t'] );
-					$kpi = get_theme_mod( "case_{$i}_kpi", $case_defaults[$i]['k'] );
-					$desc = get_theme_mod( "case_{$i}_desc", $case_defaults[$i]['d'] );
-				?>
+                $case_query = new WP_Query( array( 'post_type' => 'case_study', 'posts_per_page' => -1 ) );
+                if ( $case_query->have_posts() ) :
+                    while ( $case_query->have_posts() ) : $case_query->the_post();
+                        $kpi = get_post_meta( get_the_ID(), 'case_kpi', true );
+                        if(!$kpi) $kpi = '+250% Growth';
+                ?>
 				<div class="case-card" style="padding: 3rem; background: var(--color-bg); border-radius: var(--radius); transition: all 0.4s ease;">
 					<span class="text-accent" style="font-weight: 800; font-size: var(--fs-md); display: block; margin-bottom: 0.5rem;"><?php echo esc_html( $kpi ); ?></span>
-					<h3 style="margin-bottom: 1.5rem;"><?php echo esc_html( $title ); ?></h3>
-					<p class="text-light" style="margin-bottom: 2rem;"><?php echo esc_html( $desc ); ?></p>
-					<a href="#" class="text-accent" style="font-weight: 700; font-size: var(--fs-sm);"><?php echo esc_html__( 'View Full Case Study &rarr;', 'premium-b2b' ); ?></a>
+					<h3 style="margin-bottom: 1.5rem;"><?php the_title(); ?></h3>
+					<p class="text-light" style="margin-bottom: 2rem;"><?php echo get_the_excerpt(); ?></p>
+					<a href="<?php the_permalink(); ?>" class="text-accent" style="font-weight: 700; font-size: var(--fs-sm);"><?php echo esc_html__( 'View Full Case Study &rarr;', 'premium-b2b' ); ?></a>
 				</div>
-				<?php endfor; ?>
+				<?php endwhile; wp_reset_postdata(); else: ?>
+                    <p class="text-center">No case studies found.</p>
+                <?php endif; ?>
 			</div>
 		</div>
 	</section>
@@ -45,7 +43,7 @@ get_header(); ?>
 		<div class="container text-center">
 			<h2 style="color: var(--color-white);"><?php echo esc_html__( 'Achieve Similar Results for Your Agency', 'premium-b2b' ); ?></h2>
 			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large" style="margin-top: 2rem;">
-				<?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Get Started', 'premium-b2b' ) ) ); ?>
+				<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
 			</a>
 		</div>
 	</section>

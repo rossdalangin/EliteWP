@@ -52,7 +52,7 @@
 			<div class="footer-column cta">
 				<h4 style="color: var(--color-white); margin-bottom: 1rem;"><?php esc_html_e( 'Start Scaling', 'premium-b2b' ); ?></h4>
 				<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: var(--fs-xs);">
-					<?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Book Audit', 'premium-b2b' ) ) ); ?>
+					<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
 				</a>
 			</div>
 		</div><!-- .container -->

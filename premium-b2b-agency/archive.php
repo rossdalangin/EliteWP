@@ -21,7 +21,9 @@ get_header(); ?>
 
 	<div class="container section">
 		<?php if ( have_posts() ) : ?>
-			<div class="post-grid grid">
+            <div class="blog-layout-with-sidebar">
+                <div class="blog-archive-area">
+			        <div class="post-grid grid">
 				<?php
 				while ( have_posts() ) :
 					the_post();
@@ -40,7 +42,10 @@ get_header(); ?>
 						</div>
 					</article>
 				<?php endwhile; ?>
-			</div>
+			        </div>
+                </div>
+                <?php get_sidebar(); ?>
+            </div>
 			<div class="pagination-wrapper section">
 				<?php the_posts_pagination(); ?>
 			</div>

@@ -71,7 +71,8 @@ The theme is organized into logical panels to make management effortless:
     *   *Mechanism*: The 3-step framework.
     *   *Capture Block*: Form/Calendar embed settings.
 4.  **Inner Page Templates**: Individual settings for About, Services, and Case Studies.
-5.  **Global Components**: Footer copyright, Social links, Single Post CTA.
+5.  **Custom Post Types**: Scalable management for Services, Team Members, and Case Studies.
+6.  **Global Components**: Footer copyright, Social links, Single Post CTA, Sidebar CTA.
 
 ---
 

@@ -9,8 +9,10 @@
     <div class="container grid">
         <div class="hero-content">
             <div class="hero-highlights flex" style="margin-bottom: 2rem;">
-                <?php for($i=1; $i<=3; $i++):
-                    $h = get_theme_mod("highlight_{$i}_title");
+                <?php
+                $hl_defaults = array('ROI Focused', 'Scale Ready', 'Zero Friction');
+                for($i=1; $i<=3; $i++):
+                    $h = get_theme_mod("highlight_{$i}_title", $hl_defaults[$i-1]);
                     if($h):
                 ?>
                     <span class="text-accent" style="font-size: var(--fs-xs); font-weight: 800; text-transform: uppercase;">&bull; <?php echo esc_html($h); ?></span>

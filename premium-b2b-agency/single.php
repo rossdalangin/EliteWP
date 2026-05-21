@@ -11,13 +11,30 @@ get_header(); ?>
 
 	<?php premium_b2b_breadcrumbs(); ?>
 
+    <div class="container blog-layout-with-sidebar">
+        <div class="blog-content-area">
+            <?php
+            while ( have_posts() ) :
+                the_post();
+
+                get_template_part( 'template-parts/content', 'single' );
+
+                if ( comments_open() || get_comments_number() ) :
+                    comments_template();
+                endif;
+
+            endwhile;
+            ?>
+        </div>
+        <?php get_sidebar(); ?>
+    </div>
+
 	<?php
+    // Reset loop for related insights
 	while ( have_posts() ) :
 		the_post();
 
-		get_template_part( 'template-parts/content', 'single' );
-
-		// Related Insights
+		// Related Insights (Full width section outside the content/sidebar grid)
 		$categories = wp_get_post_categories( get_the_ID() );
 		if ( $categories ) {
 			$args = array(
@@ -45,11 +62,6 @@ get_header(); ?>
 				<?php
 			endif;
 		}
-
-		if ( comments_open() || get_comments_number() ) :
-			comments_template();
-		endif;
-
 	endwhile;
 	?>
 

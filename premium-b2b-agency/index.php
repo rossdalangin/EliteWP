@@ -18,7 +18,8 @@ get_header(); ?>
 
 	<div class="container pb-section">
 		<?php if ( have_posts() ) : ?>
-
+            <div class="blog-layout-with-sidebar">
+                <div class="blog-archive-area">
 			<?php
 			/* Start the Loop */
 			$count = 0;
@@ -78,6 +79,10 @@ get_header(); ?>
 			?>
 
 			</div><!-- .post-grid -->
+
+                </div><!-- .blog-archive-area -->
+                <?php get_sidebar(); ?>
+            </div><!-- .blog-layout-with-sidebar -->
 
             <?php get_template_part( 'template-parts/section', 'magnet' ); ?>
 
