@@ -341,6 +341,27 @@ function premium_b2b_customize_register( $wp_customize ) {
 		$wp_customize->add_control( "value_{$i}_desc", array( 'label' => "Value $i Description", 'section' => 'premium_b2b_about', 'type' => 'textarea' ) );
 	}
 
+	// --- Case Studies Page Settings ---
+	$wp_customize->add_section( 'premium_b2b_cases', array(
+		'title'    => __( 'Case Studies Content', 'premium-b2b' ),
+		'priority' => 105,
+	) );
+
+	$wp_customize->add_setting( 'case_studies_headline', array(
+		'default'           => __( 'Client Success Stories & ROI Proof', 'premium-b2b' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+	$wp_customize->add_control( 'case_studies_headline', array( 'label' => __( 'Headline', 'premium-b2b' ), 'section' => 'premium_b2b_cases' ) );
+
+	for ( $i = 1; $i <= 3; $i++ ) {
+		$wp_customize->add_setting( "case_{$i}_title", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "case_{$i}_title", array( 'label' => "Case Study $i Title", 'section' => 'premium_b2b_cases' ) );
+		$wp_customize->add_setting( "case_{$i}_kpi", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "case_{$i}_kpi", array( 'label' => "Case Study $i KPI", 'section' => 'premium_b2b_cases' ) );
+		$wp_customize->add_setting( "case_{$i}_desc", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "case_{$i}_desc", array( 'label' => "Case Study $i Description", 'section' => 'premium_b2b_cases', 'type' => 'textarea' ) );
+	}
+
 	// --- Services Page Settings ---
 	$wp_customize->add_section( 'premium_b2b_services', array(
 		'title'    => __( 'Services Page', 'premium-b2b' ),
@@ -500,6 +521,10 @@ function premium_b2b_handle_regeneration() {
 				'content' => 'Strategic application form and lead capture...',
 				'template' => 'template-contact.php'
 			),
+			'Case Studies' => array(
+				'content' => 'Client success ROI data...',
+				'template' => 'template-case-studies.php'
+			),
 			'Insights' => array(
 				'content' => '',
 				'template' => 'index.php'
@@ -539,6 +564,7 @@ function premium_b2b_handle_regeneration() {
 			wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Home', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids['Home'], 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 			wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'About', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids['About'], 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 			wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Services', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids['Services'], 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
+			wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Cases', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids['Case Studies'], 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 			wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Insights', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids['Insights'], 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 			wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => 'Contact', 'menu-item-object' => 'page', 'menu-item-object-id' => $page_ids['Contact'], 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) );
 
@@ -635,3 +661,31 @@ function premium_b2b_reading_time() {
  */
 add_filter( 'excerpt_length', function() { return 25; }, 999 );
 add_filter( 'excerpt_more', function() { return '...'; } );
+
+/**
+ * Schema.org Compliant Breadcrumbs.
+ */
+function premium_b2b_breadcrumbs() {
+	if ( is_front_page() ) return;
+
+	echo '<nav class="breadcrumbs container" style="margin-block: 2rem; font-size: var(--fs-xs); opacity: 0.6;" aria-label="Breadcrumb">';
+	echo '<ol itemscope itemtype="https://schema.org/BreadcrumbList" style="display: flex; gap: 0.5rem;">';
+
+	// Home
+	echo '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+	echo '<a itemprop="item" href="' . esc_url( home_url( '/' ) ) . '"><span itemprop="name">' . esc_html__( 'Home', 'premium-b2b' ) . '</span></a>';
+	echo '<meta itemprop="position" content="1" /></li>';
+	echo '<li>&rarr;</li>';
+
+	if ( is_singular() ) {
+		echo '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+		echo '<span itemprop="name">' . get_the_title() . '</span>';
+		echo '<meta itemprop="position" content="2" /></li>';
+	} elseif ( is_archive() || is_home() ) {
+		echo '<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+		echo '<span itemprop="name">' . get_the_archive_title() . '</span>';
+		echo '<meta itemprop="position" content="2" /></li>';
+	}
+
+	echo '</ol></nav>';
+}

@@ -53,6 +53,10 @@
 			</p>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
+
+	<div id="scroll-to-top" aria-label="Scroll to top" role="button">
+		&uarr;
+	</div>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

@@ -8,6 +8,8 @@
 get_header(); ?>
 
 <main id="primary" class="site-main">
+
+	<?php premium_b2b_breadcrumbs(); ?>
 	<header class="page-header section">
 		<div class="container text-center">
 			<?php

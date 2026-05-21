@@ -42,13 +42,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Header Scroll Effect
     const masthead = document.getElementById('masthead');
     if (masthead) {
+        const scrollToTop = document.getElementById('scroll-to-top');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 masthead.classList.add('is-scrolled');
+                if (scrollToTop) scrollToTop.classList.add('show');
             } else {
                 masthead.classList.remove('is-scrolled');
+                if (scrollToTop) scrollToTop.classList.remove('show');
             }
         });
+
+        if (scrollToTop) {
+            scrollToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
     }
 
     // 4. Interactive Hero Graphic

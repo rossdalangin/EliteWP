@@ -223,13 +223,40 @@ h4 { font-size: var(--fs-md); }
     }
 }
 
-.value-card, .service-card, .agitation-card {
-    transition: all 0.4s ease;
+.value-card, .service-card, .agitation-card, .case-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.value-card:hover, .service-card:hover, .agitation-card:hover {
+.value-card:hover, .service-card:hover, .agitation-card:hover, .case-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+/* Scroll to Top */
+#scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--color-accent);
+    color: var(--color-white);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+#scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Footer */

@@ -9,6 +9,8 @@ get_header(); ?>
 
 <main id="primary" class="site-main">
 
+	<?php premium_b2b_breadcrumbs(); ?>
+
 	<?php
 	while ( have_posts() ) :
 		the_post();
