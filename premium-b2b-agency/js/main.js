@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.style.opacity = '0';
                     item.style.transform = 'translateY(20px)';
                     setTimeout(() => {
-                        item.style.transition = 'all 0.4s ease forwards';
+                        item.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                         item.style.opacity = '1';
                         item.style.transform = 'translateY(0)';
-                    }, 200 + (index * 100));
+                    }, 300 + (index * 100));
                 });
             }
         });
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
 
     if (scrollToTop) {
         scrollToTop.addEventListener('click', () => {
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Advanced Staggered Reveal Animation on Scroll
+    // 4. Advanced Reveal Animation on Scroll
     const revealElements = document.querySelectorAll('[data-reveal]');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -115,13 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Interactive Cursor / Decorative FX
+    // 6. Interactive Hero Cursor Tracking
     const hero = document.querySelector('.hero-section');
     if (hero) {
         hero.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
-            const x = (clientX / window.innerWidth - 0.5) * 20;
-            const y = (clientY / window.innerHeight - 0.5) * 20;
+            const x = (clientX / window.innerWidth - 0.5) * 30;
+            const y = (clientY / window.innerHeight - 0.5) * 30;
             const graphic = document.querySelector('.hero-graphic-wrapper');
             if (graphic) {
                 graphic.style.transform = `perspective(2000px) rotateY(${x - 15}deg) rotateX(${5 - y}deg)`;
@@ -129,16 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. CSS Helper for Active States
+    // 7. Dynamic Style Injection for States
     const style = document.createElement('style');
     style.innerHTML = `
         .menu-toggle.is-open .hamburger { background: transparent !important; }
-        .menu-toggle.is-open .hamburger::before { transform: rotate(45deg) translate(9px, 9px); background: white; }
-        .menu-toggle.is-open .hamburger::after { transform: rotate(-45deg) translate(9px, -9px); background: white; }
-        body.menu-open { overflow: hidden; }
-        @media (max-width: 1024px) {
-            .main-menu-list li { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        }
+        .menu-toggle.is-open .hamburger::before { transform: rotate(45deg) translate(8px, 8px); background: white; width: 1.5rem; }
+        .menu-toggle.is-open .hamburger::after { transform: rotate(-45deg) translate(8px, -8px); background: white; width: 1.5rem; }
+        body.menu-open { overflow: hidden; height: 100vh; }
     `;
     document.head.appendChild(style);
 });
