@@ -58,6 +58,23 @@ By using this theme, you are positioning your agency as a premium player in the 
 
 ---
 
+## 🗺️ Customizer Panel Map
+The theme is organized into logical panels to make management effortless:
+
+1.  **Theme Setup**: Regeneration trigger for sample content.
+2.  **Global Branding**: Colors, Dark Mode toggle.
+3.  **Landing Page Sections**:
+    *   *Hero Split*: Headlines, Subheadlines, CTA, Highlights.
+    *   *Trust Bar*: Social proof logo labels.
+    *   *Agitation Grid*: Problem-focused cards.
+    *   *Testimonials*: Authority-building quotes.
+    *   *Mechanism*: The 3-step framework.
+    *   *Capture Block*: Form/Calendar embed settings.
+4.  **Inner Page Templates**: Individual settings for About, Services, and Case Studies.
+5.  **Global Components**: Footer copyright, Social links, Single Post CTA.
+
+---
+
 ## 🛠️ Developer & Documentation Reference
 
 ### Page Templates

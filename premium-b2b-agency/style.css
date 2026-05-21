@@ -62,7 +62,9 @@ a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
     --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-    --radius: 0.75rem;
+--radius: 1rem;
+--glass-bg: rgba(255, 255, 255, 0.7);
+--glass-border: rgba(255, 255, 255, 0.3);
 }
 
 /* 3. CORE LAYOUT RULES */
@@ -109,6 +111,12 @@ h4 { font-size: var(--fs-md); }
 .text-accent { color: var(--color-accent); }
 .text-light { color: var(--color-text-light); }
 .text-center { text-align: center; }
+
+/* Accessibility Refinement */
+:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+}
 
 /* Buttons */
 .btn {
@@ -224,14 +232,17 @@ h4 { font-size: var(--fs-md); }
 }
 
 .value-card, .service-card, .agitation-card, .case-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .value-card:hover, .service-card:hover, .agitation-card:hover, .case-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
     box-shadow: var(--shadow-lg);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
+    border-color: var(--color-accent);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
 }
 
 /* Scroll to Top */
