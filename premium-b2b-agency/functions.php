@@ -126,8 +126,8 @@ function premium_b2b_scripts() {
 		wp_deregister_script( 'jquery' );
 	}
 
-	wp_enqueue_style( 'premium-b2b-style', get_stylesheet_uri(), array(), '2.0.0' );
-	wp_enqueue_script( 'premium-b2b-main', get_template_directory_uri() . '/js/main.js', array(), '2.0.0', true );
+	wp_enqueue_style( 'premium-b2b-style', get_stylesheet_uri(), array(), '2.1.0' );
+	wp_enqueue_script( 'premium-b2b-main', get_template_directory_uri() . '/js/main.js', array(), '2.1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'premium_b2b_scripts' );
 
@@ -439,7 +439,7 @@ function premium_b2b_sanitize_scripts( $value ) {
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function premium_b2b_customize_preview_js() {
-	wp_enqueue_script( 'premium-b2b-customizer', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '2.0.0', true );
+	wp_enqueue_script( 'premium-b2b-customizer', get_template_directory_uri() . '/js/customize-preview.js', array( 'customize-preview' ), '2.1.0', true );
 }
 add_action( 'customize_preview_init', 'premium_b2b_customize_preview_js' );
 

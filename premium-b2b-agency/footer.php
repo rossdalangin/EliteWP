@@ -7,8 +7,8 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer section" style="background: #020617;">
-		<div class="container grid" style="grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: clamp(4rem, 8vw, 8rem);">
+	<footer id="colophon" class="site-footer section">
+		<div class="container footer-grid">
 			<div class="footer-column brand" data-reveal>
 				<div class="site-branding" style="margin-bottom: 3rem;">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="display: flex; align-items: center; gap: 1.25rem;">

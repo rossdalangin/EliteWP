@@ -5,11 +5,11 @@
  * @package Premium_B2B
  */
 ?>
-<section class="testimonials-section section" style="overflow: hidden;">
+<section class="testimonials-section section" style="overflow: hidden; padding-bottom: 0;">
     <div class="container">
-        <div class="section-header text-center" style="margin-bottom: 6rem;">
-            <span class="step-number" style="background: rgba(255,255,255,0.1); color: white; margin-bottom: 1rem;"><?php esc_html_e( 'SUCCESS STORIES', 'premium-b2b' ); ?></span>
-            <h2 style="color: white;"><?php esc_html_e( 'Results-Driven Validation', 'premium-b2b' ); ?></h2>
+        <div class="section-header text-center" style="margin-bottom: var(--sp-12);" data-reveal>
+            <span class="step-number" style="background: rgba(255,255,255,0.1); color: white; margin-bottom: var(--sp-4);"><?php esc_html_e( 'MARKET VALIDATION', 'premium-b2b' ); ?></span>
+            <h2 style="color: white;"><?php esc_html_e( 'Results-Driven Performance', 'premium-b2b' ); ?></h2>
         </div>
         <div class="grid agitation-grid">
             <?php
@@ -23,15 +23,16 @@
                 $author = get_theme_mod( "testimonial_{$i}_author", $test_defaults[$i]['a'] );
                 if ( $text ) :
             ?>
-                <div class="testimonial-card">
-                    <div class="quote-icon" style="font-size: 4rem; color: var(--color-accent); line-height: 1; margin-bottom: 2rem; opacity: 0.5;">&ldquo;</div>
-                    <p style="margin-bottom: 2.5rem; position: relative; z-index: 1;">&ldquo;<?php echo esc_html( $text ); ?>&rdquo;</p>
-                    <div class="testimonial-meta flex" style="gap: 1rem;">
-                        <div class="avatar" style="width: 3rem; height: 3rem; background: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900;"><?php echo substr($author, 0, 1); ?></div>
-                        <cite style="font-weight: 700; font-style: normal; font-size: var(--fs-sm);"><?php echo esc_html( $author ); ?></cite>
+                <div class="card testimonial-card" data-reveal>
+                    <div class="stars" style="color: #FBBF24; font-size: 1.5rem; margin-bottom: var(--sp-6);">★★★★★</div>
+                    <p style="margin-bottom: var(--sp-8); position: relative; z-index: 1; font-weight: 500; line-height: 1.8; color: var(--color-text);">&ldquo;<?php echo esc_html( $text ); ?>&rdquo;</p>
+                    <div class="testimonial-meta flex" style="gap: var(--sp-3);">
+                        <div class="avatar" style="width: 3.5rem; height: 3.5rem; background: var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white;"><?php echo substr($author, 0, 1); ?></div>
+                        <cite style="font-weight: 700; font-style: normal; font-size: var(--fs-xs); letter-spacing: 0.05em; color: var(--color-primary);"><?php echo esc_html( $author ); ?></cite>
                     </div>
                 </div>
             <?php endif; endfor; ?>
         </div>
     </div>
+    <div style="height: var(--sp-16);"></div>
 </section>

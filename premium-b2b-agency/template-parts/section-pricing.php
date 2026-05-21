@@ -7,10 +7,10 @@
 ?>
 <section class="pricing-section section bg-grid" id="pricing">
     <div class="container">
-        <div class="section-header text-center" style="margin-bottom: 10rem;" data-reveal>
-            <span class="step-number" style="margin-bottom: 2rem;"><?php esc_html_e( 'INVESTMENT MODELS', 'premium-b2b' ); ?></span>
-            <h2 style="margin-bottom: 3rem; line-height: 0.9;"><?php echo esc_html( get_theme_mod( 'pricing_headline', 'Scalable Investment Frameworks' ) ); ?></h2>
-            <p class="text-light" style="max-width: 70ch; margin-inline: auto; font-size: var(--fs-base); line-height: 1.8;"><?php esc_html_e( 'Transparent, performance-driven pricing models designed to scale alongside your agency growth and delivery capacity.', 'premium-b2b' ); ?></p>
+        <div class="section-header text-center" data-reveal>
+            <span class="step-number"><?php esc_html_e( 'INVESTMENT MODELS', 'premium-b2b' ); ?></span>
+            <h2><?php echo esc_html( get_theme_mod( 'pricing_headline', 'Scalable Investment Frameworks' ) ); ?></h2>
+            <p class="text-light" style="max-width: 70ch; margin-inline: auto; font-size: var(--fs-base);"><?php esc_html_e( 'Transparent, performance-driven pricing models designed to scale alongside your agency growth and delivery capacity.', 'premium-b2b' ); ?></p>
         </div>
         <div class="grid post-grid" style="align-items: stretch;">
             <?php
@@ -25,13 +25,13 @@
                 $desc = get_theme_mod( "price_{$i}_desc", $price_defaults[$i]['d'] );
                 $is_featured = ($i === 2) ? 'featured' : '';
             ?>
-            <div class="price-card <?php echo esc_attr($is_featured); ?>" style="display: flex; flex-direction: column;" data-reveal>
-                <div style="margin-bottom: 4rem;">
-                    <h3 style="font-size: var(--fs-md); margin-bottom: 1.5rem; letter-spacing: -0.02em;"><?php echo esc_html( $title ); ?></h3>
-                    <div class="amount" style="font-size: var(--fs-xl); font-weight: 900; color: var(--color-accent); letter-spacing: -0.05em;"><?php echo esc_html( $price ); ?><span style="font-size: var(--fs-xs); color: var(--color-text-light); font-weight: 800; margin-left: 0.75rem; letter-spacing: 0.05em;"><?php echo $i < 3 ? '/MO' : ''; ?></span></div>
+            <div class="card price-card <?php echo esc_attr($is_featured); ?>" style="display: flex; flex-direction: column;" data-reveal>
+                <div style="margin-bottom: var(--sp-8);">
+                    <h3 style="font-size: var(--fs-md); margin-bottom: var(--sp-2);"><?php echo esc_html( $title ); ?></h3>
+                    <div class="amount" style="font-size: var(--fs-xl); font-weight: 900; color: var(--color-accent); letter-spacing: -0.05em;"><?php echo esc_html( $price ); ?><span style="font-size: var(--fs-xs); color: var(--color-text-light); font-weight: 800; margin-left: var(--sp-2); letter-spacing: 0.05em;"><?php echo $i < 3 ? '/MO' : ''; ?></span></div>
                 </div>
-                <p class="text-light" style="margin-bottom: 5rem; flex-grow: 1; font-size: var(--fs-sm); line-height: 1.9; font-weight: 500;"><?php echo esc_html( $desc ); ?></p>
-                <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn <?php echo ($i === 2) ? 'btn-primary' : ''; ?>" style="width: 100%; border: 1px solid var(--color-border); padding-block: 1.5rem; font-size: var(--fs-xs); letter-spacing: 0.1em;">
+                <p class="text-light" style="margin-bottom: var(--sp-8); flex-grow: 1; font-size: var(--fs-sm); font-weight: 500;"><?php echo esc_html( $desc ); ?></p>
+                <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn <?php echo ($i === 2) ? 'btn-primary' : ''; ?>" style="width: 100%; border: 1px solid var(--color-border);">
                     <?php esc_html_e( 'SELECT PACKAGE', 'premium-b2b' ); ?>
                 </a>
             </div>
