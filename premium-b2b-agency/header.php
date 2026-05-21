@@ -27,9 +27,9 @@
 				else :
 					?>
 					<h1 class="site-title" style="margin-bottom: 0;">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" style="display: flex; align-items: center; gap: 1rem;">
                             <span class="logo-icon">&lt;/&gt;</span>
-                            <span class="brand-text"><?php bloginfo( 'name' ); ?></span>
+                            <span class="brand-text" style="font-size: var(--fs-md); font-weight: 900; letter-spacing: -0.05em; color: var(--color-primary);"><?php bloginfo( 'name' ); ?></span>
                         </a>
 					</h1>
 					<?php
@@ -49,14 +49,14 @@
 					)
 				);
 				?>
-                <div class="visible-mobile" style="margin-top: 4rem;">
+                <div class="visible-mobile" style="margin-top: 5rem;">
                     <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
                         <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
                     </a>
                 </div>
 			</nav>
 
-			<div class="header-cta flex">
+			<div class="header-cta flex" style="gap: 2.5rem;">
                 <div class="hidden-mobile">
                     <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
                         <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
@@ -72,7 +72,7 @@
 
 	<?php if ( get_theme_mod( 'enable_mobile_cta', true ) ) : ?>
 		<div class="mobile-sticky-cta visible-mobile">
-			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
+			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary" style="width: 100%; border-radius: 0.5rem; padding-block: 1rem;">
 				<?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Book Strategy Session', 'premium-b2b' ) ) ); ?>
 			</a>
 		</div>

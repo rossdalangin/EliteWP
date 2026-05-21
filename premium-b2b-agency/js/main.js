@@ -15,6 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             body.classList.toggle('menu-open');
             menuToggle.classList.toggle('is-open');
+
+            // Staggered animation for menu items
+            if (body.classList.contains('menu-open')) {
+                const items = document.querySelectorAll('.main-menu-list li');
+                items.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.4s ease forwards';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 200 + (index * 100));
+                });
+            }
         });
 
         // Close menu on link click
@@ -37,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#' || targetId === '#primary') return;
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
@@ -54,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const masthead = document.getElementById('masthead');
     const scrollToTop = document.getElementById('scroll-to-top');
 
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
         if (window.scrollY > 50) {
             masthead.classList.add('is-scrolled');
             if (scrollToTop) scrollToTop.classList.add('show');
@@ -62,7 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
             masthead.classList.remove('is-scrolled');
             if (scrollToTop) scrollToTop.classList.remove('show');
         }
-    });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
 
     if (scrollToTop) {
         scrollToTop.addEventListener('click', () => {
@@ -70,21 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Advanced Reveal Animation on Scroll
-    const revealElements = document.querySelectorAll('.agitation-card, .service-card, .price-card, .case-card, .step, .testimonial-card, .section-header');
+    // 4. Advanced Staggered Reveal Animation on Scroll
+    const revealElements = document.querySelectorAll('[data-reveal]');
     const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('reveal-active');
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
     revealElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(40px)';
-        el.style.transition = 'all 1s cubic-bezier(0.2, 1, 0.3, 1)';
         revealObserver.observe(el);
     });
 
@@ -101,14 +115,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. CSS Helper for Active States
+    // 6. Interactive Cursor / Decorative FX
+    const hero = document.querySelector('.hero-section');
+    if (hero) {
+        hero.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const x = (clientX / window.innerWidth - 0.5) * 20;
+            const y = (clientY / window.innerHeight - 0.5) * 20;
+            const graphic = document.querySelector('.hero-graphic-wrapper');
+            if (graphic) {
+                graphic.style.transform = `perspective(2000px) rotateY(${x - 15}deg) rotateX(${5 - y}deg)`;
+            }
+        });
+    }
+
+    // 7. CSS Helper for Active States
     const style = document.createElement('style');
     style.innerHTML = `
-        .reveal-active { opacity: 1 !important; transform: translateY(0) !important; }
         .menu-toggle.is-open .hamburger { background: transparent !important; }
-        .menu-toggle.is-open .hamburger::before { transform: rotate(45deg) translate(7px, 7px); background: white; }
-        .menu-toggle.is-open .hamburger::after { transform: rotate(-45deg) translate(7px, -7px); background: white; }
+        .menu-toggle.is-open .hamburger::before { transform: rotate(45deg) translate(9px, 9px); background: white; }
+        .menu-toggle.is-open .hamburger::after { transform: rotate(-45deg) translate(9px, -9px); background: white; }
         body.menu-open { overflow: hidden; }
+        @media (max-width: 1024px) {
+            .main-menu-list li { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        }
     `;
     document.head.appendChild(style);
 });
