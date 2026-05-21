@@ -35,13 +35,9 @@
 					<?php
 				endif;
 				?>
-			</div><!-- .site-branding -->
+			</div>
 
 			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" style="display: none;">
-					<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'premium-b2b' ); ?></span>
-                    <span class="hamburger"></span>
-				</button>
 				<?php
 				wp_nav_menu(
 					array(
@@ -53,18 +49,29 @@
 					)
 				);
 				?>
-			</nav><!-- #site-navigation -->
+                <div class="visible-mobile" style="margin-top: 4rem;">
+                    <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
+                        <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
+                    </a>
+                </div>
+			</nav>
 
-			<div class="header-cta hidden-mobile">
-				<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
-					<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
-				</a>
+			<div class="header-cta flex">
+                <div class="hidden-mobile">
+                    <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
+                        <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
+                    </a>
+                </div>
+                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'premium-b2b' ); ?></span>
+                    <span class="hamburger"></span>
+				</button>
 			</div>
 		</div>
-	</header><!-- #masthead -->
+	</header>
 
 	<?php if ( get_theme_mod( 'enable_mobile_cta', true ) ) : ?>
-		<div class="mobile-sticky-cta">
+		<div class="mobile-sticky-cta visible-mobile">
 			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
 				<?php echo esc_html( get_theme_mod( 'hero_cta_text', __( 'Book Strategy Session', 'premium-b2b' ) ) ); ?>
 			</a>
