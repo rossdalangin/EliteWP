@@ -31,6 +31,7 @@ get_header(); ?>
 
 	<?php
     // Reset loop for related insights
+	rewind_posts();
 	while ( have_posts() ) :
 		the_post();
 

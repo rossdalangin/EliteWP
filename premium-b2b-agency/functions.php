@@ -121,8 +121,13 @@ add_action( 'init', 'premium_b2b_register_cpts' );
  * Enqueue scripts and styles.
  */
 function premium_b2b_scripts() {
-	wp_enqueue_style( 'premium-b2b-style', get_stylesheet_uri(), array(), '1.5.0' );
-	wp_enqueue_script( 'premium-b2b-main', get_template_directory_uri() . '/js/main.js', array(), '1.5.0', true );
+	// Performance: Dequeue jQuery on frontend for non-admin users to ensure zero-dependency compliance
+	if ( ! is_admin() && ! is_user_logged_in() ) {
+		wp_deregister_script( 'jquery' );
+	}
+
+	wp_enqueue_style( 'premium-b2b-style', get_stylesheet_uri(), array(), '1.6.0' );
+	wp_enqueue_script( 'premium-b2b-main', get_template_directory_uri() . '/js/main.js', array(), '1.6.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'premium_b2b_scripts' );
 
@@ -591,7 +596,19 @@ function premium_b2b_output_header_scripts() {
 	$scripts = get_theme_mod( 'header_scripts' );
 	if ( $scripts ) echo $scripts;
 	if ( is_front_page() ) {
-		$schema = array( '@context' => 'https://schema.org', '@type' => 'ProfessionalService', 'name' => get_bloginfo( 'name' ), 'url' => home_url( '/' ) );
+		$schema = array(
+			'@context' => 'https://schema.org',
+			'@type' => 'ProfessionalService',
+			'name' => get_bloginfo( 'name' ),
+			'url' => home_url( '/' ),
+			'description' => get_bloginfo( 'description' ),
+			'potentialAction' => array(
+				'@type' => 'ReserveAction',
+				'target' => get_theme_mod( 'hero_cta_url', home_url('/contact') ),
+				'name' => 'Book Strategy Session'
+			),
+			'serviceType' => array( 'Client Acquisition', 'B2B Marketing', 'Lead Generation' )
+		);
 		echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>';
 	}
 	$primary_color = get_theme_mod( 'primary_color', '#0F172A' );
@@ -609,6 +626,39 @@ function premium_b2b_reading_time() {
 	$reading_time = ceil( $word_count / 200 );
 	return $reading_time . ( ( 1 === (int)$reading_time ) ? ' min read' : ' mins read' );
 }
+
+/**
+ * Inject Mid-Content CTA Card.
+ */
+function premium_b2b_inject_mid_cta( $content ) {
+	if ( ! is_single() || ! in_the_loop() || ! is_main_query() ) {
+		return $content;
+	}
+
+	$cta_title = get_theme_mod( 'cta_card_title', 'Ready to Automate Your Pipeline?' );
+	$cta_desc = get_theme_mod( 'cta_card_desc', 'Book a discovery call today and see how we can help you scale.' );
+	$cta_url = get_theme_mod( 'hero_cta_url', '#' );
+	$cta_text = get_theme_mod( 'hero_cta_text', 'Book Strategy Session' );
+
+	$cta_html = '
+		<aside class="mid-content-cta" style="margin-block: 4rem; padding: 3rem; background: var(--color-primary); color: var(--color-white); border-radius: var(--radius); text-align: center;">
+			<h3 style="color: var(--color-white); margin-bottom: 1rem;">' . esc_html( $cta_title ) . '</h3>
+			<p style="margin-bottom: 2rem; opacity: 0.9;">' . esc_html( $cta_desc ) . '</p>
+			<a href="' . esc_url( $cta_url ) . '" class="btn btn-primary">' . esc_html( $cta_text ) . '</a>
+		</aside>
+	';
+
+	$paragraphs = explode( '</p>', $content );
+	if ( count( $paragraphs ) > 3 ) {
+		array_splice( $paragraphs, 2, 0, $cta_html );
+		$content = implode( '</p>', $paragraphs );
+	} else {
+		$content .= $cta_html;
+	}
+
+	return $content;
+}
+add_filter( 'the_content', 'premium_b2b_inject_mid_cta' );
 
 add_filter( 'excerpt_length', function() { return 25; }, 999 );
 add_filter( 'excerpt_more', function() { return '...'; } );

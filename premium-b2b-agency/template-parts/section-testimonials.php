@@ -11,8 +11,9 @@
         $test_defaults = array(
             1 => array( 't' => 'This framework transformed our lead flow. In 3 months, we secured more high-ticket partners than in the previous two years.', 'a' => 'David Chen, CEO of CloudScale' ),
             2 => array( 't' => 'The most technical and conversion-optimized theme we have ever deployed. It reflects the authority we need in the B2B space.', 'a' => 'Sarah Jenkins, Director of Operations' ),
+            3 => array( 't' => 'Since deploying the Alpha Framework, our cost per acquisition has dropped by 40% while lead quality has doubled.', 'a' => 'Marcus Thorne, Founder of GrowthMatrix' ),
         );
-        for ( $i = 1; $i <= 2; $i++ ) :
+        for ( $i = 1; $i <= 3; $i++ ) :
             $text = get_theme_mod( "testimonial_{$i}_text", $test_defaults[$i]['t'] );
             $author = get_theme_mod( "testimonial_{$i}_author", $test_defaults[$i]['a'] );
             if ( $text ) :
