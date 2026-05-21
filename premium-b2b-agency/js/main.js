@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             menuList.classList.toggle('is-active');
             body.classList.toggle('menu-open');
-
-            // Animation for hamburger icon
             menuToggle.classList.toggle('is-open');
         });
 
@@ -29,35 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuList.classList.remove('is-active');
                 body.classList.remove('menu-open');
                 menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.classList.remove('is-open');
             });
-        });
-
-        // Accessibility: Trap focus in mobile menu
-        siteNavigation.addEventListener('keydown', (e) => {
-            if (!menuList.classList.contains('is-active')) return;
-
-            const focusableElements = siteNavigation.querySelectorAll('a, button');
-            const firstElement = focusableElements[0];
-            const lastElement = focusableElements[focusableElements.length - 1];
-
-            if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    if (document.activeElement === firstElement) {
-                        e.preventDefault();
-                        lastElement.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastElement) {
-                        e.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            }
-            if (e.key === 'Escape') {
-                menuList.classList.remove('is-active');
-                body.classList.remove('menu-open');
-                menuToggle.focus();
-            }
         });
     }
 
@@ -105,35 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 4. Interactive Hero Graphic
-    const heroGraphic = document.querySelector('.hero-graphic-wrapper');
-    if (heroGraphic) {
-        heroGraphic.addEventListener('mousemove', (e) => {
-            const { left, top, width, height } = heroGraphic.getBoundingClientRect();
-            const x = (e.clientX - left) / width - 0.5;
-            const y = (e.clientY - top) / height - 0.5;
-
-            const inner = heroGraphic.querySelector('.hero-graphic-inner');
-            if (inner) {
-                inner.style.transform = `perspective(1000px) rotateX(${y * 20}deg) rotateY(${x * 20}deg) translateZ(50px)`;
-                inner.style.boxShadow = `${-x * 30}px ${-y * 30}px 50px rgba(0,0,0,0.2)`;
-            }
-        });
-
-        heroGraphic.addEventListener('mouseleave', () => {
-            const inner = heroGraphic.querySelector('.hero-graphic-inner');
-            if (inner) {
-                inner.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
-            }
-        });
-    }
-
-    // 5. Reveal Animation on Scroll
-    const revealElements = document.querySelectorAll('.agitation-card, .service-card, .value-card, .step');
-    const observerOptions = {
-        threshold: 0.1
-    };
-
+    // 4. Reveal Animation on Scroll
+    const revealElements = document.querySelectorAll('.agitation-card, .service-card, .price-card, .case-card, .step, .testimonial-card');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -141,19 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.15 });
 
     revealElements.forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'all 0.6s ease-out';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s cubic-bezier(0.2, 1, 0.3, 1)';
         revealObserver.observe(el);
     });
 
-    // 6. Reading Progress Bar
+    // 5. Reading Progress Bar
     const progressBar = document.createElement('div');
     progressBar.id = 'reading-progress';
-    progressBar.style.cssText = 'position:fixed;top:0;left:0;height:4px;background:var(--color-accent);z-index:10001;width:0%;transition:width 0.1s ease;';
     if (document.body.classList.contains('single-post')) {
         document.body.appendChild(progressBar);
         window.addEventListener('scroll', () => {
@@ -164,13 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Helper for scroll reveal
+    // 6. CSS Helper for Reveal
     const style = document.createElement('style');
     style.innerHTML = `
-        .reveal-active {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
+        .reveal-active { opacity: 1 !important; transform: translateY(0) !important; }
+        .menu-toggle.is-open .hamburger { background: transparent; }
+        .menu-toggle.is-open .hamburger::before { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.is-open .hamburger::after { transform: rotate(-45deg) translate(5px, -5px); }
     `;
     document.head.appendChild(style);
 });
