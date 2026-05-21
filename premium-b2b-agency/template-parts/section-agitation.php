@@ -5,18 +5,19 @@
  * @package Premium_B2B
  */
 ?>
-<section class="agitation-section section">
+<section class="agitation-section section" id="agitation">
     <div class="container">
-        <div class="section-header">
-            <h2><?php echo esc_html( get_theme_mod( 'agitation_headline', 'Stop Letting Operational Friction Drain Your Agency Growth' ) ); ?></h2>
-            <p class="text-light"><?php echo esc_html__( 'Most agencies struggle with these three core operational pains.', 'premium-b2b' ); ?></p>
+        <div class="section-header text-center" style="margin-bottom: 6rem;">
+            <span class="step-number" style="margin-bottom: 1rem;"><?php esc_html_e( 'THE PROBLEM', 'premium-b2b' ); ?></span>
+            <h2 style="max-width: 800px; margin-inline: auto;"><?php echo esc_html( get_theme_mod( 'agitation_headline', 'Stop Letting Operational Friction Drain Your Agency Growth' ) ); ?></h2>
+            <p class="text-light" style="max-width: 60ch; margin-inline: auto;"><?php echo esc_html__( 'Most agencies struggle with these core operational pains that keep them from hitting the 7-figure mark.', 'premium-b2b' ); ?></p>
         </div>
         <div class="grid agitation-grid">
             <?php
             $agitation_defaults = array(
-                1 => array( 't' => 'Stagnant Pipelines', 'd' => 'Living project-to-project without a predictable, automated system for high-ticket acquisition.' ),
-                2 => array( 't' => 'Brand Degradation', 'd' => 'Inconsistent messaging and outdated design that signal low authority to premium prospects.' ),
-                3 => array( 't' => 'Conversion Leakage', 'd' => 'Spending thousands on traffic that hits non-optimized pages, resulting in zero ROI.' ),
+                1 => array( 't' => 'Content Fatigue', 'd' => 'The constant demand for volume has degraded your message, causing high-value partners to tune out.' ),
+                2 => array( 't' => 'Brand Degradation', 'd' => 'Inconsistent authority signals and outdated positioning are actively repelling premium, high-ticket prospects.' ),
+                3 => array( 't' => 'Empty Pipelines', 'd' => 'Relying on inconsistent referrals and word-of-mouth rather than a predictable, engineering-grade acquisition machine.' ),
             );
             for ( $i = 1; $i <= 3; $i++ ) :
                 $title = get_theme_mod( "agitation_c{$i}_title", $agitation_defaults[$i]['t'] );
@@ -25,7 +26,7 @@
                 <div class="agitation-card">
                     <div class="icon"><?php echo $i == 1 ? '📉' : ($i == 2 ? '⚠️' : '🛑'); ?></div>
                     <h3><?php echo esc_html( $title ); ?></h3>
-                    <p class="text-light"><?php echo esc_html( $desc ); ?></p>
+                    <p class="text-light" style="line-height: 1.8;"><?php echo esc_html( $desc ); ?></p>
                 </div>
             <?php endfor; ?>
         </div>

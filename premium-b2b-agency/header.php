@@ -19,17 +19,17 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'premium-b2b' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="container flex">
-			<div class="site-branding" style="max-width: 250px;">
+		<div class="container flex" style="justify-content: space-between;">
+			<div class="site-branding">
 				<?php
 				if ( has_custom_logo() ) :
 					the_custom_logo();
 				else :
 					?>
 					<h1 class="site-title" style="margin-bottom: 0;">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span class="logo-icon" style="color: var(--color-accent); font-weight: 900;">&lt;/&gt;</span>
-                            <?php bloginfo( 'name' ); ?>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+                            <span class="logo-icon">&lt;/&gt;</span>
+                            <span class="brand-text"><?php bloginfo( 'name' ); ?></span>
                         </a>
 					</h1>
 					<?php
@@ -39,7 +39,8 @@
 
 			<nav id="site-navigation" class="main-navigation">
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" style="display: none;">
-					<?php esc_html_e( 'Primary Menu', 'premium-b2b' ); ?>
+					<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'premium-b2b' ); ?></span>
+                    <span class="hamburger"></span>
 				</button>
 				<?php
 				wp_nav_menu(
@@ -47,16 +48,16 @@
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
 						'container'      => false,
-						'menu_class'     => 'flex',
+						'menu_class'     => 'main-menu-list',
 						'fallback_cb'    => false,
 					)
 				);
 				?>
 			</nav><!-- #site-navigation -->
 
-			<div class="header-cta">
+			<div class="header-cta hidden-mobile">
 				<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
-					<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
+					<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
 				</a>
 			</div>
 		</div>

@@ -7,19 +7,29 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer section" style="background-color: var(--color-primary); color: var(--color-white);">
-		<div class="container grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+	<footer id="colophon" class="site-footer section">
+		<div class="container grid" style="grid-template-columns: 2fr 1fr 1fr 1.5fr;">
 			<div class="footer-column brand">
-				<h2 style="color: var(--color-white); font-size: var(--fs-lg);"><?php bloginfo( 'name' ); ?></h2>
-				<p style="opacity: 0.7; max-width: 30ch; font-size: var(--fs-sm);"><?php bloginfo( 'description' ); ?></p>
+				<div class="site-branding" style="margin-bottom: 2rem;">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span class="logo-icon">&lt;/&gt;</span>
+                        <h2 style="margin-bottom: 0; font-size: var(--fs-lg);"><?php bloginfo( 'name' ); ?></h2>
+                    </a>
+                </div>
+				<p style="margin-bottom: 2.5rem; max-width: 35ch; line-height: 1.8;"><?php bloginfo( 'description' ); ?></p>
 
-				<div class="social-links flex" style="margin-top: 2rem;">
+				<div class="social-links flex" style="gap: 1.5rem;">
 					<?php
 					$socials = array( 'linkedin', 'twitter', 'instagram' );
 					foreach ( $socials as $social ) :
 						$url = get_theme_mod( "social_{$social}" );
 						if ( $url ) :
-							printf( '<a href="%s" target="_blank" rel="noopener noreferrer" style="text-transform: capitalize; font-size: var(--fs-xs);">%s</a>', esc_url( $url ), esc_html( $social ) );
+							printf(
+                                '<a href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s" class="social-icon-link" style="background: rgba(255,255,255,0.05); width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 0.5rem; font-weight: 800; font-size: 0.75rem;">%3$s</a>',
+                                esc_url( $url ),
+                                esc_attr( ucfirst( $social ) ),
+                                esc_html( strtoupper( substr($social, 0, 2) ) )
+                            );
 						endif;
 					endforeach;
 					?>
@@ -27,16 +37,16 @@
 			</div>
 
 			<div class="footer-column systems">
-				<h4 style="color: var(--color-white); margin-bottom: 1rem;"><?php esc_html_e( 'Systems', 'premium-b2b' ); ?></h4>
-				<ul style="font-size: var(--fs-sm); opacity: 0.8; display: flex; flex-direction: column; gap: 0.5rem;">
-                    <li><a href="#"><?php esc_html_e( 'Our Services', 'premium-b2b' ); ?></a></li>
-                    <li><a href="#"><?php esc_html_e( 'Case Studies', 'premium-b2b' ); ?></a></li>
-                    <li><a href="#"><?php esc_html_e( 'The Framework', 'premium-b2b' ); ?></a></li>
+				<h4 style="margin-bottom: 2rem;"><?php esc_html_e( 'The Framework', 'premium-b2b' ); ?></h4>
+				<ul class="footer-menu-list">
+                    <li><a href="#"><?php esc_html_e( 'Systems Architecture', 'premium-b2b' ); ?></a></li>
+                    <li><a href="#"><?php esc_html_e( 'Conversion Ops', 'premium-b2b' ); ?></a></li>
+                    <li><a href="#"><?php esc_html_e( 'Precision Scaling', 'premium-b2b' ); ?></a></li>
                 </ul>
 			</div>
 
 			<div class="footer-column resources">
-				<h4 style="color: var(--color-white); margin-bottom: 1rem;"><?php esc_html_e( 'Resources', 'premium-b2b' ); ?></h4>
+				<h4 style="margin-bottom: 2rem;"><?php esc_html_e( 'Resources', 'premium-b2b' ); ?></h4>
 				<?php
 				wp_nav_menu(
 					array(
@@ -49,18 +59,18 @@
 				?>
 			</div>
 
-			<div class="footer-column cta">
-				<h4 style="color: var(--color-white); margin-bottom: 1rem;"><?php esc_html_e( 'Start Scaling', 'premium-b2b' ); ?></h4>
-				<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: var(--fs-xs);">
-					<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
+			<div class="footer-column cta" style="background: rgba(255,255,255,0.03); padding: 3rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.05);">
+				<h4 style="margin-bottom: 1.5rem;"><?php esc_html_e( 'Ready to Engineer Dominance?', 'premium-b2b' ); ?></h4>
+                <p style="font-size: var(--fs-sm); margin-bottom: 2rem; opacity: 0.8;"><?php esc_html_e( 'Schedule your strategy session and get your custom acquisition roadmap.', 'premium-b2b' ); ?></p>
+				<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary" style="width: 100%;">
+					<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Start Here' ) ); ?>
 				</a>
 			</div>
 		</div><!-- .container -->
 
-		<div class="container site-info" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: var(--fs-xs); opacity: 0.5;">
-			<p>
-				<?php echo wp_kses_post( get_theme_mod( 'footer_copyright', sprintf( '&copy; %s %s. Elite B2B Acquisition Framework.', date( 'Y' ), get_bloginfo( 'name' ) ) ) ); ?>
-				<?php printf( esc_html__( 'Built with %s.', 'premium-b2b' ), '<a href="https://wordpress.org/" style="color: inherit; text-decoration: underline;">WordPress</a>' ); ?>
+		<div class="container site-info" style="margin-top: 6rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: var(--fs-xs);">
+			<p style="opacity: 0.5;">
+				<?php echo wp_kses_post( get_theme_mod( 'footer_copyright', sprintf( '&copy; %s %s. All Rights Reserved.', date( 'Y' ), get_bloginfo( 'name' ) ) ) ); ?>
 			</p>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
