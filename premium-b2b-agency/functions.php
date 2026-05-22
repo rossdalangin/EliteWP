@@ -617,8 +617,24 @@ function premium_b2b_output_header_scripts() {
 	$primary_color = get_theme_mod( 'primary_color', '#0F172A' );
 	$accent_color = get_theme_mod( 'accent_color', '#2563EB' );
 	$dark_mode = get_theme_mod( 'enable_dark_mode', false );
-	echo '<style>:root { --color-primary: ' . esc_attr( $primary_color ) . '; --color-accent: ' . esc_attr( $accent_color ) . '; }';
-	if ( $dark_mode ) echo 'body { --color-bg: #020617; --color-text: #F8FAFC; --color-white: #0F172A; --color-border: rgba(255,255,255,0.1); } .site-header.is-scrolled { background: rgba(15, 23, 42, 0.9); }';
+
+    // Dynamic contrast logic
+    $bg_color = $dark_mode ? '#020617' : '#F8FAFC';
+    $text_color = $dark_mode ? '#F8FAFC' : '#1E293B';
+    $text_light = $dark_mode ? '#94A3B8' : '#64748B';
+    $white_equivalent = $dark_mode ? '#0F172A' : '#FFFFFF';
+    $border_color = $dark_mode ? 'rgba(255,255,255,0.1)' : '#E2E8F0';
+
+	echo '<style>:root {
+        --color-primary: ' . esc_attr( $primary_color ) . ';
+        --color-accent: ' . esc_attr( $accent_color ) . ';
+        --color-bg: ' . esc_attr( $bg_color ) . ';
+        --color-text: ' . esc_attr( $text_color ) . ';
+        --color-text-light: ' . esc_attr( $text_light ) . ';
+        --color-white: ' . esc_attr( $white_equivalent ) . ';
+        --color-border: ' . esc_attr( $border_color ) . ';
+    }';
+	if ( $dark_mode ) echo '.site-header.is-scrolled { background: rgba(15, 23, 42, 0.9); } .card { background: var(--color-white); }';
 	echo '</style>';
 }
 add_action( 'wp_head', 'premium_b2b_output_header_scripts' );
