@@ -27,13 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. STAGGERED SCROLL REVEAL
     const revealElements = document.querySelectorAll('[data-reveal]');
     const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('reveal-active');
+                setTimeout(() => {
+                    entry.target.classList.add('reveal-active');
+                }, index * 100);
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
     revealElements.forEach(el => {
         revealObserver.observe(el);

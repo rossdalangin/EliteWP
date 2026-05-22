@@ -26,16 +26,19 @@ get_header(); ?>
                     $i = 1;
                     while ( $service_query->have_posts() ) : $service_query->the_post();
                 ?>
-				<div class="card service-card" data-reveal style="display: flex; flex-direction: column;">
-					<span class="step-number" style="background: var(--color-primary); color: white; margin-bottom: var(--sp-6);"><?php echo esc_html( $i < 10 ? '0' . $i : $i ); ?></span>
-					<h3 style="margin-bottom: var(--sp-4); font-size: var(--fs-md); letter-spacing: -0.02em;"><?php the_title(); ?></h3>
-					<div class="text-light" style="line-height: 1.8; font-size: var(--fs-sm); margin-bottom: var(--sp-8); flex-grow: 1;"><?php the_content(); ?></div>
-                    <ul style="display: flex; flex-direction: column; gap: var(--sp-3); font-size: var(--fs-xs); font-weight: 800; margin-bottom: var(--sp-10);">
-                        <li class="flex" style="gap: var(--sp-2);"><span style="color: var(--color-accent); font-size: 1.25rem;">✔</span> <?php esc_html_e( 'Technical Architecture', 'premium-b2b' ); ?></li>
-                        <li class="flex" style="gap: var(--sp-2);"><span style="color: var(--color-accent); font-size: 1.25rem;">✔</span> <?php esc_html_e( 'Conversion Optimization', 'premium-b2b' ); ?></li>
-                        <li class="flex" style="gap: var(--sp-2);"><span style="color: var(--color-accent); font-size: 1.25rem;">✔</span> <?php esc_html_e( 'Precision Analytics', 'premium-b2b' ); ?></li>
-                    </ul>
-                    <a href="<?php the_permalink(); ?>" class="btn" style="width: 100%; border: 1px solid var(--color-border); background: var(--color-bg); margin-top: auto;"><?php esc_html_e( 'Learn More &rarr;', 'premium-b2b' ); ?></a>
+				<div class="card service-card" data-reveal style="display: flex; flex-direction: column; padding: var(--sp-10);">
+					<span class="step-number" style="background: var(--color-primary); color: white; margin-bottom: var(--sp-8); font-size: 0.7rem;"><?php echo esc_html( $i < 10 ? '0' . $i : $i ); ?></span>
+					<h3 style="margin-bottom: var(--sp-4); font-size: var(--fs-md); letter-spacing: -0.04em; font-weight: 900;"><?php the_title(); ?></h3>
+					<div class="text-light" style="line-height: 1.8; font-size: var(--fs-sm); margin-bottom: var(--sp-8); flex-grow: 1; font-weight: 500;"><?php the_excerpt(); ?></div>
+                    <div style="background: var(--color-bg); padding: var(--sp-6); border-radius: 1.5rem; margin-bottom: var(--sp-8); border: 1px solid var(--color-border);">
+                        <p style="font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-primary); margin-bottom: var(--sp-4);"><?php esc_html_e( 'Key Deliverables:', 'premium-b2b' ); ?></p>
+                        <ul style="display: flex; flex-direction: column; gap: var(--sp-3); font-size: 0.75rem; font-weight: 700; color: var(--color-text);">
+                            <li class="flex" style="gap: var(--sp-3);"><span style="color: var(--color-accent); font-weight: 900;">•</span> <?php esc_html_e( 'Technical Architecture', 'premium-b2b' ); ?></li>
+                            <li class="flex" style="gap: var(--sp-3);"><span style="color: var(--color-accent); font-weight: 900;">•</span> <?php esc_html_e( 'Conversion Optimization', 'premium-b2b' ); ?></li>
+                            <li class="flex" style="gap: var(--sp-3);"><span style="color: var(--color-accent); font-weight: 900;">•</span> <?php esc_html_e( 'Precision Analytics', 'premium-b2b' ); ?></li>
+                        </ul>
+                    </div>
+                    <a href="<?php the_permalink(); ?>" class="btn btn-outline" style="width: 100%; padding-block: 1rem;"><?php esc_html_e( 'View Details', 'premium-b2b' ); ?></a>
 				</div>
 				<?php $i++; endwhile; wp_reset_postdata(); else: ?>
                     <p class="text-center">No services listed yet.</p>

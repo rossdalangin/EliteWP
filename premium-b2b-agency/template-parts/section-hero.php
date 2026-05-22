@@ -6,45 +6,53 @@
  */
 ?>
 <section class="hero-section section bg-grid" fetchpriority="high">
-    <div class="container hero-grid">
+    <div class="container hero-grid" style="align-items: center; min-height: 70vh;">
         <div class="hero-content" data-reveal>
-            <div class="hero-highlights">
+            <div class="hero-highlights" style="margin-bottom: var(--sp-8);">
                 <?php
                 $hl_defaults = array('ROI Focused', 'Scale Ready', 'Zero Friction');
                 for($i=1; $i<=3; $i++):
                     $h = get_theme_mod("highlight_{$i}_title", $hl_defaults[$i-1]);
                     if($h):
                 ?>
-                    <span class="highlight-item">
-                        <span class="dot"></span>
+                    <span class="highlight-item" style="background: var(--color-primary); color: white; padding: 0.4rem 1rem; border-radius: 99px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.5rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <span class="dot" style="width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%;"></span>
                         <?php echo esc_html($h); ?>
                     </span>
                 <?php endif; endfor; ?>
             </div>
-            <h1 itemprop="name">
+            <h1 itemprop="name" style="line-height: 1.05; letter-spacing: -0.06em; margin-bottom: var(--sp-8);">
                 <?php echo esc_html( get_theme_mod( 'hero_headline', 'Scale Your B2B Agency with Precision Client Acquisition' ) ); ?>
             </h1>
-            <p class="hero-subheadline" itemprop="description">
+            <p class="hero-subheadline" itemprop="description" style="max-width: 55ch; font-size: var(--fs-md); margin-bottom: var(--sp-12); line-height: 1.7; font-weight: 500; color: var(--color-text-light);">
                 <?php echo esc_html( get_theme_mod( 'hero_subheadline', 'We engineer high-converting acquisition systems that turn cold prospects into high-ticket partners through scientific positioning and automated infrastructure.' ) ); ?>
             </p>
-            <div class="hero-cta">
+            <div class="hero-cta flex" style="gap: var(--sp-8); flex-wrap: wrap;">
                 <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
                     <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Audit' ) ); ?>
                 </a>
-                <a href="#mechanism" class="btn" style="border-bottom: 3px solid var(--color-accent); border-radius: 0; padding-inline: 0; font-weight: 900; letter-spacing: 0.1em; font-size: 11px; background: transparent; height: auto;">
-                    <?php esc_html_e( 'EXPLORE THE FRAMEWORK', 'premium-b2b' ); ?>
+                <a href="#mechanism" class="btn btn-outline btn-large hidden-mobile">
+                    <?php esc_html_e( 'Explore the Framework', 'premium-b2b' ); ?>
                 </a>
             </div>
         </div>
         <div class="hero-graphic hidden-mobile" data-reveal>
-            <div class="hero-graphic-wrapper">
-                <div class="hero-graphic-inner">
-                    <div class="graphic-dot"></div>
-                    <div class="graphic-bar graphic-bar-short"></div>
-                    <div class="graphic-bar graphic-bar-full"></div>
-                    <div class="graphic-bar graphic-bar-medium"></div>
-                    <div class="graphic-bar graphic-bar-full" style="opacity: 0.2;"></div>
-                    <div class="graphic-bar graphic-bar-short" style="align-self: flex-end; width: 35%; background: var(--color-accent);"></div>
+            <div class="hero-graphic-wrapper" style="position: relative; aspect-ratio: 1; background: var(--color-white); border-radius: var(--radius); border: 1px solid var(--color-border); box-shadow: var(--shadow-xl); overflow: hidden; transform: perspective(2000px) rotateY(-15deg) rotateX(5deg); transition: transform 0.1s ease-out;">
+                <div class="mesh-gradient" style="position: absolute; inset: 0; background: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 50%), radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.05) 0%, transparent 50%);"></div>
+                <div class="graphic-elements" style="position: absolute; inset: var(--sp-12); border: 1px dashed var(--color-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--sp-8);">
+                    <div class="chart-mockup" style="width: 85%; height: 45%; background: var(--color-bg); border-radius: 1.25rem; border: 1px solid var(--color-border); padding: var(--sp-6); box-shadow: var(--shadow-md);">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: flex-end; gap: 6px;">
+                            <div style="height: 35%; flex: 1; background: var(--color-accent); border-radius: 6px 6px 0 0; opacity: 0.15;"></div>
+                            <div style="height: 55%; flex: 1; background: var(--color-accent); border-radius: 6px 6px 0 0; opacity: 0.3;"></div>
+                            <div style="height: 45%; flex: 1; background: var(--color-accent); border-radius: 6px 6px 0 0; opacity: 0.25;"></div>
+                            <div style="height: 75%; flex: 1; background: var(--color-accent); border-radius: 6px 6px 0 0; opacity: 0.5;"></div>
+                            <div style="height: 90%; flex: 1; background: var(--color-accent); border-radius: 6px 6px 0 0;"></div>
+                        </div>
+                    </div>
+                    <div class="stats-mockup flex" style="width: 85%; gap: var(--sp-6);">
+                        <div style="flex: 1; height: 5rem; background: var(--color-bg); border-radius: 1.25rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">💎</div>
+                        <div style="flex: 1; height: 5rem; background: var(--color-bg); border-radius: 1.25rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🔥</div>
+                    </div>
                 </div>
             </div>
         </div>

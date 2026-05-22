@@ -32,26 +32,31 @@ get_header(); ?>
 
 				if ( 1 === $count && $show_featured ) :
 					?>
-					<article id="post-<?php the_ID(); ?>" <?php post_class( 'featured-post card' ); ?> itemscope itemtype="https://schema.org/BlogPosting" data-reveal style="margin-bottom: var(--sp-16); padding: var(--sp-12); border-radius: var(--radius); overflow: hidden;">
+					<article id="post-<?php the_ID(); ?>" <?php post_class( 'featured-post card' ); ?> itemscope itemtype="https://schema.org/BlogPosting" data-reveal style="margin-bottom: var(--sp-20); padding: var(--sp-12); border-radius: var(--radius); border: 1px solid var(--color-border); box-shadow: var(--shadow-xl); overflow: hidden; position: relative;">
 						<meta itemprop="mainEntityOfPage" content="<?php the_permalink(); ?>">
 						<?php if ( has_post_thumbnail() ) : ?>
-							<div class="post-thumbnail" style="border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-xl); aspect-ratio: 16/9;">
+							<div class="post-thumbnail" style="border-radius: 1.5rem; overflow: hidden; box-shadow: var(--shadow-md); aspect-ratio: 16/10;">
 								<a href="<?php the_permalink(); ?>">
 									<?php the_post_thumbnail( 'large', array( 'style' => 'width:100%; height:100%; object-fit:cover;' ) ); ?>
 								</a>
 							</div>
-						<?php endif; ?>
-						<div class="post-content">
-							<span class="text-accent" style="font-weight: 900; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: var(--sp-6); display: block;"><?php echo esc_html__( 'LATEST STRATEGY', 'premium-b2b' ); ?></span>
-							<h2 itemprop="headline" style="font-size: var(--fs-xl); line-height: 1.1; margin-bottom: var(--sp-6);"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-							<div class="entry-excerpt text-light" itemprop="description" style="margin-bottom: var(--sp-8); font-size: var(--fs-sm); line-height: 1.8;">
-								<?php the_excerpt(); ?>
+						<?php else : ?>
+                            <div class="post-thumbnail" style="border-radius: 1.5rem; overflow: hidden; box-shadow: var(--shadow-md); aspect-ratio: 16/10; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); opacity: 0.1;"></div>
+                        <?php endif; ?>
+						<div class="post-content" style="padding-left: var(--sp-4);">
+							<span class="step-number" style="background: var(--color-accent); color: white; margin-bottom: var(--sp-8); font-size: 0.65rem;"><?php echo esc_html__( 'ELITE INSIGHT', 'premium-b2b' ); ?></span>
+							<h2 itemprop="headline" style="font-size: var(--fs-lg); line-height: 1.1; margin-bottom: var(--sp-8); letter-spacing: -0.05em;"><a href="<?php the_permalink(); ?>" style="color: var(--color-primary);"><?php the_title(); ?></a></h2>
+							<div class="entry-excerpt text-light" itemprop="description" style="margin-bottom: var(--sp-10); font-size: var(--fs-sm); line-height: 1.9; font-weight: 500;">
+								<?php echo wp_trim_words( get_the_excerpt(), 35 ); ?>
 							</div>
-                            <div class="flex" style="gap: var(--sp-8); margin-bottom: var(--sp-8); font-size: var(--fs-xs); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7;">
-                                <span class="flex" style="gap: 0.5rem;"><span style="color: var(--color-accent);">📅</span> <?php the_date(); ?></span>
-                                <span class="flex" style="gap: 0.5rem;"><span style="color: var(--color-accent);">⏱</span> <?php echo premium_b2b_reading_time(); ?></span>
+                            <div class="flex" style="gap: var(--sp-8); align-items: center;">
+                                <a href="<?php the_permalink(); ?>" class="btn btn-primary" style="padding: 1rem 2.5rem;"><?php echo esc_html__( 'Read Analysis', 'premium-b2b' ); ?></a>
+                                <div class="flex" style="gap: var(--sp-4); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6;">
+                                    <span><?php echo get_the_date(); ?></span>
+                                    <span>•</span>
+                                    <span><?php echo premium_b2b_reading_time(); ?></span>
+                                </div>
                             </div>
-							<a href="<?php the_permalink(); ?>" class="btn btn-primary" style="width: auto;"><?php echo esc_html__( 'READ FULL ANALYSIS', 'premium-b2b' ); ?></a>
 						</div>
 					</article>
 

@@ -464,26 +464,29 @@ function premium_b2b_handle_regeneration() {
 		// 2. Generate New Sample Pages
 		$pages = array(
 			'Home' => array(
-                'content' => '<!-- wp:paragraph --><p>Our landing page is architected for maximum psychological impact. We guide high-ticket prospects through a strategic journey from pain awareness to solution discovery.</p><!-- /wp:paragraph -->',
+                'content' => '<!-- wp:heading {"level":1} --><h1>The Alpha Framework: Precision Client Acquisition for Elite B2B Agencies</h1><!-- /wp:heading --><!-- wp:paragraph --><p>Stop relying on inconsistent referrals. We engineer high-authority acquisition systems that turn cold prospects into high-ticket partners using scientific persuasion and technical excellence.</p><!-- /wp:paragraph --><!-- wp:button {"className":"is-style-fill"} --><div class="wp-block-button is-style-fill"><a class="wp-block-button__link">Explore the Framework</a></div><!-- /wp:button -->',
                 'template' => 'front-page.php'
             ),
 			'About' => array(
-                'content' => '<!-- wp:heading --><h2>The Engineering Behind the Growth</h2><!-- /wp:heading --><!-- wp:paragraph --><p>We are a team of systems engineers and conversion psychologists dedicated to solving the B2B acquisition problem for elite agencies.</p><!-- /wp:paragraph -->',
+                'content' => '<!-- wp:heading --><h2>Architecting the Future of B2B Growth</h2><!-- /wp:heading --><!-- wp:paragraph --><p>We aren\'t just marketers; we are systems engineers and conversion psychologists. Our mission is to eliminate the unpredictability of agency growth by deploying technical infrastructure that commands authority and secures enterprise-level contracts.</p><!-- /wp:paragraph --><!-- wp:heading {"level":3} --><h3>Our Radical Philosophy</h3><!-- /wp:heading --><!-- wp:paragraph --><p>We believe in empirical data over "magic pills," authority over volume, and technical precision over creative guesswork.</p><!-- /wp:paragraph -->',
                 'template' => 'template-about.php'
             ),
 			'Services' => array(
-                'content' => '<!-- wp:paragraph --><p>Explore our precision-engineered services designed to build, optimize, and scale your client acquisition engine.</p><!-- /wp:paragraph -->',
+                'content' => '<!-- wp:paragraph --><p>Precision-engineered acquisition services designed for agencies that demand elite results. From authority positioning to automated lead engines, we build the infrastructure your growth requires.</p><!-- /wp:paragraph -->',
                 'template' => 'template-services.php'
             ),
 			'Case Studies' => array(
-                'content' => '<!-- wp:paragraph --><p>Empirical proof of our framework in action. We let the ROI data speak for itself.</p><!-- /wp:paragraph -->',
+                'content' => '<!-- wp:paragraph --><p>Empirical proof of the Alpha Framework in action. These aren\'t just testimonials; they are technical case studies documenting the transformation of boutique agencies into market leaders.</p><!-- /wp:paragraph -->',
                 'template' => 'template-case-studies.php'
             ),
 			'Contact' => array(
-                'content' => '<!-- wp:paragraph --><p>The first step toward a predictable pipeline is a strategic audit of your current acquisition infrastructure.</p><!-- /wp:paragraph -->',
+                'content' => '<!-- wp:paragraph --><p>The first step toward a predictable, high-ticket pipeline is a technical audit of your current acquisition infrastructure. Schedule your strategy session below.</p><!-- /wp:paragraph -->',
                 'template' => 'template-contact.php'
             ),
-			'Insights' => array( 'content' => '', 'template' => 'index.php' )
+			'Insights' => array( 'content' => '<!-- wp:paragraph --><p>Deep dives into acquisition engineering, conversion psychology, and high-ticket B2B scaling strategies.</p><!-- /wp:paragraph -->', 'template' => 'index.php' ),
+            'Privacy Policy' => array( 'content' => '<!-- wp:paragraph --><p>Your privacy is paramount. This policy outlines how we handle and protect your data within our acquisition ecosystem.</p><!-- /wp:paragraph -->', 'template' => 'page.php' ),
+            'Terms of Service' => array( 'content' => '<!-- wp:paragraph --><p>The legal framework governing our partnership and the use of our proprietary acquisition systems.</p><!-- /wp:paragraph -->', 'template' => 'page.php' ),
+            'FAQ' => array( 'content' => '<!-- wp:paragraph --><p>Frequently asked questions regarding our acquisition frameworks, investment models, and implementation timelines.</p><!-- /wp:paragraph -->', 'template' => 'page.php' )
 		);
 
 		$page_ids = array();
