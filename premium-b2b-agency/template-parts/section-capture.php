@@ -5,15 +5,15 @@
  * @package Premium_B2B
  */
 ?>
-<section class="capture-section section" id="contact">
-    <div class="container" style="max-width: 1000px;">
-        <div class="capture-card" style="background: var(--color-white); border-radius: var(--radius); padding: clamp(3rem, 10vw, 6rem); box-shadow: var(--shadow-xl); border: 1px solid var(--color-border); position: relative; overflow: hidden;">
-            <div style="position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%); z-index: 0;"></div>
+<section class="capture-section section" id="contact" style="background: var(--color-bg);">
+    <div class="container" style="max-width: 1100px;">
+        <div class="card capture-card-premium" data-reveal style="background: var(--color-white); padding: clamp(4rem, 10vw, 8rem); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; right: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%); z-index: 0;"></div>
 
             <div style="position: relative; z-index: 1;">
-                <span class="step-number" style="margin-bottom: 1.5rem;"><?php esc_html_e( 'GET STARTED', 'premium-b2b' ); ?></span>
-                <h2 style="margin-bottom: 2rem;"><?php echo esc_html( get_theme_mod( 'capture_headline', 'Ready to Secure Your Next 5 High-Ticket Partners?' ) ); ?></h2>
-                <p class="text-light" style="font-size: var(--fs-base); margin-bottom: 4rem; max-width: 60ch;"><?php echo esc_html( get_theme_mod( 'capture_subheadline', 'Initiate your strategy session below. We only partner with agencies we are certain we can scale.' ) ); ?></p>
+                <span class="step-number" style="margin-bottom: var(--sp-6); background: var(--color-primary); color: white;"><?php esc_html_e( 'GET STARTED', 'premium-b2b' ); ?></span>
+                <h2 style="margin-bottom: var(--sp-6); font-size: var(--fs-xl); line-height: 1;"><?php echo esc_html( get_theme_mod( 'capture_headline', 'Ready to Secure Your Next 5 High-Ticket Partners?' ) ); ?></h2>
+                <p class="text-light" style="font-size: var(--fs-base); margin-bottom: var(--sp-12); max-width: 65ch; line-height: 1.8;"><?php echo esc_html( get_theme_mod( 'capture_subheadline', 'Initiate your strategy session below. We only partner with agencies we are certain we can scale.' ) ); ?></p>
 
                 <div class="capture-form-area">
                     <?php
@@ -22,14 +22,14 @@
                         echo $capture_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     else :
                         ?>
-                        <div class="flex" style="gap: 3rem; flex-wrap: wrap;">
+                        <div class="flex" style="gap: var(--sp-8); flex-wrap: wrap;">
                             <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
                                 <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
                             </a>
-                            <div class="flex" style="gap: 1.5rem;">
-                                <div style="font-size: var(--fs-xs); opacity: 0.7;">
-                                    <p style="font-weight: 800; color: var(--color-primary); margin-bottom: 0.25rem;"><?php esc_html_e( 'Direct Access:', 'premium-b2b' ); ?></p>
-                                    <p><?php echo esc_html( get_theme_mod('contact_email', 'partner@agency.com') ); ?></p>
+                            <div class="flex" style="gap: var(--sp-4);">
+                                <div style="font-size: var(--fs-xs); opacity: 0.8;">
+                                    <p style="font-weight: 900; color: var(--color-primary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;"><?php esc_html_e( 'Direct Access:', 'premium-b2b' ); ?></p>
+                                    <p style="font-weight: 700; color: var(--color-accent);"><?php echo esc_html( get_theme_mod('contact_email', 'partner@agency.com') ); ?></p>
                                 </div>
                             </div>
                         </div>

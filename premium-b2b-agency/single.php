@@ -49,12 +49,15 @@ get_header(); ?>
 				?>
 				<section class="related-insights section" style="background: var(--color-bg); border-top: 1px solid var(--color-border);">
 					<div class="container">
-						<h2 style="margin-bottom: 3rem;"><?php esc_html_e( 'Related Insights', 'premium-b2b' ); ?></h2>
+						<h2 style="margin-bottom: var(--sp-12);"><?php esc_html_e( 'Related Insights', 'premium-b2b' ); ?></h2>
 						<div class="grid agitation-grid">
 							<?php while ( $related_query->have_posts() ) : $related_query->the_post(); ?>
-								<article class="grid-post" style="background: var(--color-white); padding: 2rem; border-radius: var(--radius);">
-									<h3 style="font-size: var(--fs-md);"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-									<time style="font-size: var(--fs-xs); color: var(--color-text-light);"><?php echo get_the_date(); ?></time>
+								<article class="grid-post card" style="display: flex; flex-direction: column; justify-content: center;">
+									<h3 style="font-size: var(--fs-md); margin-bottom: var(--sp-4);"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                    <div class="flex" style="justify-content: space-between; border-top: 1px solid var(--color-border); padding-top: var(--sp-4); margin-top: var(--sp-4);">
+									    <time style="font-size: var(--fs-xs); font-weight: 800; color: var(--color-accent);"><?php echo get_the_date(); ?></time>
+                                        <span style="font-size: var(--fs-xs); font-weight: 900;"><?php echo premium_b2b_reading_time(); ?></span>
+                                    </div>
 								</article>
 							<?php endwhile; wp_reset_postdata(); ?>
 						</div>

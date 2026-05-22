@@ -99,7 +99,7 @@ get_header(); ?>
 		</div>
 	</section>
 
-    <section class="final-cta section" style="background: var(--color-primary); color: white;">
+    <section class="final-cta section bg-dots" style="background: var(--color-primary); color: white;">
         <div class="container text-center" data-reveal>
             <h2 style="color: white; margin-bottom: var(--sp-6);"><?php esc_html_e( 'Ready to Partner with Architects?', 'premium-b2b' ); ?></h2>
             <a href="<?php echo esc_url( home_url('/contact') ); ?>" class="btn btn-primary btn-large"><?php esc_html_e( 'Initiate Your Strategy', 'premium-b2b' ); ?></a>

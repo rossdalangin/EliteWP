@@ -18,26 +18,28 @@ get_header(); ?>
 	?>
 
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<header class="entry-header section text-center" style="background: var(--color-bg);">
-				<div class="container" style="max-width: 900px;">
+			<header class="entry-header section text-center bg-grid" style="background-color: var(--color-white); border-bottom: 1px solid var(--color-border);">
+				<div class="container" style="max-width: 1000px;" data-reveal>
+                    <span class="step-number" style="margin-bottom: var(--sp-4);"><?php esc_html_e( 'EMPIRICAL PROOF', 'premium-b2b' ); ?></span>
 					<?php if ( $kpi ) : ?>
-						<span class="text-accent" style="font-weight: 900; font-size: var(--fs-xl); display: block; margin-bottom: 1rem;"><?php echo esc_html( $kpi ); ?></span>
+						<span class="text-accent" style="font-weight: 900; font-size: var(--fs-xl); display: block; margin-bottom: var(--sp-2); letter-spacing: -0.05em;"><?php echo esc_html( $kpi ); ?></span>
 					<?php endif; ?>
-					<h1 class="entry-title"><?php the_title(); ?></h1>
-					<p class="text-light" style="margin-top: 1.5rem;"><?php echo get_the_excerpt(); ?></p>
+					<h1 class="entry-title" style="line-height: 1;"><?php the_title(); ?></h1>
 				</div>
 			</header>
 
-			<div class="entry-content container section" style="max-width: 800px;">
+			<div class="entry-content container section" style="max-width: 900px; padding-block: var(--sp-16);" data-reveal>
 				<?php the_content(); ?>
 			</div>
 
-			<footer class="entry-footer container section text-center" style="max-width: 800px; border-top: 1px solid var(--color-border);">
-				<h2><?php esc_html_e( 'Want Similar Results?', 'premium-b2b' ); ?></h2>
-				<p class="text-light" style="margin-bottom: 2.5rem;"><?php esc_html_e( 'Our framework is designed for predictable high-ticket growth.', 'premium-b2b' ); ?></p>
-				<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
-					<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
-				</a>
+			<footer class="entry-footer container section" style="max-width: 900px; border-top: 1px solid var(--color-border);" data-reveal>
+                <div class="card cta-card-premium">
+				    <h2 style="margin-bottom: var(--sp-4);"><?php esc_html_e( 'Want Similar Results?', 'premium-b2b' ); ?></h2>
+				    <p><?php esc_html_e( 'Our framework is engineered for predictable high-ticket growth. Stop guessing and start scaling.', 'premium-b2b' ); ?></p>
+				    <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
+					    <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
+				    </a>
+                </div>
 			</footer>
 
 		</article>

@@ -31,7 +31,7 @@
                 <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
                     <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Audit' ) ); ?>
                 </a>
-                <a href="#mechanism" class="btn btn-text">
+                <a href="#mechanism" class="btn" style="border-bottom: 3px solid var(--color-accent); border-radius: 0; padding-inline: 0; font-weight: 900; letter-spacing: 0.1em; font-size: 11px; background: transparent; height: auto;">
                     <?php esc_html_e( 'EXPLORE THE FRAMEWORK', 'premium-b2b' ); ?>
                 </a>
             </div>
@@ -43,8 +43,8 @@
                     <div class="graphic-bar graphic-bar-short"></div>
                     <div class="graphic-bar graphic-bar-full"></div>
                     <div class="graphic-bar graphic-bar-medium"></div>
-                    <div class="graphic-bar graphic-bar-full secondary"></div>
-                    <div class="graphic-bar graphic-bar-short accent"></div>
+                    <div class="graphic-bar graphic-bar-full" style="opacity: 0.2;"></div>
+                    <div class="graphic-bar graphic-bar-short" style="align-self: flex-end; width: 35%; background: var(--color-accent);"></div>
                 </div>
             </div>
         </div>

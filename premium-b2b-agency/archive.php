@@ -10,11 +10,11 @@ get_header(); ?>
 <main id="primary" class="site-main">
 
 	<?php premium_b2b_breadcrumbs(); ?>
-	<header class="page-header section" style="background: radial-gradient(circle at top right, #eff6ff 0%, #fff 100%);">
-		<div class="container text-center">
+	<header class="page-header section bg-dots" style="background-color: var(--color-white); border-bottom: 1px solid var(--color-border);">
+		<div class="container text-center" data-reveal>
 			<?php
-			the_archive_title( '<h1 class="page-title">', '</h1>' );
-			the_archive_description( '<div class="archive-description text-light" style="max-width: 60ch; margin-inline: auto;">', '</div>' );
+			the_archive_title( '<h1 class="page-title" style="margin-bottom: var(--sp-4);">', '</h1>' );
+			the_archive_description( '<div class="archive-description text-light" style="max-width: 70ch; margin-inline: auto; font-size: var(--fs-md); line-height: 1.8;">', '</div>' );
 			?>
 		</div>
 	</header>
@@ -23,26 +23,26 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
             <div class="blog-layout-with-sidebar">
                 <div class="blog-archive-area">
-			        <div class="post-grid grid">
+			        <div class="post-grid" style="grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));">
 				<?php
 				while ( have_posts() ) :
 					the_post();
 					?>
-					<article id="post-<?php the_ID(); ?>" <?php post_class( 'grid-post card' ); ?> style="padding: 3rem; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius);">
+					<article id="post-<?php the_ID(); ?>" <?php post_class( 'grid-post card' ); ?> data-reveal style="display: flex; flex-direction: column;">
 						<?php if ( has_post_thumbnail() ) : ?>
-							<div class="post-thumbnail" style="margin-bottom: 2rem; overflow: hidden; border-radius: var(--radius-sm);">
+							<div class="post-thumbnail" style="margin-bottom: var(--sp-6); border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 16/10;">
 								<a href="<?php the_permalink(); ?>">
-									<?php the_post_thumbnail( 'medium_large' ); ?>
+									<?php the_post_thumbnail( 'medium_large', array( 'style' => 'width:100%; height:100%; object-fit:cover;' ) ); ?>
 								</a>
 							</div>
 						<?php endif; ?>
-						<h3 style="font-size: var(--fs-md);"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-						<div class="entry-excerpt text-light" style="font-size: var(--fs-sm); margin-bottom: 2rem;">
+						<h3 style="font-size: var(--fs-md); line-height: 1.2; margin-bottom: var(--sp-4);"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+						<div class="entry-excerpt text-light" style="font-size: var(--fs-sm); line-height: 1.7; margin-bottom: var(--sp-6); flex-grow: 1;">
 							<?php the_excerpt(); ?>
 						</div>
-                        <div class="flex" style="justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
-                            <time style="font-size: var(--fs-xs); font-weight: 700; color: var(--color-accent);"><?php echo get_the_date(); ?></time>
-                            <a href="<?php the_permalink(); ?>" style="font-size: var(--fs-xs); font-weight: 800;"><?php esc_html_e( 'READ &rarr;', 'premium-b2b' ); ?></a>
+                        <div class="flex" style="justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: var(--sp-6); margin-top: auto;">
+                            <time style="font-size: var(--fs-xs); font-weight: 800; color: var(--color-accent); text-transform: uppercase;"><?php echo get_the_date(); ?></time>
+                            <a href="<?php the_permalink(); ?>" style="font-size: var(--fs-xs); font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;"><?php esc_html_e( 'READ INSIGHT &rarr;', 'premium-b2b' ); ?></a>
                         </div>
 					</article>
 				<?php endwhile; ?>
@@ -51,7 +51,7 @@ get_header(); ?>
                 <?php get_sidebar(); ?>
             </div>
 			<div class="pagination-wrapper section">
-				<?php the_posts_pagination(); ?>
+				<?php the_posts_pagination( array( 'prev_text' => 'PREVIOUS', 'next_text' => 'NEXT' ) ); ?>
 			</div>
 		<?php endif; ?>
 	</div>
