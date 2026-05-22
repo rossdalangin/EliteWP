@@ -29,6 +29,7 @@
                 $title = get_theme_mod( "mechanism_s{$i}_title", $mechanism_defaults[$i]['t'] );
                 $desc = get_theme_mod( "mechanism_s{$i}_desc", $mechanism_defaults[$i]['d'] );
                 $reverse = ($i % 2 == 0) ? 'reverse' : '';
+                if ( ! $title && ! $desc ) continue;
             ?>
                 <div class="step <?php echo esc_attr($reverse); ?>">
                     <div class="step-content" data-reveal>

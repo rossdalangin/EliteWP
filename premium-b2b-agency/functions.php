@@ -195,10 +195,21 @@ function premium_b2b_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'hero_cta_url', array( 'default' => '#', 'sanitize_callback' => 'esc_url_raw' ) );
 	$wp_customize->add_control( 'hero_cta_url', array( 'label' => 'CTA URL', 'section' => 'premium_b2b_hero', 'type' => 'url' ) );
 
+    $wp_customize->add_setting( 'hero_cta_2_text', array( 'default' => 'Explore the Framework', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'hero_cta_2_text', array( 'label' => 'Secondary CTA Text', 'section' => 'premium_b2b_hero' ) );
+    $wp_customize->add_setting( 'hero_cta_2_url', array( 'default' => '#agitation', 'sanitize_callback' => 'esc_url_raw' ) );
+	$wp_customize->add_control( 'hero_cta_2_url', array( 'label' => 'Secondary CTA URL', 'section' => 'premium_b2b_hero', 'type' => 'url' ) );
+
+    $wp_customize->add_setting( 'hero_bg_image', array( 'default' => 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_bg_image', array( 'label' => 'Hero Graphic Image', 'section' => 'premium_b2b_hero' ) ) );
+
     $hl_defaults = array( '7-Figure Systems', 'Predictable ROI', 'Authority First' );
+    $hl_icons = array('📈', '🛡️', '⚡');
     for ( $i = 1; $i <= 3; $i++ ) {
         $wp_customize->add_setting( "highlight_{$i}_title", array( 'default' => $hl_defaults[$i-1], 'sanitize_callback' => 'sanitize_text_field' ) );
-		$wp_customize->add_control( "highlight_{$i}_title", array( 'label' => "Highlight $i", 'section' => 'premium_b2b_hero' ) );
+		$wp_customize->add_control( "highlight_{$i}_title", array( 'label' => "Highlight $i Text", 'section' => 'premium_b2b_hero' ) );
+        $wp_customize->add_setting( "highlight_{$i}_icon", array( 'default' => $hl_icons[$i-1], 'sanitize_callback' => 'sanitize_text_field' ) );
+		$wp_customize->add_control( "highlight_{$i}_icon", array( 'label' => "Highlight $i Icon", 'section' => 'premium_b2b_hero' ) );
     }
 
     // TRUST BAR
@@ -660,9 +671,9 @@ function premium_b2b_inject_mid_cta( $content ) {
 	$cta_text = get_theme_mod( 'hero_cta_text', 'Book Strategy Session' );
 
 	$cta_html = '
-		<aside class="mid-content-cta" style="margin-block: 4rem; padding: 3rem; background: var(--color-primary); color: var(--color-white); border-radius: var(--radius); text-align: center;">
-			<h3 style="color: var(--color-white); margin-bottom: 1rem;">' . esc_html( $cta_title ) . '</h3>
-			<p style="margin-bottom: 2rem; opacity: 0.9;">' . esc_html( $cta_desc ) . '</p>
+		<aside class="mid-content-cta" style="margin-block: 4rem; padding: 3rem; background: var(--color-primary); color: white; border-radius: var(--radius); text-align: center;">
+			<h3 style="color: white; margin-bottom: 1rem;">' . esc_html( $cta_title ) . '</h3>
+			<p style="margin-bottom: 2rem; opacity: 0.9; color: white;">' . esc_html( $cta_desc ) . '</p>
 			<a href="' . esc_url( $cta_url ) . '" class="btn btn-primary">' . esc_html( $cta_text ) . '</a>
 		</aside>
 	';
