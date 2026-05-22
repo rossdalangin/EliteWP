@@ -47,11 +47,11 @@ get_header(); ?>
 		</div>
 	</section>
 
-	<section class="cta-section section bg-dots" style="background-color: var(--color-primary); color: var(--color-white);">
+	<section class="cta-section section bg-dots" style="background-color: var(--color-primary); color: white;">
 		<div class="container text-center" style="max-width: 900px;" data-reveal>
             <span class="step-number" style="background: var(--color-accent); color: white; margin-bottom: var(--sp-4);"><?php esc_html_e( 'THE NEXT STEP', 'premium-b2b' ); ?></span>
-			<h2 style="color: var(--color-white); margin-bottom: var(--sp-4);"><?php echo esc_html__( 'Ready to Implement Your Acquisition Engine?', 'premium-b2b' ); ?></h2>
-            <p style="opacity: 0.8; margin-bottom: var(--sp-8); line-height: 1.8; font-size: var(--fs-base);"><?php esc_html_e( 'Stop project-to-project survival. Deploy a scientific lead flow infrastructure and scale your high-ticket B2B agency.', 'premium-b2b' ); ?></p>
+			<h2 style="color: white; margin-bottom: var(--sp-4);"><?php echo esc_html__( 'Ready to Implement Your Acquisition Engine?', 'premium-b2b' ); ?></h2>
+            <p style="opacity: 0.8; margin-bottom: var(--sp-8); line-height: 1.8; font-size: var(--fs-base); color: white;"><?php esc_html_e( 'Stop project-to-project survival. Deploy a scientific lead flow infrastructure and scale your high-ticket B2B agency.', 'premium-b2b' ); ?></p>
 			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
 				<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
 			</a>

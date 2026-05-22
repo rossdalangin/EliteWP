@@ -39,7 +39,7 @@ get_header(); ?>
 					    <span class="text-accent" style="font-weight: 900; font-size: var(--fs-lg); display: block; margin-bottom: var(--sp-2); letter-spacing: -0.05em;"><?php echo esc_html( $kpi ); ?></span>
 					    <h3 style="margin-bottom: var(--sp-4); font-size: var(--fs-md); line-height: 1.2;"><?php the_title(); ?></h3>
 					    <p class="text-light" style="margin-bottom: var(--sp-8); line-height: 1.8; font-size: var(--fs-sm); flex-grow: 1;"><?php echo get_the_excerpt(); ?></p>
-					    <a href="<?php the_permalink(); ?>" class="btn" style="border: 1px solid var(--color-border); background: var(--color-bg); width: 100%; font-size: 10px; font-weight: 900; letter-spacing: 0.1em; color: var(--color-primary);"><?php echo esc_html__( 'DOWNLOAD FULL BREAKDOWN', 'premium-b2b' ); ?></a>
+					    <a href="<?php the_permalink(); ?>" class="btn" style="border: 1px solid var(--color-border); background: var(--color-bg); width: 100%; font-size: 10px; font-weight: 900; letter-spacing: 0.1em; color: var(--color-text);"><?php echo esc_html__( 'DOWNLOAD FULL BREAKDOWN', 'premium-b2b' ); ?></a>
                     </div>
 				</div>
 				<?php endwhile; wp_reset_postdata(); else: ?>
@@ -49,10 +49,10 @@ get_header(); ?>
 		</div>
 	</section>
 
-	<section class="cta-section section bg-dots" style="background-color: var(--color-primary); color: var(--color-white);">
+	<section class="cta-section section bg-dots" style="background-color: var(--color-primary); color: white;">
 		<div class="container text-center" style="max-width: 900px;" data-reveal>
-			<h2 style="color: var(--color-white); margin-bottom: var(--sp-6);"><?php echo esc_html__( 'Achieve Similar Results for Your Agency', 'premium-b2b' ); ?></h2>
-            <p style="opacity: 0.8; margin-bottom: var(--sp-12); line-height: 1.8; font-size: var(--fs-base);"><?php esc_html_e( 'Our framework is designed for predictable high-ticket growth. Stop guessing and start engineering your pipeline.', 'premium-b2b' ); ?></p>
+			<h2 style="color: white; margin-bottom: var(--sp-6);"><?php echo esc_html__( 'Achieve Similar Results for Your Agency', 'premium-b2b' ); ?></h2>
+            <p style="opacity: 0.8; margin-bottom: var(--sp-12); line-height: 1.8; font-size: var(--fs-base); color: white;"><?php esc_html_e( 'Our framework is designed for predictable high-ticket growth. Stop guessing and start engineering your pipeline.', 'premium-b2b' ); ?></p>
 			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
 				<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
 			</a>

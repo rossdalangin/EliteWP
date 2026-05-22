@@ -634,7 +634,7 @@ function premium_b2b_output_header_scripts() {
         --color-white: ' . esc_attr( $white_equivalent ) . ';
         --color-border: ' . esc_attr( $border_color ) . ';
     }';
-	if ( $dark_mode ) echo '.site-header.is-scrolled { background: rgba(15, 23, 42, 0.9); } .card { background: var(--color-white); }';
+	if ( $dark_mode ) echo '.site-header.is-scrolled { background: rgba(15, 23, 42, 0.9); } .card { background: var(--color-white); } a, h1, h2, h3, h4, h5, h6 { color: var(--color-text); }';
 	echo '</style>';
 }
 add_action( 'wp_head', 'premium_b2b_output_header_scripts' );

@@ -45,7 +45,7 @@ get_header(); ?>
                         <?php endif; ?>
 						<div class="post-content" style="padding-left: var(--sp-4);">
 							<span class="step-number" style="background: var(--color-accent); color: white; margin-bottom: var(--sp-8); font-size: 0.65rem;"><?php echo esc_html__( 'ELITE INSIGHT', 'premium-b2b' ); ?></span>
-							<h2 itemprop="headline" style="font-size: var(--fs-lg); line-height: 1.1; margin-bottom: var(--sp-8); letter-spacing: -0.05em;"><a href="<?php the_permalink(); ?>" style="color: var(--color-primary);"><?php the_title(); ?></a></h2>
+							<h2 itemprop="headline" style="font-size: var(--fs-lg); line-height: 1.1; margin-bottom: var(--sp-8); letter-spacing: -0.05em;"><a href="<?php the_permalink(); ?>" style="color: var(--color-text);"><?php the_title(); ?></a></h2>
 							<div class="entry-excerpt text-light" itemprop="description" style="margin-bottom: var(--sp-10); font-size: var(--fs-sm); line-height: 1.9; font-weight: 500;">
 								<?php echo wp_trim_words( get_the_excerpt(), 35 ); ?>
 							</div>

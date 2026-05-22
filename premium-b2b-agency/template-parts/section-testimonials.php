@@ -8,8 +8,8 @@
 <section class="testimonials-section section" style="overflow: hidden; padding-bottom: 0;">
     <div class="container">
         <div class="section-header text-center" style="margin-bottom: var(--sp-16);" data-reveal>
-            <span class="step-number" style="background: rgba(255,255,255,0.1); color: white; margin-bottom: var(--sp-4);"><?php esc_html_e( 'MARKET VALIDATION', 'premium-b2b' ); ?></span>
-            <h2 style="color: white; line-height: 0.9;"><?php esc_html_e( 'Results-Driven Performance', 'premium-b2b' ); ?></h2>
+            <span class="step-number" style="margin-bottom: var(--sp-4);"><?php esc_html_e( 'MARKET VALIDATION', 'premium-b2b' ); ?></span>
+            <h2 style="line-height: 0.9;"><?php esc_html_e( 'Results-Driven Performance', 'premium-b2b' ); ?></h2>
         </div>
         <div class="grid agitation-grid">
             <?php
@@ -25,10 +25,10 @@
             ?>
                 <div class="card testimonial-card" data-reveal style="display: flex; flex-direction: column;">
                     <div class="stars" style="color: #FBBF24; font-size: 1.25rem; margin-bottom: var(--sp-6);">★★★★★</div>
-                    <p style="margin-bottom: var(--sp-8); position: relative; z-index: 1; font-weight: 500; line-height: 1.8; color: white; flex-grow: 1;">&ldquo;<?php echo esc_html( $text ); ?>&rdquo;</p>
-                    <div class="testimonial-meta flex" style="gap: var(--sp-4); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--sp-6);">
+                    <p style="margin-bottom: var(--sp-8); position: relative; z-index: 1; font-weight: 500; line-height: 1.8; color: var(--color-text); flex-grow: 1;">&ldquo;<?php echo esc_html( $text ); ?>&rdquo;</p>
+                    <div class="testimonial-meta flex" style="gap: var(--sp-4); border-top: 1px solid var(--color-border); padding-top: var(--sp-6);">
                         <div class="avatar" style="width: 3.5rem; height: 3.5rem; background: var(--color-accent); border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0;"><?php echo substr($author, 0, 1); ?></div>
-                        <cite style="font-weight: 700; font-style: normal; font-size: var(--fs-xs); letter-spacing: 0.05em; color: rgba(255,255,255,0.8); line-height: 1.4;"><?php echo esc_html( $author ); ?></cite>
+                        <cite style="font-weight: 700; font-style: normal; font-size: var(--fs-xs); letter-spacing: 0.05em; color: var(--color-text-light); line-height: 1.4;"><?php echo esc_html( $author ); ?></cite>
                     </div>
                 </div>
             <?php endif; endfor; ?>
