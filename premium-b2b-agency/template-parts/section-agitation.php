@@ -24,7 +24,7 @@
                 $desc = get_theme_mod( "agitation_c{$i}_desc", $agitation_defaults[$i]['d'] );
             ?>
                 <div class="card agitation-card" data-reveal style="display: flex; flex-direction: column;">
-                    <div class="icon" style="background: var(--color-bg); width: 6rem; height: 6rem; display: flex; align-items: center; justify-content: center; border-radius: 1.5rem; font-size: 2.5rem; margin-bottom: var(--sp-8); border: 1px solid var(--color-border);"><?php echo $agitation_defaults[$i]['i']; ?></div>
+                    <div class="icon" style="background: var(--color-bg); width: 6rem; height: 6rem; display: flex; align-items: center; justify-content: center; border-radius: 1.5rem; font-size: 2.5rem; margin-bottom: var(--sp-8); border: 1px solid var(--color-border);"><?php echo esc_html( $agitation_defaults[$i]['i'] ); ?></div>
                     <h3 style="font-size: var(--fs-md); margin-bottom: var(--sp-4); letter-spacing: -0.02em;"><?php echo esc_html( $title ); ?></h3>
                     <p class="text-light" style="font-size: var(--fs-sm); font-weight: 500; line-height: 1.8;"><?php echo esc_html( $desc ); ?></p>
                 </div>

@@ -28,7 +28,7 @@
             <div class="card price-card <?php echo esc_attr($is_featured); ?>" style="display: flex; flex-direction: column;" data-reveal>
                 <div style="margin-bottom: var(--sp-12);">
                     <h3 style="font-size: var(--fs-md); margin-bottom: var(--sp-4); letter-spacing: -0.02em;"><?php echo esc_html( $title ); ?></h3>
-                    <div class="amount" style="font-size: var(--fs-xl); font-weight: 900; color: var(--color-accent); letter-spacing: -0.05em;"><?php echo esc_html( $price ); ?><span style="font-size: var(--fs-xs); color: var(--color-text-light); font-weight: 800; margin-left: var(--sp-2); letter-spacing: 0.05em;"><?php echo $i < 3 ? '/MO' : ''; ?></span></div>
+                    <div class="amount" style="font-size: var(--fs-xl); font-weight: 900; color: var(--color-accent); letter-spacing: -0.05em;"><?php echo esc_html( $price ); ?><span style="font-size: var(--fs-xs); color: var(--color-text-light); font-weight: 800; margin-left: var(--sp-2); letter-spacing: 0.05em;"><?php echo esc_html( $i < 3 ? '/MO' : '' ); ?></span></div>
                 </div>
                 <p class="text-light" style="margin-bottom: var(--sp-12); flex-grow: 1; font-size: var(--fs-sm); line-height: 1.9; font-weight: 500;"><?php echo esc_html( $desc ); ?></p>
                 <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn <?php echo ($i === 2) ? 'btn-primary' : ''; ?>" style="width: 100%; border: 1px solid var(--color-border); padding-block: 1.5rem; font-size: 11px; letter-spacing: 0.1em; margin: 0;">

@@ -5,14 +5,14 @@
  * @package Premium_B2B
  */
 ?>
-<section class="capture-section section" id="contact" style="background: var(--color-bg);">
+<section class="capture-section section bg-grid" id="contact" style="background: var(--color-bg);">
     <div class="container" style="max-width: 1100px;">
-        <div class="card capture-card-premium" data-reveal style="background: var(--color-white); padding: clamp(4rem, 10vw, 8rem); position: relative; overflow: hidden;">
+        <div class="card capture-card-premium" data-reveal style="background: var(--color-white); padding: clamp(4rem, 10vw, 8rem); position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--color-border); box-shadow: var(--shadow-xl); text-align: left;">
             <div style="position: absolute; top: 0; right: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%); z-index: 0;"></div>
 
             <div style="position: relative; z-index: 1;">
                 <span class="step-number" style="margin-bottom: var(--sp-6); background: var(--color-primary); color: white;"><?php esc_html_e( 'GET STARTED', 'premium-b2b' ); ?></span>
-                <h2 style="margin-bottom: var(--sp-6); font-size: var(--fs-xl); line-height: 1;"><?php echo esc_html( get_theme_mod( 'capture_headline', 'Ready to Secure Your Next 5 High-Ticket Partners?' ) ); ?></h2>
+                <h2 style="margin-bottom: var(--sp-6); font-size: var(--fs-xl); line-height: 1; color: var(--color-primary);"><?php echo esc_html( get_theme_mod( 'capture_headline', 'Ready to Secure Your Next 5 High-Ticket Partners?' ) ); ?></h2>
                 <p class="text-light" style="font-size: var(--fs-base); margin-bottom: var(--sp-12); max-width: 65ch; line-height: 1.8;"><?php echo esc_html( get_theme_mod( 'capture_subheadline', 'Initiate your strategy session below. We only partner with agencies we are certain we can scale.' ) ); ?></p>
 
                 <div class="capture-form-area">
@@ -23,7 +23,7 @@
                     else :
                         ?>
                         <div class="flex" style="gap: var(--sp-8); flex-wrap: wrap;">
-                            <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
+                            <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large" style="margin: 0;">
                                 <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
                             </a>
                             <div class="flex" style="gap: var(--sp-4);">

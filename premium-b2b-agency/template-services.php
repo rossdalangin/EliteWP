@@ -27,7 +27,7 @@ get_header(); ?>
                     while ( $service_query->have_posts() ) : $service_query->the_post();
                 ?>
 				<div class="card service-card" data-reveal style="display: flex; flex-direction: column;">
-					<span class="step-number" style="background: var(--color-primary); color: white; margin-bottom: var(--sp-6);"><?php echo $i < 10 ? '0' . $i : $i; ?></span>
+					<span class="step-number" style="background: var(--color-primary); color: white; margin-bottom: var(--sp-6);"><?php echo esc_html( $i < 10 ? '0' . $i : $i ); ?></span>
 					<h3 style="margin-bottom: var(--sp-4); font-size: var(--fs-md); letter-spacing: -0.02em;"><?php the_title(); ?></h3>
 					<div class="text-light" style="line-height: 1.8; font-size: var(--fs-sm); margin-bottom: var(--sp-8); flex-grow: 1;"><?php the_content(); ?></div>
                     <ul style="display: flex; flex-direction: column; gap: var(--sp-3); font-size: var(--fs-xs); font-weight: 800; margin-bottom: var(--sp-10);">

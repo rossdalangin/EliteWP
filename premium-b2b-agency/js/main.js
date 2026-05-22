@@ -1,11 +1,11 @@
 /**
  * Premium B2B Theme Main Script
- * Vanilla JS - No jQuery reliance.
+ * Elite v3.0.0 Interaction Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Premium Mobile Menu Toggle
+    // 1. ADVANCED MOBILE MENU
     const menuToggle = document.querySelector('.menu-toggle');
     const body = document.body;
 
@@ -14,80 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             body.classList.toggle('menu-open');
-            menuToggle.classList.toggle('is-open');
-
-            // Staggered animation for menu items
-            if (body.classList.contains('menu-open')) {
-                const items = document.querySelectorAll('.main-menu-list li');
-                items.forEach((item, index) => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 300 + (index * 100));
-                });
-            }
         });
 
-        // Close menu on link click
         document.querySelectorAll('.main-navigation a').forEach(link => {
             link.addEventListener('click', () => {
                 body.classList.remove('menu-open');
                 menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.classList.remove('is-open');
             });
         });
     }
 
-    // Set header height variable for CSS
-    const header = document.getElementById('masthead');
-    if (header) {
-        document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
-    }
-
-    // 2. Smooth Scroll for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#' || targetId === '#primary') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // 3. Header Scroll Effect & Scroll to Top
-    const masthead = document.getElementById('masthead');
-    const scrollToTop = document.getElementById('scroll-to-top');
-
-    const handleScroll = () => {
-        if (window.scrollY > 50) {
-            masthead.classList.add('is-scrolled');
-            if (scrollToTop) scrollToTop.classList.add('show');
-        } else {
-            masthead.classList.remove('is-scrolled');
-            if (scrollToTop) scrollToTop.classList.remove('show');
-        }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    if (scrollToTop) {
-        scrollToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // 4. Advanced Reveal Animation on Scroll
+    // 2. STAGGERED SCROLL REVEAL
     const revealElements = document.querySelectorAll('[data-reveal]');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -96,32 +33,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     revealElements.forEach(el => {
         revealObserver.observe(el);
     });
 
-    // 5. Reading Progress Bar
+    // 3. READING PROGRESS BAR & HEADER SCROLL
     const progressBar = document.createElement('div');
     progressBar.id = 'reading-progress';
+
+    const scrollToTop = document.getElementById('scroll-to-top');
+    const masthead = document.getElementById('masthead');
+
     if (document.body.classList.contains('single-post')) {
         document.body.appendChild(progressBar);
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
+    }
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+
+        if (progressBar.parentNode) {
             progressBar.style.width = scrolled + "%";
+        }
+
+        if (winScroll > 50) {
+            masthead.classList.add('is-scrolled');
+            if (scrollToTop) {
+                scrollToTop.style.opacity = '1';
+                scrollToTop.style.visibility = 'visible';
+            }
+        } else {
+            masthead.classList.remove('is-scrolled');
+            if (scrollToTop) {
+                scrollToTop.style.opacity = '0';
+                scrollToTop.style.visibility = 'hidden';
+            }
+        }
+    });
+
+    if (scrollToTop) {
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    // 6. Interactive Hero Cursor Tracking
+    // 4. INTERACTIVE HERO PERSPECTIVE
     const hero = document.querySelector('.hero-section');
     if (hero) {
         hero.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
-            const x = (clientX / window.innerWidth - 0.5) * 30;
-            const y = (clientY / window.innerHeight - 0.5) * 30;
+            const x = (clientX / window.innerWidth - 0.5) * 20;
+            const y = (clientY / window.innerHeight - 0.5) * 20;
             const graphic = document.querySelector('.hero-graphic-wrapper');
             if (graphic) {
                 graphic.style.transform = `perspective(2000px) rotateY(${x - 15}deg) rotateX(${5 - y}deg)`;
@@ -129,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Dynamic Style Injection for States
+    // 5. CSS HELPER FOR STATES
     const style = document.createElement('style');
     style.innerHTML = `
-        .menu-toggle.is-open .hamburger { background: transparent !important; }
-        .menu-toggle.is-open .hamburger::before { transform: rotate(45deg) translate(8px, 8px); background: white; width: 1.5rem; }
-        .menu-toggle.is-open .hamburger::after { transform: rotate(-45deg) translate(8px, -8px); background: white; width: 1.5rem; }
-        body.menu-open { overflow: hidden; height: 100vh; }
+        body.menu-open { overflow: hidden !important; height: 100vh !important; }
+        .menu-toggle[aria-expanded="true"] .hamburger-inner { background-color: transparent !important; }
+        .menu-toggle[aria-expanded="true"] .hamburger-inner::before { transform: rotate(45deg) translate(5px, 5px); background-color: white !important; }
+        .menu-toggle[aria-expanded="true"] .hamburger-inner::after { transform: rotate(-45deg) translate(5px, -5px); background-color: white !important; }
     `;
     document.head.appendChild(style);
 });
