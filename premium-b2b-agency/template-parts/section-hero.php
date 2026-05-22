@@ -38,7 +38,8 @@
         </div>
         <div class="hero-graphic hidden-mobile" data-reveal>
             <div class="hero-graphic-wrapper" style="position: relative; aspect-ratio: 1; background: var(--color-white); border-radius: var(--radius); border: 1px solid var(--color-border); box-shadow: var(--shadow-xl); overflow: hidden; transform: perspective(2000px) rotateY(-15deg) rotateX(5deg); transition: transform 0.1s ease-out;">
-                <div class="mesh-gradient" style="position: absolute; inset: 0; background: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 50%), radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.05) 0%, transparent 50%);"></div>
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" alt="Agency Engineering" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; filter: grayscale(100%);">
+                <div class="mesh-gradient" style="position: absolute; inset: 0; background: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.2) 0%, transparent 50%), radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.1) 0%, transparent 50%);"></div>
                 <div class="graphic-elements" style="position: absolute; inset: var(--sp-12); border: 1px dashed var(--color-border); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--sp-8);">
                     <div class="chart-mockup" style="width: 85%; height: 45%; background: var(--color-bg); border-radius: 1.25rem; border: 1px solid var(--color-border); padding: var(--sp-6); box-shadow: var(--shadow-md);">
                         <div style="width: 100%; height: 100%; display: flex; align-items: flex-end; gap: 6px;">

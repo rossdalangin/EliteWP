@@ -36,11 +36,9 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-            <div class="philosophy-graphic" style="background: var(--color-primary); aspect-ratio: 1.2; border-radius: var(--radius); padding: var(--sp-12); display: flex; flex-direction: column; justify-content: center; gap: var(--sp-4);" data-reveal>
-                <div style="height: 1rem; width: 40%; background: var(--color-accent); border-radius: 99px;"></div>
-                <div style="height: 1rem; width: 100%; background: rgba(255,255,255,0.05); border-radius: 99px;"></div>
-                <div style="height: 1rem; width: 70%; background: rgba(255,255,255,0.05); border-radius: 99px;"></div>
-                <div style="height: 1rem; width: 90%; background: var(--color-accent); border-radius: 99px;"></div>
+            <div class="philosophy-graphic" style="position: relative; aspect-ratio: 1.2; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--color-border);" data-reveal>
+                <img src="https://images.unsplash.com/photo-1522071823991-b99c273c1533?q=80&w=2070&auto=format&fit=crop" alt="Agency Architects" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(to top, var(--color-primary), transparent); opacity: 0.6;"></div>
             </div>
         </div>
     </section>
