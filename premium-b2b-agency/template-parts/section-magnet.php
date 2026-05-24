@@ -15,17 +15,27 @@
 
         <div class="magnet-form-wrapper">
             <?php
+            $mag_cta_type = get_theme_mod( 'magnet_cta_type', 'html' );
             $magnet_embed = get_theme_mod( 'magnet_embed' );
-            if ( ! empty( $magnet_embed ) ) :
-                echo $magnet_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            else :
-                ?>
-                <div class="magnet-placeholder">
-                    <p class="text-light" style="font-weight: 700;"><?php esc_html_e( '[Newsletter Form Embed Code from Customizer]', 'premium-b2b' ); ?></p>
-                </div>
-                <?php
-            endif;
+
+            if ( 'url' === $mag_cta_type ) :
             ?>
+                <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
+                    <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Get The Blueprint' ) ); ?>
+                </a>
+            <?php elseif ( 'html' === $mag_cta_type && ! empty( $magnet_embed ) ) : ?>
+                <div class="magnet-html-embed">
+                    <?php echo $magnet_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                </div>
+            <?php elseif ( 'shortcode' === $mag_cta_type && ! empty( $magnet_embed ) ) : ?>
+                <div class="magnet-shortcode">
+                    <?php echo do_shortcode( $magnet_embed ); ?>
+                </div>
+            <?php else : ?>
+                <div class="magnet-placeholder">
+                    <p class="text-light" style="font-weight: 700;"><?php esc_html_e( '[Configure Lead Magnet in Customizer]', 'premium-b2b' ); ?></p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>

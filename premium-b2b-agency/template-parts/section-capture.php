@@ -17,11 +17,11 @@
 
                 <div class="capture-form-area">
                     <?php
+                    $cap_cta_type = get_theme_mod( 'capture_cta_type', 'html' );
                     $capture_embed = get_theme_mod( 'capture_embed' );
-                    if ( ! empty( $capture_embed ) ) :
-                        echo $capture_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    else :
-                        ?>
+
+                    if ( 'url' === $cap_cta_type ) :
+                    ?>
                         <div class="flex" style="gap: var(--sp-8); flex-wrap: wrap;">
                             <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large" style="margin: 0;">
                                 <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
@@ -33,9 +33,17 @@
                                 </div>
                             </div>
                         </div>
-                        <?php
-                    endif;
-                    ?>
+                    <?php elseif ( 'html' === $cap_cta_type && ! empty( $capture_embed ) ) : ?>
+                        <div class="capture-html-embed">
+                            <?php echo $capture_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                        </div>
+                    <?php elseif ( 'shortcode' === $cap_cta_type && ! empty( $capture_embed ) ) : ?>
+                        <div class="capture-shortcode">
+                            <?php echo do_shortcode( $capture_embed ); ?>
+                        </div>
+                    <?php else : ?>
+                        <p class="text-light"><?php esc_html_e( 'Direct Access:', 'premium-b2b' ); ?> <?php echo esc_html( get_theme_mod('contact_email', 'partner@agency.com') ); ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

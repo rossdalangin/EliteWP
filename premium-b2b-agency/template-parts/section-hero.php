@@ -33,16 +33,31 @@
                 <?php echo esc_html( get_theme_mod( 'hero_subheadline' ) ); ?>
             </p>
             <?php endif; ?>
-            <div class="hero-cta flex" style="gap: var(--sp-8); flex-wrap: wrap;">
-                <?php if ( get_theme_mod( 'hero_cta_text' ) ) : ?>
-                <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
-                    <?php echo esc_html( get_theme_mod( 'hero_cta_text' ) ); ?>
-                </a>
-                <?php endif; ?>
-                <?php if ( get_theme_mod( 'hero_cta_2_text' ) ) : ?>
-                <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_2_url', '#agitation' ) ); ?>" class="btn btn-outline btn-large hidden-mobile" style="color: var(--color-text); border-color: var(--color-text);">
-                    <?php echo esc_html( get_theme_mod( 'hero_cta_2_text' ) ); ?>
-                </a>
+            <div class="hero-cta-container">
+                <?php
+                $cta_type = get_theme_mod( 'hero_cta_type', 'url' );
+                if ( 'url' === $cta_type ) :
+                ?>
+                    <div class="hero-cta flex" style="gap: var(--sp-8); flex-wrap: wrap;">
+                        <?php if ( get_theme_mod( 'hero_cta_text' ) ) : ?>
+                        <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large">
+                            <?php echo esc_html( get_theme_mod( 'hero_cta_text' ) ); ?>
+                        </a>
+                        <?php endif; ?>
+                        <?php if ( get_theme_mod( 'hero_cta_2_text' ) ) : ?>
+                        <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_2_url', '#agitation' ) ); ?>" class="btn btn-outline btn-large hidden-mobile" style="color: var(--color-text); border-color: var(--color-text);">
+                            <?php echo esc_html( get_theme_mod( 'hero_cta_2_text' ) ); ?>
+                        </a>
+                        <?php endif; ?>
+                    </div>
+                <?php elseif ( 'html' === $cta_type ) : ?>
+                    <div class="hero-html-embed">
+                        <?php echo get_theme_mod( 'capture_embed' ); // Reuse existing capture_embed logic or similar if needed ?>
+                    </div>
+                <?php elseif ( 'shortcode' === $cta_type ) : ?>
+                    <div class="hero-shortcode">
+                        <?php echo do_shortcode( get_theme_mod( 'capture_embed' ) ); ?>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

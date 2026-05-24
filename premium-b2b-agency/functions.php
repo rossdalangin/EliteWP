@@ -207,6 +207,18 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'hero_subheadline', array( 'label' => 'Subheadline', 'section' => 'premium_b2b_hero', 'type' => 'textarea' ) );
     $wp_customize->add_setting( 'hero_cta_text', array( 'default' => 'Book Your Strategy Audit', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'hero_cta_text', array( 'label' => 'CTA Text', 'section' => 'premium_b2b_hero' ) );
+    $wp_customize->add_setting( 'hero_cta_type', array( 'default' => 'url', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'hero_cta_type', array(
+        'label'    => 'Primary CTA Type',
+        'section'  => 'premium_b2b_hero',
+        'type'     => 'select',
+        'choices'  => array(
+            'url'       => 'Button (URL)',
+            'html'      => 'HTML Form / Embed',
+            'shortcode' => 'Shortcode',
+        ),
+    ) );
+
     $wp_customize->add_setting( 'hero_cta_url', array( 'default' => '#', 'sanitize_callback' => 'esc_url_raw' ) );
 	$wp_customize->add_control( 'hero_cta_url', array( 'label' => 'CTA URL', 'section' => 'premium_b2b_hero', 'type' => 'url' ) );
 
@@ -327,17 +339,39 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'capture_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_capture' ) );
 	$wp_customize->add_setting( 'capture_subheadline', array( 'default' => 'Schedule your 15-minute Strategy Audit to identify the gaps in your current acquisition engine.', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'capture_subheadline', array( 'label' => 'Subheadline', 'section' => 'premium_b2b_capture', 'type' => 'textarea' ) );
+    $wp_customize->add_setting( 'capture_cta_type', array( 'default' => 'html', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'capture_cta_type', array(
+        'label'    => 'Capture CTA Type',
+        'section'  => 'premium_b2b_capture',
+        'type'     => 'select',
+        'choices'  => array(
+            'url'       => 'Button (URL)',
+            'html'      => 'HTML Form / Embed',
+            'shortcode' => 'Shortcode',
+        ),
+    ) );
 	$wp_customize->add_setting( 'capture_embed', array( 'default' => '', 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );
-	$wp_customize->add_control( 'capture_embed', array( 'label' => 'Embed Code (Calendly/Form)', 'section' => 'premium_b2b_capture', 'type' => 'textarea' ) );
+	$wp_customize->add_control( 'capture_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_capture', 'type' => 'textarea' ) );
 
     // MAGNET
 	$wp_customize->add_section( 'premium_b2b_magnet', array( 'title' => 'Section 4.5: Lead Magnet Overlay', 'panel' => 'premium_b2b_landing_page' ) );
+    $wp_customize->add_setting( 'magnet_cta_type', array( 'default' => 'html', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'magnet_cta_type', array(
+        'label'    => 'Magnet CTA Type',
+        'section'  => 'premium_b2b_magnet',
+        'type'     => 'select',
+        'choices'  => array(
+            'url'       => 'Button (URL)',
+            'html'      => 'HTML Form / Embed',
+            'shortcode' => 'Shortcode',
+        ),
+    ) );
 	$wp_customize->add_setting( 'magnet_headline', array( 'default' => 'Download the B2B Scaling Blueprint', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'magnet_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_magnet' ) );
 	$wp_customize->add_setting( 'magnet_desc', array( 'default' => 'The exact 12-page framework we used to scale 50+ agencies to $1M+ ARR.', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'magnet_desc', array( 'label' => 'Description', 'section' => 'premium_b2b_magnet', 'type' => 'textarea' ) );
 	$wp_customize->add_setting( 'magnet_embed', array( 'default' => '', 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );
-	$wp_customize->add_control( 'magnet_embed', array( 'label' => 'Form Embed Code', 'section' => 'premium_b2b_magnet', 'type' => 'textarea' ) );
+	$wp_customize->add_control( 'magnet_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_magnet', 'type' => 'textarea' ) );
 
 	// ABOUT TEMPLATE
     $wp_customize->add_section( 'premium_b2b_about', array( 'title' => 'Template: About', 'panel' => 'premium_b2b_templates' ) );
@@ -383,10 +417,23 @@ function premium_b2b_customize_register( $wp_customize ) {
 
     // SINGLE POST CTA
     $wp_customize->add_section( 'premium_b2b_cta_card', array( 'title' => 'Single Post CTA', 'priority' => 140 ) );
+    $wp_customize->add_setting( 'cta_card_type', array( 'default' => 'url', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'cta_card_type', array(
+        'label'    => 'CTA Type',
+        'section'  => 'premium_b2b_cta_card',
+        'type'     => 'select',
+        'choices'  => array(
+            'url'       => 'Button (URL)',
+            'html'      => 'HTML Form / Embed',
+            'shortcode' => 'Shortcode',
+        ),
+    ) );
 	$wp_customize->add_setting( 'cta_card_title', array( 'default' => 'Struggling to Scale Your B2B Pipeline?', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'cta_card_title', array( 'label' => 'Title', 'section' => 'premium_b2b_cta_card' ) );
 	$wp_customize->add_setting( 'cta_card_desc', array( 'default' => 'Download our High-Ticket Acquisition Blueprint and start securing enterprise clients on autopilot.', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'cta_card_desc', array( 'label' => 'Description', 'section' => 'premium_b2b_cta_card', 'type' => 'textarea' ) );
+    $wp_customize->add_setting( 'cta_card_embed', array( 'default' => '', 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );
+	$wp_customize->add_control( 'cta_card_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_cta_card', 'type' => 'textarea' ) );
     $wp_customize->add_setting( 'enable_social_sharing', array( 'default' => true, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
 	$wp_customize->add_control( 'enable_social_sharing', array( 'label' => 'Enable Social Sharing', 'section' => 'premium_b2b_cta_card', 'type' => 'checkbox' ) );
 
@@ -709,16 +756,31 @@ function premium_b2b_inject_mid_cta( $content ) {
 		return $content;
 	}
 
+    $cta_type  = get_theme_mod( 'cta_card_type', 'url' );
 	$cta_title = get_theme_mod( 'cta_card_title', 'Ready to Automate Your Pipeline?' );
-	$cta_desc = get_theme_mod( 'cta_card_desc', 'Book a discovery call today and see how we can help you scale.' );
-	$cta_url = get_theme_mod( 'hero_cta_url', '#' );
-	$cta_text = get_theme_mod( 'hero_cta_text', 'Book Strategy Session' );
+	$cta_desc  = get_theme_mod( 'cta_card_desc', 'Book a discovery call today and see how we can help you scale.' );
+	$cta_url   = get_theme_mod( 'hero_cta_url', '#' );
+	$cta_text  = get_theme_mod( 'hero_cta_text', 'Book Strategy Session' );
+    $cta_embed = get_theme_mod( 'cta_card_embed' );
+
+    if ( ! $cta_title && ! $cta_desc && ! $cta_embed ) return $content;
+
+    $cta_inner = '';
+    if ( 'url' === $cta_type ) {
+        $cta_inner = '
+            <h3 style="color: white; margin-bottom: 1rem;">' . esc_html( $cta_title ) . '</h3>
+			<p style="margin-bottom: 2rem; opacity: 0.9; color: white;">' . esc_html( $cta_desc ) . '</p>
+			<a href="' . esc_url( $cta_url ) . '" class="btn btn-primary">' . esc_html( $cta_text ) . '</a>
+        ';
+    } elseif ( 'html' === $cta_type ) {
+        $cta_inner = $cta_embed;
+    } elseif ( 'shortcode' === $cta_type ) {
+        $cta_inner = do_shortcode( $cta_embed );
+    }
 
 	$cta_html = '
 		<aside class="mid-content-cta" style="margin-block: 4rem; padding: 3rem; background: var(--color-primary); color: white; border-radius: var(--radius); text-align: center;">
-			<h3 style="color: white; margin-bottom: 1rem;">' . esc_html( $cta_title ) . '</h3>
-			<p style="margin-bottom: 2rem; opacity: 0.9; color: white;">' . esc_html( $cta_desc ) . '</p>
-			<a href="' . esc_url( $cta_url ) . '" class="btn btn-primary">' . esc_html( $cta_text ) . '</a>
+			' . $cta_inner . '
 		</aside>
 	';
 
