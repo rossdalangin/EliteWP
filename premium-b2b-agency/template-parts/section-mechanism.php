@@ -28,6 +28,7 @@
             for ( $i = 1; $i <= 3; $i++ ) :
                 $title = get_theme_mod( "mechanism_s{$i}_title", $mechanism_defaults[$i]['t'] );
                 $desc = get_theme_mod( "mechanism_s{$i}_desc", $mechanism_defaults[$i]['d'] );
+                $img  = get_theme_mod( "mechanism_s{$i}_img", $mechanism_defaults[$i]['i'] );
                 $reverse = ($i % 2 == 0) ? 'reverse' : '';
                 if ( ! $title && ! $desc ) continue;
             ?>
@@ -41,9 +42,11 @@
                             <li class="flex" style="gap: var(--sp-4);"><span style="color: var(--color-accent); font-size: 1.25rem;">✔</span> <?php esc_html_e( 'Engineering-Grade Implementation', 'premium-b2b' ); ?></li>
                         </ul>
                     </div>
+                    <?php if ( $img ) : ?>
                     <div class="step-image" data-reveal style="border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-xl); aspect-ratio: 4/3; background: var(--color-bg); border: 1px solid var(--color-border);">
-                        <img src="<?php echo esc_url($mechanism_images[$i]); ?>" alt="<?php echo esc_attr($title); ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($title); ?>" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
+                    <?php endif; ?>
                 </div>
             <?php endfor; ?>
         </div>

@@ -65,14 +65,15 @@
             <div class="hero-graphic-wrapper" style="position: relative; aspect-ratio: 1; background: var(--color-white); border-radius: var(--radius); border: 1px solid var(--color-border); box-shadow: var(--shadow-xl); overflow: hidden; transform: perspective(2000px) rotateY(-15deg) rotateX(5deg); transition: transform 0.1s ease-out;">
                 <?php
                 $graphic_type = get_theme_mod( 'hero_graphic_type', 'image' );
+                $hero_img = get_theme_mod( 'hero_bg_image', 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop' );
+                $hero_vid = get_theme_mod( 'hero_video_url' );
 
-                if ( 'image' === $graphic_type ) :
-                    $hero_img = get_theme_mod( 'hero_bg_image', 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop' );
+                if ( 'image' === $graphic_type && ! empty( $hero_img ) ) :
                 ?>
-                    <img src="<?php echo esc_url( $hero_img ); ?>" alt="Agency Engineering" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%);">
-                <?php elseif ( 'video' === $graphic_type ) : ?>
-                    <div class="hero-video-embed" style="position: absolute; inset: 0; width: 100%; height: 100%;">
-                        <?php echo get_theme_mod( 'hero_video_url' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <img src="<?php echo esc_url( $hero_img ); ?>" alt="Agency Engineering" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); z-index: 1;">
+                <?php elseif ( 'video' === $graphic_type && ! empty( $hero_vid ) ) : ?>
+                    <div class="hero-video-embed" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;">
+                        <?php echo $hero_vid; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     </div>
                 <?php else : ?>
                     <div class="mesh-gradient" style="position: absolute; inset: 0; background: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.2) 0%, transparent 50%), radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.1) 0%, transparent 50%);"></div>

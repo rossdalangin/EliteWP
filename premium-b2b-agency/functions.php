@@ -279,8 +279,10 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_setting( 'trust_headline', array( 'default' => 'TRUSTED BY INNOVATIVE B2B TEAMS AT:', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'trust_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_trust' ) );
     for ( $i = 1; $i <= 5; $i++ ) {
+        $wp_customize->add_setting( "trust_logo_{$i}_img", array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
+        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, "trust_logo_{$i}_img", array( 'label' => "Logo $i Image", 'section' => 'premium_b2b_trust' ) ) );
         $wp_customize->add_setting( "trust_logo_{$i}", array( 'default' => "LOGO $i", 'sanitize_callback' => 'sanitize_text_field' ) );
-		$wp_customize->add_control( "trust_logo_{$i}", array( 'label' => "Logo $i Text", 'section' => 'premium_b2b_trust' ) );
+		$wp_customize->add_control( "trust_logo_{$i}", array( 'label' => "Logo $i Text (Fallback)", 'section' => 'premium_b2b_trust' ) );
     }
 
     // AGITATION GRID
@@ -320,15 +322,17 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'mechanism_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_mechanism' ) );
 
     $mechanism_defaults = array(
-        1 => array( 't' => 'Authority Architecture Audit', 'd' => 'We deconstruct your current positioning and architect a high-authority brand identity that commands premium fees.' ),
-        2 => array( 't' => 'The Alpha Engine Build', 'd' => 'We deploy our proprietary conversion ecosystem, transforming your brand into a scientific lead-capture machine.' ),
-        3 => array( 't' => 'Precision Scale Injection', 'd' => 'With the infrastructure solidified, we inject surgical multi-channel traffic to scale your pipeline predictably.' ),
+        1 => array( 't' => 'Authority Architecture Audit', 'd' => 'We deconstruct your current positioning and architect a high-authority brand identity that commands premium fees.', 'i' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop' ),
+        2 => array( 't' => 'The Alpha Engine Build', 'd' => 'We deploy our proprietary conversion ecosystem, transforming your brand into a scientific lead-capture machine.', 'i' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop' ),
+        3 => array( 't' => 'Precision Scale Injection', 'd' => 'With the infrastructure solidified, we inject surgical multi-channel traffic to scale your pipeline predictably.', 'i' => 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop' ),
     );
     for ( $i = 1; $i <= 3; $i++ ) {
 		$wp_customize->add_setting( "mechanism_s{$i}_title", array( 'default' => $mechanism_defaults[$i]['t'], 'sanitize_callback' => 'sanitize_text_field' ) );
 		$wp_customize->add_control( "mechanism_s{$i}_title", array( 'label' => "Step $i Title", 'section' => 'premium_b2b_mechanism' ) );
 		$wp_customize->add_setting( "mechanism_s{$i}_desc", array( 'default' => $mechanism_defaults[$i]['d'], 'sanitize_callback' => 'sanitize_text_field' ) );
 		$wp_customize->add_control( "mechanism_s{$i}_desc", array( 'label' => "Step $i Description", 'section' => 'premium_b2b_mechanism', 'type' => 'textarea' ) );
+        $wp_customize->add_setting( "mechanism_s{$i}_img", array( 'default' => $mechanism_defaults[$i]['i'], 'sanitize_callback' => 'esc_url_raw' ) );
+        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, "mechanism_s{$i}_img", array( 'label' => "Step $i Image", 'section' => 'premium_b2b_mechanism' ) ) );
 	}
 
     // PRICING
@@ -500,10 +504,10 @@ function premium_b2b_customize_register( $wp_customize ) {
 
 	// Live Preview Transport
 	$all_settings = array(
-        'hero_headline', 'hero_subheadline', 'hero_cta_text',
+        'hero_headline', 'hero_subheadline', 'hero_cta_text', 'hero_cta_2_text', 'hero_bg_image', 'hero_graphic_type', 'hero_video_url',
         'agitation_headline', 'mechanism_headline', 'capture_headline', 'trust_headline',
         'magnet_headline', 'magnet_desc', 'cta_card_title', 'cta_card_desc',
-        'primary_color', 'accent_color', 'pricing_headline', 'faq_headline'
+        'primary_color', 'accent_color', 'pricing_headline', 'faq_headline', 'design_persona'
     );
     for($i=1;$i<=5;$i++) {
         if ($i <= 3) {
@@ -511,7 +515,9 @@ function premium_b2b_customize_register( $wp_customize ) {
             $all_settings[] = "agitation_c{$i}_desc";
             $all_settings[] = "mechanism_s{$i}_title";
             $all_settings[] = "mechanism_s{$i}_desc";
+            $all_settings[] = "mechanism_s{$i}_img";
             $all_settings[] = "highlight_{$i}_title";
+            $all_settings[] = "highlight_{$i}_icon";
             $all_settings[] = "value_{$i}_title";
             $all_settings[] = "value_{$i}_desc";
             $all_settings[] = "price_{$i}_title";
@@ -519,8 +525,10 @@ function premium_b2b_customize_register( $wp_customize ) {
             $all_settings[] = "price_{$i}_desc";
             $all_settings[] = "testimonial_{$i}_text";
             $all_settings[] = "testimonial_{$i}_author";
+            $all_settings[] = "testimonial_{$i}_img";
         }
         $all_settings[] = "trust_logo_{$i}";
+        $all_settings[] = "trust_logo_{$i}_img";
         if ($i <= 4) {
             $all_settings[] = "faq_{$i}_q";
             $all_settings[] = "faq_{$i}_a";
@@ -671,7 +679,13 @@ function premium_b2b_handle_regeneration() {
 		$locations['footer-menu'] = $menu_id;
 		set_theme_mod( 'nav_menu_locations', $locations );
 
-		// 5. Generate Sample Posts
+		// 5. Update Customizer Image Defaults
+        for ($i=1; $i<=3; $i++) {
+            set_theme_mod("mechanism_s{$i}_img", $mechanism_defaults[$i]['i']);
+        }
+        set_theme_mod('hero_bg_image', 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop');
+
+		// 6. Generate Sample Posts
 		$posts = array(
             'The High-Ticket B2B Acquisition Manifesto' => 'Why speed and authority are the only two metrics that matter in the current high-ticket B2B market environment.',
             'Engineering Predictable Sales Pipelines' => 'How to transition from a referral-based agency to an automated acquisition machine.',

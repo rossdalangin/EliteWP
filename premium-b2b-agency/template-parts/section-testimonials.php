@@ -19,15 +19,22 @@
                 3 => array( 't' => 'Since deploying the Alpha Framework, our cost per acquisition has dropped by 40% while lead quality has doubled.', 'a' => 'Marcus Thorne, Founder of GrowthMatrix' ),
             );
             for ( $i = 1; $i <= 3; $i++ ) :
-                $text = get_theme_mod( "testimonial_{$i}_text", $test_defaults[$i]['t'] );
+                $text   = get_theme_mod( "testimonial_{$i}_text", $test_defaults[$i]['t'] );
                 $author = get_theme_mod( "testimonial_{$i}_author", $test_defaults[$i]['a'] );
+                $avatar = get_theme_mod( "testimonial_{$i}_img" );
                 if ( $text ) :
             ?>
                 <div class="card testimonial-card" data-reveal style="display: flex; flex-direction: column;">
                     <div class="stars" style="color: #FBBF24; font-size: 1.25rem; margin-bottom: var(--sp-6);">★★★★★</div>
                     <p style="margin-bottom: var(--sp-8); position: relative; z-index: 1; font-weight: 500; line-height: 1.8; color: var(--color-text); flex-grow: 1;">&ldquo;<?php echo esc_html( $text ); ?>&rdquo;</p>
                     <div class="testimonial-meta flex" style="gap: var(--sp-4); border-top: 1px solid var(--color-border); padding-top: var(--sp-6);">
-                        <div class="avatar" style="width: 3.5rem; height: 3.5rem; background: var(--color-accent); border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0;"><?php echo substr($author, 0, 1); ?></div>
+                        <div class="avatar" style="width: 3.5rem; height: 3.5rem; background: var(--color-accent); border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; flex-shrink: 0; overflow: hidden;">
+                            <?php if ( $avatar ) : ?>
+                                <img src="<?php echo esc_url( $avatar ); ?>" alt="<?php echo esc_attr( $author ); ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                            <?php else : ?>
+                                <?php echo substr($author, 0, 1); ?>
+                            <?php endif; ?>
+                        </div>
                         <cite style="font-weight: 700; font-style: normal; font-size: var(--fs-xs); letter-spacing: 0.05em; color: var(--color-text-light); line-height: 1.4;"><?php echo esc_html( $author ); ?></cite>
                     </div>
                 </div>

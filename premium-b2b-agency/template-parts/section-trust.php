@@ -13,8 +13,16 @@
         <div class="flex trust-logos">
             <?php for ( $i = 1; $i <= 5; $i++ ) :
                 $logo_text = get_theme_mod( "trust_logo_{$i}", "LOGO $i" );
+                $logo_img  = get_theme_mod( "trust_logo_{$i}_img" );
+                if ( ! $logo_text && ! $logo_img ) continue;
             ?>
-                <div class="trust-logo"><?php echo esc_html( $logo_text ); ?></div>
+                <div class="trust-logo" style="opacity: 0.5; filter: grayscale(100%); transition: all 0.3s ease;" onmouseover="this.style.opacity=1; this.style.filter='grayscale(0%)'" onmouseout="this.style.opacity=0.5; this.style.filter='grayscale(100%)'">
+                    <?php if ( $logo_img ) : ?>
+                        <img src="<?php echo esc_url( $logo_img ); ?>" alt="<?php echo esc_attr( $logo_text ); ?>" style="max-height: 2.5rem; width: auto;">
+                    <?php else : ?>
+                        <span style="font-weight: 900; font-size: 1.25rem; letter-spacing: -0.05em;"><?php echo esc_html( $logo_text ); ?></span>
+                    <?php endif; ?>
+                </div>
             <?php endfor; ?>
         </div>
     </div>
