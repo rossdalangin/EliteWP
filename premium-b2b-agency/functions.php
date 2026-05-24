@@ -247,8 +247,23 @@ function premium_b2b_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'hero_cta_2_url', array( 'default' => '#agitation', 'sanitize_callback' => 'esc_url_raw' ) );
 	$wp_customize->add_control( 'hero_cta_2_url', array( 'label' => 'Secondary CTA URL', 'section' => 'premium_b2b_hero', 'type' => 'url' ) );
 
+    $wp_customize->add_setting( 'hero_graphic_type', array( 'default' => 'image', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'hero_graphic_type', array(
+        'label'    => 'Hero Graphic Type',
+        'section'  => 'premium_b2b_hero',
+        'type'     => 'select',
+        'choices'  => array(
+            'image'  => 'Static Image',
+            'video'  => 'Video (HTML/Embed)',
+            'mockup' => 'CSS Framework Mockup',
+        ),
+    ) );
+
     $wp_customize->add_setting( 'hero_bg_image', array( 'default' => 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop', 'sanitize_callback' => 'esc_url_raw' ) );
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_bg_image', array( 'label' => 'Hero Graphic Image', 'section' => 'premium_b2b_hero' ) ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_bg_image', array( 'label' => 'Hero Image', 'section' => 'premium_b2b_hero' ) ) );
+
+    $wp_customize->add_setting( 'hero_video_url', array( 'default' => '', 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );
+	$wp_customize->add_control( 'hero_video_url', array( 'label' => 'Hero Video (Embed/MP4 URL)', 'section' => 'premium_b2b_hero', 'type' => 'textarea' ) );
 
     $hl_defaults = array( '7-Figure Systems', 'Predictable ROI', 'Authority First' );
     $hl_icons = array('📈', '🛡️', '⚡');
