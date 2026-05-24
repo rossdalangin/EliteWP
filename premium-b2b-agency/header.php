@@ -41,16 +41,33 @@
 				?>
                 <!-- Mobile specific menu footer -->
                 <div class="mobile-menu-footer visible-mobile">
-                    <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
-                        <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
-                    </a>
+                    <?php
+                    $h_cta_type = get_theme_mod( 'header_cta_type', 'url' );
+                    if ( 'url' === $h_cta_type ) : ?>
+                        <a href="<?php echo esc_url( get_theme_mod( 'header_cta_url', '#' ) ); ?>" class="btn btn-primary">
+                            <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
+                        </a>
+                    <?php elseif ( 'html' === $h_cta_type ) : ?>
+                        <?php echo get_theme_mod( 'header_cta_embed' ); ?>
+                    <?php elseif ( 'shortcode' === $h_cta_type ) : ?>
+                        <?php echo do_shortcode( get_theme_mod( 'header_cta_embed' ) ); ?>
+                    <?php endif; ?>
                 </div>
 			</nav>
 
 			<div class="header-actions">
-                <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary hidden-mobile">
-                    <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Session' ) ); ?>
-                </a>
+                <div class="hidden-mobile">
+                    <?php
+                    if ( 'url' === $h_cta_type ) : ?>
+                        <a href="<?php echo esc_url( get_theme_mod( 'header_cta_url', '#' ) ); ?>" class="btn btn-primary">
+                            <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
+                        </a>
+                    <?php elseif ( 'html' === $h_cta_type ) : ?>
+                        <?php echo get_theme_mod( 'header_cta_embed' ); ?>
+                    <?php elseif ( 'shortcode' === $h_cta_type ) : ?>
+                        <?php echo do_shortcode( get_theme_mod( 'header_cta_embed' ) ); ?>
+                    <?php endif; ?>
+                </div>
                 <button class="menu-toggle visible-mobile" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle Navigation">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
@@ -62,8 +79,14 @@
 
 	<?php if ( get_theme_mod( 'enable_mobile_cta', true ) ) : ?>
 		<div class="mobile-sticky-cta visible-mobile">
-			<a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
-				<?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Session' ) ); ?>
-			</a>
+            <?php if ( 'url' === $h_cta_type ) : ?>
+			    <a href="<?php echo esc_url( get_theme_mod( 'header_cta_url', '#' ) ); ?>" class="btn btn-primary">
+				    <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
+			    </a>
+            <?php elseif ( 'html' === $h_cta_type ) : ?>
+                <?php echo get_theme_mod( 'header_cta_embed' ); ?>
+            <?php elseif ( 'shortcode' === $h_cta_type ) : ?>
+                <?php echo do_shortcode( get_theme_mod( 'header_cta_embed' ) ); ?>
+            <?php endif; ?>
 		</div>
 	<?php endif; ?>

@@ -23,8 +23,8 @@
                     if ( 'url' === $cap_cta_type ) :
                     ?>
                         <div class="flex" style="gap: var(--sp-8); flex-wrap: wrap;">
-                            <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary btn-large" style="margin: 0;">
-                                <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Your Strategy Audit' ) ); ?>
+                            <a href="<?php echo esc_url( get_theme_mod( 'capture_btn_url', '#' ) ); ?>" class="btn btn-primary btn-large" style="margin: 0;">
+                                <?php echo esc_html( get_theme_mod( 'capture_btn_text', 'Initiate Strategy' ) ); ?>
                             </a>
                             <div class="flex" style="gap: var(--sp-4);">
                                 <div style="font-size: var(--fs-xs); opacity: 0.8;">

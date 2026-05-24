@@ -20,8 +20,8 @@
 
             if ( 'url' === $mag_cta_type ) :
             ?>
-                <a href="<?php echo esc_url( get_theme_mod( 'hero_cta_url', '#' ) ); ?>" class="btn btn-primary">
-                    <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Get The Blueprint' ) ); ?>
+                <a href="<?php echo esc_url( get_theme_mod( 'magnet_btn_url', '#' ) ); ?>" class="btn btn-primary">
+                    <?php echo esc_html( get_theme_mod( 'magnet_btn_text', 'Get Access Now' ) ); ?>
                 </a>
             <?php elseif ( 'html' === $mag_cta_type && ! empty( $magnet_embed ) ) : ?>
                 <div class="magnet-html-embed">

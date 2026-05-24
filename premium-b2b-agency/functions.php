@@ -175,6 +175,26 @@ function premium_b2b_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'enable_mobile_cta', array( 'default' => true, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
 	$wp_customize->add_control( 'enable_mobile_cta', array( 'label' => 'Enable Sticky Mobile CTA', 'section' => 'premium_b2b_setup', 'type' => 'checkbox' ) );
 
+    // Header CTA
+    $wp_customize->add_section( 'premium_b2b_header_cta', array( 'title' => 'Header CTA', 'priority' => 15 ) );
+    $wp_customize->add_setting( 'header_cta_type', array( 'default' => 'url', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'header_cta_type', array(
+        'label'    => 'CTA Type',
+        'section'  => 'premium_b2b_header_cta',
+        'type'     => 'select',
+        'choices'  => array(
+            'url'       => 'Button (URL)',
+            'html'      => 'HTML Form / Embed',
+            'shortcode' => 'Shortcode',
+        ),
+    ) );
+    $wp_customize->add_setting( 'header_cta_text', array( 'default' => 'Book Audit', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'header_cta_text', array( 'label' => 'Button Text', 'section' => 'premium_b2b_header_cta' ) );
+    $wp_customize->add_setting( 'header_cta_url', array( 'default' => '#', 'sanitize_callback' => 'esc_url_raw' ) );
+	$wp_customize->add_control( 'header_cta_url', array( 'label' => 'Button URL', 'section' => 'premium_b2b_header_cta', 'type' => 'url' ) );
+    $wp_customize->add_setting( 'header_cta_embed', array( 'default' => '', 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );
+	$wp_customize->add_control( 'header_cta_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_header_cta', 'type' => 'textarea' ) );
+
     // Global Branding
 	$wp_customize->add_section( 'premium_b2b_colors', array( 'title' => __( 'Global Branding', 'premium-b2b' ), 'priority' => 20 ) );
 
@@ -350,6 +370,10 @@ function premium_b2b_customize_register( $wp_customize ) {
             'shortcode' => 'Shortcode',
         ),
     ) );
+    $wp_customize->add_setting( 'capture_btn_text', array( 'default' => 'Initiate Strategy', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'capture_btn_text', array( 'label' => 'Button Text', 'section' => 'premium_b2b_capture' ) );
+    $wp_customize->add_setting( 'capture_btn_url', array( 'default' => '#', 'sanitize_callback' => 'esc_url_raw' ) );
+	$wp_customize->add_control( 'capture_btn_url', array( 'label' => 'Button URL', 'section' => 'premium_b2b_capture', 'type' => 'url' ) );
 	$wp_customize->add_setting( 'capture_embed', array( 'default' => '', 'sanitize_callback' => 'premium_b2b_sanitize_scripts' ) );
 	$wp_customize->add_control( 'capture_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_capture', 'type' => 'textarea' ) );
 
@@ -366,6 +390,10 @@ function premium_b2b_customize_register( $wp_customize ) {
             'shortcode' => 'Shortcode',
         ),
     ) );
+    $wp_customize->add_setting( 'magnet_btn_text', array( 'default' => 'Get Access Now', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'magnet_btn_text', array( 'label' => 'Button Text', 'section' => 'premium_b2b_magnet' ) );
+    $wp_customize->add_setting( 'magnet_btn_url', array( 'default' => '#', 'sanitize_callback' => 'esc_url_raw' ) );
+	$wp_customize->add_control( 'magnet_btn_url', array( 'label' => 'Button URL', 'section' => 'premium_b2b_magnet', 'type' => 'url' ) );
 	$wp_customize->add_setting( 'magnet_headline', array( 'default' => 'Download the B2B Scaling Blueprint', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'magnet_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_magnet' ) );
 	$wp_customize->add_setting( 'magnet_desc', array( 'default' => 'The exact 12-page framework we used to scale 50+ agencies to $1M+ ARR.', 'sanitize_callback' => 'sanitize_text_field' ) );
