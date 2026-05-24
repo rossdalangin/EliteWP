@@ -177,11 +177,26 @@ function premium_b2b_customize_register( $wp_customize ) {
 
     // Global Branding
 	$wp_customize->add_section( 'premium_b2b_colors', array( 'title' => __( 'Global Branding', 'premium-b2b' ), 'priority' => 20 ) );
+
+    $wp_customize->add_setting( 'design_persona', array( 'default' => 'unisex', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'design_persona', array(
+        'label'    => 'Design Persona (Preset)',
+        'section'  => 'premium_b2b_colors',
+        'type'     => 'select',
+        'choices'  => array(
+            'unisex' => 'Unisex / Professional',
+            'female' => 'Female Owner / Elegant',
+            'male'   => 'Male Owner / Bold',
+            'custom' => 'Custom Colors (Overrides Persona)',
+        ),
+    ) );
+
 	$wp_customize->add_setting( 'primary_color', array( 'default' => '#0F172A', 'sanitize_callback' => 'sanitize_hex_color' ) );
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_color', array( 'label' => 'Primary Color', 'section' => 'premium_b2b_colors' ) ) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_color', array( 'label' => 'Primary Override', 'section' => 'premium_b2b_colors', 'description' => 'Only used if Custom is selected above.' ) ) );
 	$wp_customize->add_setting( 'accent_color', array( 'default' => '#2563EB', 'sanitize_callback' => 'sanitize_hex_color' ) );
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'accent_color', array( 'label' => 'Accent Color', 'section' => 'premium_b2b_colors' ) ) );
-	$wp_customize->add_setting( 'enable_dark_mode', array( 'default' => false, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'accent_color', array( 'label' => 'Accent Override', 'section' => 'premium_b2b_colors' ) ) );
+
+    $wp_customize->add_setting( 'enable_dark_mode', array( 'default' => false, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
 	$wp_customize->add_control( 'enable_dark_mode', array( 'label' => 'Enable Dark Mode', 'section' => 'premium_b2b_colors', 'type' => 'checkbox' ) );
 
 	// HERO SECTION
@@ -625,15 +640,39 @@ function premium_b2b_output_header_scripts() {
 		);
 		echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>';
 	}
-	$primary_color = get_theme_mod( 'primary_color', '#0F172A' );
-	$accent_color = get_theme_mod( 'accent_color', '#2563EB' );
+
+    $persona = get_theme_mod( 'design_persona', 'unisex' );
 	$dark_mode = get_theme_mod( 'enable_dark_mode', false );
+
+    // Persona Palette Matrix
+    $palettes = array(
+        'unisex' => array(
+            'primary' => '#0F172A',
+            'accent'  => '#2563EB',
+        ),
+        'female' => array(
+            'primary' => '#1E1B4B', // Deep Indigo/Berry
+            'accent'  => '#EC4899', // Elegant Rose/Pink
+        ),
+        'male' => array(
+            'primary' => '#06202A', // Slate Deep Green/Teal
+            'accent'  => '#F97316', // Bold Orange/Copper
+        ),
+    );
+
+    if ( 'custom' === $persona ) {
+        $primary_color = get_theme_mod( 'primary_color', '#0F172A' );
+	    $accent_color = get_theme_mod( 'accent_color', '#2563EB' );
+    } else {
+        $primary_color = $palettes[$persona]['primary'];
+        $accent_color  = $palettes[$persona]['accent'];
+    }
 
     // Dynamic contrast logic
     $bg_color = $dark_mode ? '#020617' : '#F8FAFC';
     $text_color = $dark_mode ? '#F8FAFC' : '#1E293B';
     $text_light = $dark_mode ? '#94A3B8' : '#64748B';
-    $white_equivalent = $dark_mode ? '#0F172A' : '#FFFFFF';
+    $white_equivalent = $dark_mode ? $primary_color : '#FFFFFF';
     $border_color = $dark_mode ? 'rgba(255,255,255,0.1)' : '#E2E8F0';
 
 	echo '<style>:root {
@@ -645,7 +684,12 @@ function premium_b2b_output_header_scripts() {
         --color-white: ' . esc_attr( $white_equivalent ) . ';
         --color-border: ' . esc_attr( $border_color ) . ';
     }';
-	if ( $dark_mode ) echo '.site-header.is-scrolled { background: rgba(15, 23, 42, 0.9); } .card { background: var(--color-white); } a, h1, h2, h3, h4, h5, h6 { color: var(--color-text); }';
+	if ( $dark_mode ) {
+        echo 'body { background-color: var(--color-bg); }';
+        echo '.site-header.is-scrolled { background: rgba(15, 23, 42, 0.9); }';
+        echo '.card { background: var(--color-white); }';
+        echo 'a, h1, h2, h3, h4, h5, h6 { color: var(--color-text); }';
+    }
 	echo '</style>';
 }
 add_action( 'wp_head', 'premium_b2b_output_header_scripts' );
