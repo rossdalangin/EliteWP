@@ -33,14 +33,10 @@
                                 </div>
                             </div>
                         </div>
-                    <?php elseif ( 'html' === $cap_cta_type && ! empty( $capture_embed ) ) : ?>
-                        <div class="capture-html-embed">
-                            <?php echo $capture_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                        </div>
-                    <?php elseif ( 'shortcode' === $cap_cta_type && ! empty( $capture_embed ) ) : ?>
-                        <div class="capture-shortcode">
-                            <?php echo do_shortcode( $capture_embed ); ?>
-                        </div>
+                    <?php elseif ( ( 'html' === $cap_cta_type || 'shortcode' === $cap_cta_type ) && ! empty( $capture_embed ) ) : ?>
+                        <button class="btn btn-primary btn-large trigger-modal" data-modal-content="<?php echo esc_attr( 'html' === $cap_cta_type ? $capture_embed : do_shortcode( $capture_embed ) ); ?>">
+                            <?php echo esc_html( get_theme_mod( 'capture_btn_text', 'Initiate Strategy' ) ); ?>
+                        </button>
                     <?php else : ?>
                         <p class="text-light"><?php esc_html_e( 'Direct Access:', 'premium-b2b' ); ?> <?php echo esc_html( get_theme_mod('contact_email', 'partner@agency.com') ); ?></p>
                     <?php endif; ?>

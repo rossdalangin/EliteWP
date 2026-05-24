@@ -96,10 +96,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. CSS HELPER FOR STATES
+    // 5. ELITE MODAL ENGINE
+    const modal = document.getElementById('theme-modal');
+    const modalContentArea = document.getElementById('modal-content-area');
+    const modalClose = document.getElementById('modal-close');
+
+    const openModal = (content) => {
+        if (!modal || !modalContentArea) return;
+        modalContentArea.innerHTML = content;
+        modal.classList.add('is-active');
+        document.body.classList.add('modal-open');
+    };
+
+    const closeModal = () => {
+        if (!modal) return;
+        modal.classList.remove('is-active');
+        document.body.classList.remove('modal-open');
+        setTimeout(() => { modalContentArea.innerHTML = ''; }, 500);
+    };
+
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('.trigger-modal');
+        if (trigger) {
+            e.preventDefault();
+            const content = trigger.getAttribute('data-modal-content');
+            openModal(content);
+        }
+
+        if (e.target === modal || e.target.closest('#modal-close')) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+            closeModal();
+        }
+    });
+
+    // 6. CSS HELPER FOR STATES
     const style = document.createElement('style');
     style.innerHTML = `
-        body.menu-open { overflow: hidden !important; height: 100vh !important; }
+        body.menu-open, body.modal-open { overflow: hidden !important; height: 100vh !important; }
         .menu-toggle[aria-expanded="true"] .hamburger-inner { background-color: transparent !important; }
         .menu-toggle[aria-expanded="true"] .hamburger-inner::before { transform: rotate(45deg) translate(5px, 5px); background-color: white !important; }
         .menu-toggle[aria-expanded="true"] .hamburger-inner::after { transform: rotate(-45deg) translate(5px, -5px); background-color: white !important; }

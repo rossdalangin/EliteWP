@@ -209,7 +209,36 @@ h1 { font-size: var(--fs-xxl); } h2 { font-size: var(--fs-xl); } h3 { font-size:
 .widget-title { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: var(--sp-8); padding-bottom: var(--sp-4); border-bottom: 3px solid var(--color-accent); display: block; color: var(--color-primary); }
 
 /* --------------------------------------------------------------------------
-   8. ANIMATIONS & EFFECTS
+   8. MODAL SYSTEM (ELITE POPUP)
+-------------------------------------------------------------------------- */
+.modal-overlay {
+    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
+    z-index: 10005; display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: var(--sp-4);
+}
+.modal-overlay.is-active { opacity: 1; visibility: visible; }
+
+.modal-container {
+    background: var(--color-white); width: 100%; max-width: 600px; border-radius: var(--radius);
+    padding: var(--sp-12); position: relative; border: 1px solid var(--color-border);
+    transform: translateY(40px) scale(0.95); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-xl); overflow-y: auto; max-height: 90vh;
+}
+.modal-overlay.is-active .modal-container { transform: translateY(0) scale(1); }
+
+.modal-close {
+    position: absolute; top: var(--sp-6); right: var(--sp-6); width: 2.5rem; height: 2.5rem;
+    background: var(--color-bg); border-radius: 0.75rem; display: flex; align-items: center;
+    justify-content: center; cursor: pointer; border: 1px solid var(--color-border);
+    font-size: 1.25rem; font-weight: 900; transition: all 0.3s ease;
+}
+.modal-close:hover { transform: rotate(90deg); background: var(--color-accent); color: white; border-color: var(--color-accent); }
+
+.modal-content { padding-top: var(--sp-4); }
+
+/* --------------------------------------------------------------------------
+   9. ANIMATIONS & EFFECTS
 -------------------------------------------------------------------------- */
 body { background-color: var(--color-bg); color: var(--color-text); transition: background-color 0.5s ease, color 0.5s ease; }
 [data-reveal] { opacity: 0; transform: translateY(120px); transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1); }

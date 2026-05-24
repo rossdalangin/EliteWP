@@ -83,6 +83,16 @@
 	<div id="scroll-to-top" aria-label="Scroll to top" role="button">
 		&uarr;
 	</div>
+
+    <!-- ELITE MODAL SYSTEM -->
+    <div class="modal-overlay" id="theme-modal">
+        <div class="modal-container">
+            <div class="modal-close" id="modal-close">&times;</div>
+            <div class="modal-content" id="modal-content-area">
+                <!-- Dynamic Content Injected Here -->
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php

@@ -829,10 +829,13 @@ function premium_b2b_inject_mid_cta( $content ) {
 			<p style="margin-bottom: 2rem; opacity: 0.9; color: white;">' . esc_html( $cta_desc ) . '</p>
 			<a href="' . esc_url( $cta_url ) . '" class="btn btn-primary">' . esc_html( $cta_text ) . '</a>
         ';
-    } elseif ( 'html' === $cta_type ) {
-        $cta_inner = $cta_embed;
-    } elseif ( 'shortcode' === $cta_type ) {
-        $cta_inner = do_shortcode( $cta_embed );
+    } else {
+        $modal_content = ( 'html' === $cta_type ) ? $cta_embed : do_shortcode( $cta_embed );
+        $cta_inner = '
+            <h3 style="color: white; margin-bottom: 1rem;">' . esc_html( $cta_title ) . '</h3>
+			<p style="margin-bottom: 2rem; opacity: 0.9; color: white;">' . esc_html( $cta_desc ) . '</p>
+			<button class="btn btn-primary trigger-modal" data-modal-content="' . esc_attr( $modal_content ) . '">' . esc_html( $cta_text ) . '</button>
+        ';
     }
 
 	$cta_html = '

@@ -47,10 +47,10 @@
                         <a href="<?php echo esc_url( get_theme_mod( 'header_cta_url', '#' ) ); ?>" class="btn btn-primary">
                             <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
                         </a>
-                    <?php elseif ( 'html' === $h_cta_type ) : ?>
-                        <?php echo get_theme_mod( 'header_cta_embed' ); ?>
-                    <?php elseif ( 'shortcode' === $h_cta_type ) : ?>
-                        <?php echo do_shortcode( get_theme_mod( 'header_cta_embed' ) ); ?>
+                    <?php else : ?>
+                        <button class="btn btn-primary trigger-modal" data-modal-content="<?php echo esc_attr( 'html' === $h_cta_type ? get_theme_mod( 'header_cta_embed' ) : do_shortcode( get_theme_mod( 'header_cta_embed' ) ) ); ?>">
+                            <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
+                        </button>
                     <?php endif; ?>
                 </div>
 			</nav>
@@ -62,10 +62,10 @@
                         <a href="<?php echo esc_url( get_theme_mod( 'header_cta_url', '#' ) ); ?>" class="btn btn-primary">
                             <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
                         </a>
-                    <?php elseif ( 'html' === $h_cta_type ) : ?>
-                        <?php echo get_theme_mod( 'header_cta_embed' ); ?>
-                    <?php elseif ( 'shortcode' === $h_cta_type ) : ?>
-                        <?php echo do_shortcode( get_theme_mod( 'header_cta_embed' ) ); ?>
+                    <?php else : ?>
+                        <button class="btn btn-primary trigger-modal" data-modal-content="<?php echo esc_attr( 'html' === $h_cta_type ? get_theme_mod( 'header_cta_embed' ) : do_shortcode( get_theme_mod( 'header_cta_embed' ) ) ); ?>">
+                            <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
+                        </button>
                     <?php endif; ?>
                 </div>
                 <button class="menu-toggle visible-mobile" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle Navigation">
@@ -83,10 +83,10 @@
 			    <a href="<?php echo esc_url( get_theme_mod( 'header_cta_url', '#' ) ); ?>" class="btn btn-primary">
 				    <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
 			    </a>
-            <?php elseif ( 'html' === $h_cta_type ) : ?>
-                <?php echo get_theme_mod( 'header_cta_embed' ); ?>
-            <?php elseif ( 'shortcode' === $h_cta_type ) : ?>
-                <?php echo do_shortcode( get_theme_mod( 'header_cta_embed' ) ); ?>
+            <?php else : ?>
+                <button class="btn btn-primary trigger-modal" data-modal-content="<?php echo esc_attr( 'html' === $h_cta_type ? get_theme_mod( 'header_cta_embed' ) : do_shortcode( get_theme_mod( 'header_cta_embed' ) ) ); ?>">
+                    <?php echo esc_html( get_theme_mod( 'header_cta_text', 'Book Audit' ) ); ?>
+                </button>
             <?php endif; ?>
 		</div>
 	<?php endif; ?>

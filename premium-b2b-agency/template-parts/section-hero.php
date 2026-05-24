@@ -50,14 +50,10 @@
                         </a>
                         <?php endif; ?>
                     </div>
-                <?php elseif ( 'html' === $cta_type ) : ?>
-                    <div class="hero-html-embed">
-                        <?php echo get_theme_mod( 'capture_embed' ); // Reuse existing capture_embed logic or similar if needed ?>
-                    </div>
-                <?php elseif ( 'shortcode' === $cta_type ) : ?>
-                    <div class="hero-shortcode">
-                        <?php echo do_shortcode( get_theme_mod( 'capture_embed' ) ); ?>
-                    </div>
+                <?php else : ?>
+                    <button class="btn btn-primary btn-large trigger-modal" data-modal-content="<?php echo esc_attr( 'html' === $cta_type ? get_theme_mod( 'capture_embed' ) : do_shortcode( get_theme_mod( 'capture_embed' ) ) ); ?>">
+                        <?php echo esc_html( get_theme_mod( 'hero_cta_text', 'Book Strategy Audit' ) ); ?>
+                    </button>
                 <?php endif; ?>
             </div>
         </div>

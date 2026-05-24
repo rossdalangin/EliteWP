@@ -23,14 +23,10 @@
                 <a href="<?php echo esc_url( get_theme_mod( 'magnet_btn_url', '#' ) ); ?>" class="btn btn-primary">
                     <?php echo esc_html( get_theme_mod( 'magnet_btn_text', 'Get Access Now' ) ); ?>
                 </a>
-            <?php elseif ( 'html' === $mag_cta_type && ! empty( $magnet_embed ) ) : ?>
-                <div class="magnet-html-embed">
-                    <?php echo $magnet_embed; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                </div>
-            <?php elseif ( 'shortcode' === $mag_cta_type && ! empty( $magnet_embed ) ) : ?>
-                <div class="magnet-shortcode">
-                    <?php echo do_shortcode( $magnet_embed ); ?>
-                </div>
+            <?php elseif ( ( 'html' === $mag_cta_type || 'shortcode' === $mag_cta_type ) && ! empty( $magnet_embed ) ) : ?>
+                <button class="btn btn-primary trigger-modal" data-modal-content="<?php echo esc_attr( 'html' === $mag_cta_type ? $magnet_embed : do_shortcode( $magnet_embed ) ); ?>">
+                    <?php echo esc_html( get_theme_mod( 'magnet_btn_text', 'Get Access Now' ) ); ?>
+                </button>
             <?php else : ?>
                 <div class="magnet-placeholder">
                     <p class="text-light" style="font-weight: 700;"><?php esc_html_e( '[Configure Lead Magnet in Customizer]', 'premium-b2b' ); ?></p>
