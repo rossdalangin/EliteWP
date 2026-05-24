@@ -147,14 +147,16 @@ add_filter( 'script_loader_tag', 'premium_b2b_defer_scripts', 10, 3 );
  */
 function premium_b2b_customize_register( $wp_customize ) {
 
-    // Panels
-    $wp_customize->add_panel( 'premium_b2b_landing_page', array( 'title' => __( 'Landing Page Sections', 'premium-b2b' ), 'priority' => 30 ) );
-    $wp_customize->add_panel( 'premium_b2b_templates', array( 'title' => __( 'Inner Page Templates', 'premium-b2b' ), 'priority' => 40 ) );
+    // Panels - Elite Reorganization
+    $wp_customize->add_panel( 'premium_b2b_header_panel', array( 'title' => '1. Header & Global', 'priority' => 20 ) );
+    $wp_customize->add_panel( 'premium_b2b_homepage_panel', array( 'title' => '2. Homepage Sections', 'priority' => 30 ) );
+    $wp_customize->add_panel( 'premium_b2b_pages_panel', array( 'title' => '3. Template Pages', 'priority' => 40 ) );
+    $wp_customize->add_panel( 'premium_b2b_footer_panel', array( 'title' => '4. Footer & Social', 'priority' => 50 ) );
 
     // Section Visibility
     $wp_customize->add_section( 'premium_b2b_layout', array(
         'title'    => 'Section Visibility',
-        'panel'    => 'premium_b2b_landing_page',
+        'panel'    => 'premium_b2b_homepage_panel',
         'priority' => 5,
     ) );
 
@@ -172,11 +174,16 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'premium_b2b_setup', array( 'title' => __( 'Theme Setup', 'premium-b2b' ), 'priority' => 10 ) );
 	$wp_customize->add_setting( 'regen_sample_content', array( 'default' => false, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
 	$wp_customize->add_control( 'regen_sample_content', array( 'label' => __( 'Regenerate Elite Content', 'premium-b2b' ), 'section' => 'premium_b2b_setup', 'type' => 'checkbox' ) );
-    $wp_customize->add_setting( 'enable_mobile_cta', array( 'default' => true, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
-	$wp_customize->add_control( 'enable_mobile_cta', array( 'label' => 'Enable Sticky Mobile CTA', 'section' => 'premium_b2b_setup', 'type' => 'checkbox' ) );
 
     // Header CTA
-    $wp_customize->add_section( 'premium_b2b_header_cta', array( 'title' => 'Header CTA', 'priority' => 15 ) );
+    $wp_customize->add_section( 'premium_b2b_header_cta', array(
+        'title'    => 'Navigation CTA',
+        'panel'    => 'premium_b2b_header_panel',
+        'priority' => 15
+    ) );
+    $wp_customize->add_setting( 'enable_mobile_cta', array( 'default' => true, 'sanitize_callback' => 'premium_b2b_sanitize_checkbox' ) );
+	$wp_customize->add_control( 'enable_mobile_cta', array( 'label' => 'Enable Sticky Mobile CTA', 'section' => 'premium_b2b_header_cta', 'type' => 'checkbox' ) );
+
     $wp_customize->add_setting( 'header_cta_type', array( 'default' => 'url', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'header_cta_type', array(
         'label'    => 'CTA Type',
@@ -196,7 +203,11 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'header_cta_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_header_cta', 'type' => 'textarea' ) );
 
     // Global Branding
-	$wp_customize->add_section( 'premium_b2b_colors', array( 'title' => __( 'Global Branding', 'premium-b2b' ), 'priority' => 20 ) );
+	$wp_customize->add_section( 'premium_b2b_colors', array(
+        'title'    => __( 'Global Branding', 'premium-b2b' ),
+        'panel'    => 'premium_b2b_header_panel',
+        'priority' => 10
+    ) );
 
     $wp_customize->add_setting( 'design_persona', array( 'default' => 'unisex', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'design_persona', array(
@@ -220,7 +231,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'enable_dark_mode', array( 'label' => 'Enable Dark Mode', 'section' => 'premium_b2b_colors', 'type' => 'checkbox' ) );
 
 	// HERO SECTION
-	$wp_customize->add_section( 'premium_b2b_hero', array( 'title' => 'Section 1: Hero Split', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_hero', array( 'title' => 'Section 1: Hero Split', 'panel' => 'premium_b2b_homepage_panel' ) );
 	$wp_customize->add_setting( 'hero_headline', array( 'default' => 'Scale Your B2B Agency with Precision Client Acquisition', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'hero_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_hero' ) );
 	$wp_customize->add_setting( 'hero_subheadline', array( 'default' => 'We engineer high-converting acquisition systems that turn cold prospects into high-ticket partners.', 'sanitize_callback' => 'sanitize_text_field' ) );
@@ -275,7 +286,7 @@ function premium_b2b_customize_register( $wp_customize ) {
     }
 
     // TRUST BAR
-	$wp_customize->add_section( 'premium_b2b_trust', array( 'title' => 'Section 1.5: Trust Bar', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_trust', array( 'title' => 'Section 1.5: Trust Bar', 'panel' => 'premium_b2b_homepage_panel' ) );
 	$wp_customize->add_setting( 'trust_headline', array( 'default' => 'TRUSTED BY INNOVATIVE B2B TEAMS AT:', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'trust_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_trust' ) );
     for ( $i = 1; $i <= 5; $i++ ) {
@@ -286,7 +297,7 @@ function premium_b2b_customize_register( $wp_customize ) {
     }
 
     // AGITATION GRID
-	$wp_customize->add_section( 'premium_b2b_agitation', array( 'title' => 'Section 2: Agitation Grid', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_agitation', array( 'title' => 'Section 2: Agitation Grid', 'panel' => 'premium_b2b_homepage_panel' ) );
 	$wp_customize->add_setting( 'agitation_headline', array( 'default' => 'Stop Letting Operational Friction Drain Your Agency Growth', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'agitation_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_agitation' ) );
 
@@ -303,7 +314,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 	}
 
     // TESTIMONIALS
-    $wp_customize->add_section( 'premium_b2b_testimonials', array( 'title' => 'Section 2.5: Testimonials', 'panel' => 'premium_b2b_landing_page' ) );
+    $wp_customize->add_section( 'premium_b2b_testimonials', array( 'title' => 'Section 2.5: Testimonials', 'panel' => 'premium_b2b_homepage_panel' ) );
     $test_defaults = array(
         1 => array( 't' => "The Alpha Framework completely transformed our pipeline. We went from zero outbound to $50k in new contracts in 60 days.", 'a' => 'James Wilson, CEO of NetScale' ),
         2 => array( 't' => "Elite design meets hard-core conversion. This is the only theme an agency owner needs to actually look like a 7-figure firm.", 'a' => 'Sarah Chen, Creative Director' ),
@@ -317,7 +328,7 @@ function premium_b2b_customize_register( $wp_customize ) {
     }
 
     // MECHANISM
-	$wp_customize->add_section( 'premium_b2b_mechanism', array( 'title' => 'Section 3: Branded Mechanism', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_mechanism', array( 'title' => 'Section 3: Branded Mechanism', 'panel' => 'premium_b2b_homepage_panel' ) );
 	$wp_customize->add_setting( 'mechanism_headline', array( 'default' => 'The Alpha Framework: Our 3-Step Scientific Approach', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'mechanism_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_mechanism' ) );
 
@@ -336,7 +347,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 	}
 
     // PRICING
-	$wp_customize->add_section( 'premium_b2b_pricing', array( 'title' => 'Section 3.5: Pricing / Packages', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_pricing', array( 'title' => 'Section 3.5: Pricing / Packages', 'panel' => 'premium_b2b_homepage_panel' ) );
 	$wp_customize->add_setting( 'pricing_headline', array( 'default' => 'Scalable Investment Frameworks', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'pricing_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_pricing' ) );
 
@@ -355,7 +366,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 	}
 
 	// FAQ
-	$wp_customize->add_section( 'premium_b2b_faq', array( 'title' => 'Section 3.8: FAQ', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_faq', array( 'title' => 'Section 3.8: FAQ', 'panel' => 'premium_b2b_homepage_panel' ) );
 	$wp_customize->add_setting( 'faq_headline', array( 'default' => 'Framework Inquiries & Strategy FAQ', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'faq_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_faq' ) );
 
@@ -373,7 +384,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 	}
 
     // CAPTURE
-	$wp_customize->add_section( 'premium_b2b_capture', array( 'title' => 'Section 4: Frictionless Capture', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_capture', array( 'title' => 'Section 4: Frictionless Capture', 'panel' => 'premium_b2b_homepage_panel' ) );
 	$wp_customize->add_setting( 'capture_headline', array( 'default' => 'Ready to Engineer Your Dominance?', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'capture_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_capture' ) );
 	$wp_customize->add_setting( 'capture_subheadline', array( 'default' => 'Schedule your 15-minute Strategy Audit to identify the gaps in your current acquisition engine.', 'sanitize_callback' => 'sanitize_text_field' ) );
@@ -397,7 +408,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'capture_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_capture', 'type' => 'textarea' ) );
 
     // MAGNET
-	$wp_customize->add_section( 'premium_b2b_magnet', array( 'title' => 'Section 4.5: Lead Magnet Overlay', 'panel' => 'premium_b2b_landing_page' ) );
+	$wp_customize->add_section( 'premium_b2b_magnet', array( 'title' => 'Section 4.5: Lead Magnet Overlay', 'panel' => 'premium_b2b_homepage_panel' ) );
     $wp_customize->add_setting( 'magnet_cta_type', array( 'default' => 'html', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'magnet_cta_type', array(
         'label'    => 'Magnet CTA Type',
@@ -421,7 +432,7 @@ function premium_b2b_customize_register( $wp_customize ) {
 	$wp_customize->add_control( 'magnet_embed', array( 'label' => 'HTML Embed / Shortcode', 'section' => 'premium_b2b_magnet', 'type' => 'textarea' ) );
 
 	// ABOUT TEMPLATE
-    $wp_customize->add_section( 'premium_b2b_about', array( 'title' => 'Template: About', 'panel' => 'premium_b2b_templates' ) );
+    $wp_customize->add_section( 'premium_b2b_about', array( 'title' => 'Template: About', 'panel' => 'premium_b2b_pages_panel' ) );
     $wp_customize->add_setting( 'about_mission_headline', array( 'default' => 'Our Mission: Transforming B2B Growth Engines', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'about_mission_headline', array( 'label' => 'Mission Headline', 'section' => 'premium_b2b_about' ) );
 	$wp_customize->add_setting( 'about_mission_text', array( 'default' => 'We believe that B2B acquisition should be a science, not a mystery. Our team engineers the systems that allow agencies to focus on what they do best: delivering world-class results for their clients.', 'sanitize_callback' => 'sanitize_text_field' ) );
@@ -440,20 +451,24 @@ function premium_b2b_customize_register( $wp_customize ) {
     }
 
     // OTHER TEMPLATES
-	$wp_customize->add_section( 'premium_b2b_services', array( 'title' => 'Template: Services', 'panel' => 'premium_b2b_templates' ) );
+	$wp_customize->add_section( 'premium_b2b_services', array( 'title' => 'Template: Services', 'panel' => 'premium_b2b_pages_panel' ) );
 	$wp_customize->add_setting( 'services_headline', array( 'default' => 'Precision-Engineered Acquisition Services', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'services_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_services' ) );
 
-    $wp_customize->add_section( 'premium_b2b_cases', array( 'title' => 'Template: Case Studies', 'panel' => 'premium_b2b_templates' ) );
+    $wp_customize->add_section( 'premium_b2b_cases', array( 'title' => 'Template: Case Studies', 'panel' => 'premium_b2b_pages_panel' ) );
     $wp_customize->add_setting( 'case_studies_headline', array( 'default' => 'Client Success Stories & ROI Proof', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( 'case_studies_headline', array( 'label' => 'Headline', 'section' => 'premium_b2b_cases' ) );
 
-    $wp_customize->add_section( 'premium_b2b_contact', array( 'title' => 'Template: Contact', 'panel' => 'premium_b2b_templates' ) );
+    $wp_customize->add_section( 'premium_b2b_contact', array( 'title' => 'Template: Contact', 'panel' => 'premium_b2b_pages_panel' ) );
 	$wp_customize->add_setting( 'contact_email', array( 'default' => 'hello@agency.com', 'sanitize_callback' => 'sanitize_email' ) );
 	$wp_customize->add_control( 'contact_email', array( 'label' => 'Contact Email', 'section' => 'premium_b2b_contact' ) );
 
     // FOOTER & SOCIAL
-    $wp_customize->add_section( 'premium_b2b_footer', array( 'title' => 'Footer & Social', 'priority' => 130 ) );
+    $wp_customize->add_section( 'premium_b2b_footer', array(
+        'title'    => 'Footer Elements',
+        'panel'    => 'premium_b2b_footer_panel',
+        'priority' => 130
+    ) );
 	$wp_customize->add_setting( 'footer_copyright', array( 'default' => sprintf( '&copy; %s %s. Elite B2B Acquisition Framework.', date( 'Y' ), get_bloginfo( 'name' ) ), 'sanitize_callback' => 'wp_kses_post' ) );
 	$wp_customize->add_control( 'footer_copyright', array( 'label' => 'Copyright Text', 'section' => 'premium_b2b_footer', 'type' => 'textarea' ) );
 	$socials = array( 'linkedin', 'twitter', 'instagram' );
@@ -463,7 +478,11 @@ function premium_b2b_customize_register( $wp_customize ) {
 	}
 
     // SINGLE POST CTA
-    $wp_customize->add_section( 'premium_b2b_cta_card', array( 'title' => 'Single Post CTA', 'priority' => 140 ) );
+    $wp_customize->add_section( 'premium_b2b_cta_card', array(
+        'title' => 'Single Post CTA',
+        'panel' => 'premium_b2b_pages_panel',
+        'priority' => 140
+    ) );
     $wp_customize->add_setting( 'cta_card_type', array( 'default' => 'url', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'cta_card_type', array(
         'label'    => 'CTA Type',
