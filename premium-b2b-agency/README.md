@@ -1,107 +1,76 @@
-# Premium B2B Client Acquisition Agency Theme Framework
+# 🏆 Elite B2B Agency Framework (v4.2.0)
+### The Production-Grade Acquisition Engine for High-Ticket Agencies
 
-Welcome to the **Elite B2B Agency Framework**, a production-grade, highly optimized, and modern custom WordPress theme designed specifically for premium, high-converting B2B Client Acquisition Agencies.
-
----
-
-## 💎 Why This is the Best B2B Theme Framework?
-
-Most WordPress themes are bloated with page builders and heavy plugins. We built this from the ground up for **conversion, speed, and elite branding**.
-
-### 1. 🚀 Performance First (100/100 PageSpeed)
-- **No Frameworks**: 0 reliance on Tailwind, Bootstrap, or jQuery.
-- **Modern CSS**: Built with native CSS Grid, Flexbox, and fluid typography (`clamp`).
-- **Deferred JS**: All Vanilla JS scripts load asynchronously to prioritize content rendering.
-- **System Font Stacks**: Zero network latency for typography.
-
-### 2. 🎯 Conversion-Led Design
-- **Z-Pattern Framework**: Architected to guide the prospect's eye from value proposition to proof to action.
-- **Agitation Grid**: Scientifically designed cards to highlight operational pains before presenting the solution.
-- **Frictionless Capture**: Centered lead capture area optimized for GHL, Calendly, or custom lead forms.
-
-### 3. 🛠️ Full Customizer Manageability
-- **100% manageable**: Change every headline, button, and color without touching a line of code.
-- **Instant Preview**: Optimized with `Selective Refresh` and `postMessage` for a "What You See Is What You Get" experience.
-
-### 4. 📈 SEO & Accessibility Excellence
-- **Semantic Nesting**: Strict adherence to HTML5 standards for maximum crawlability.
-- **Schema.org Integrated**: Built-in JSON-LD/Microdata for `ProfessionalService` and `BlogPosting`.
-- **W3C Compliant**: Screen-reader ready with proper ARIA attributes and focus management.
+The **Elite B2B Agency Framework** is not just a WordPress theme; it is a precision-engineered client acquisition machine. Designed by an Elite WordPress Core Engineer, it combines 100/100 PageSpeed performance with a psychologically-optimized Z-pattern conversion flow.
 
 ---
 
-## 📖 Setup Tutorial
+## 💎 Elite Features
 
-### Step 1: Installation
-1. Upload the `premium-b2b-agency` folder to your `/wp-content/themes/` directory.
-2. Activate the theme via **Appearance > Themes**.
+### 🚀 Technical Superiority
+- **Framework-Free**: 0 dependency on jQuery, Tailwind, or Bootstrap. Pure Vanilla JS and Modern CSS.
+- **100/100 PageSpeed Readiness**: Dequeued jQuery for public users, deferred assets, and system font stacks.
+- **Fluid Typography**: Balanced `clamp()` units that ensure an elite aesthetic from iPhone SE to 5K Studio Displays.
 
-### Step 2: Automated Content Setup
-1. Go to **Appearance > Customize**.
-2. Locate the **Theme Setup** section.
-3. Check the **Regenerate Sample Content** box and click **Publish**.
-4. This will automatically generate your Home, About, Services, Insights, and Contact pages with high-converting copy, and automatically setup your **Primary and Footer Menus**.
+### 🎯 Multi-Persona Design Presets
+Choose from three hand-crafted design personas instantly via the Customizer:
+- **Unisex / Professional**: Deep Obsidian & Vibrant Indigo.
+- **Female Owner / Elegant**: Indigo Berry & Rose Pink.
+- **Male Owner / Bold**: Slate Teal & Copper Orange.
+- *Each preset supports full Light & Dark modes with dynamic contrast correction.*
 
-### Step 3: Global Branding
-1. In the Customizer, navigate to **Theme Colors**.
-2. Set your **Primary Color** (Deep Navy recommended) and **Accent Color** (Vibrant Indigo recommended).
-3. These will globally update all buttons, icons, and UI elements in real-time.
+### ⚡ Intelligent CTA Modal System
+- **Lead Capture Flexibility**: Every CTA button supports **URL Redirects**, **HTML Form Embeds** (HubSpot/Calendly), or **WordPress Shortcodes**.
+- **Elite Popups**: HTML/Shortcode types automatically trigger a premium glassmorphism modal, keeping prospects on-site for higher conversion.
 
----
-
-## 🏗️ The B2B Framework Manifesto
-This framework is built on the principle of **Minimum Friction, Maximum Authority**.
-- **Authority** is established through clean typography, elite spacing, and high-performance loading.
-- **Friction** is reduced by removing unnecessary animations, bulky scripts, and complex navigation.
-
-By using this theme, you are positioning your agency as a premium player in the B2B market.
+### 🛠️ Elite Customizer Architecture
+- **Hierarchical Panels**: Organized into *Header & Global*, *Homepage Sections*, *Template Pages*, and *Footer & Social*.
+- **Live Preview Optimization**: Uses Selective Refresh and `postMessage` for an instantaneous editing experience.
 
 ---
 
-## 🗺️ Customizer Panel Map
-The theme is organized into logical panels to make management effortless:
+## 📖 Pro Setup Tutorial
 
-1.  **Theme Setup**: Regeneration trigger for sample content.
-2.  **Global Branding**: Colors, Dark Mode toggle.
-3.  **Landing Page Sections**:
-    *   *Hero Split*: Headlines, Subheadlines, CTA, Highlights.
-    *   *Trust Bar*: Social proof logo labels.
-    *   *Agitation Grid*: Problem-focused cards.
-    *   *Testimonials*: Authority-building quotes.
-    *   *Mechanism*: The 3-step framework.
-    *   *Capture Block*: Form/Calendar embed settings.
-4.  **Inner Page Templates**: Individual settings for About, Services, and Case Studies.
-5.  **Custom Post Types**: Scalable management for Services, Team Members, and Case Studies.
-6.  **Global Components**: Footer copyright, Social links, Single Post CTA, Sidebar CTA.
+### 1. Installation & Activation
+1. Upload the `premium-b2b-agency` folder to `/wp-content/themes/`.
+2. Activate via **Appearance > Themes**.
 
----
+### 2. The One-Click Engine Start
+1. Navigate to **Appearance > Customize > Theme Setup**.
+2. Check **Regenerate Elite Content** and click **Publish**.
+3. **What happens?** The theme purges old sample data and creates a complete ecosystem:
+   - **Pages**: Home (Landing Page), About, Services, Insights (Blog), Contact, FAQ, Privacy, and Terms.
+   - **Content**: Sample Services, Case Studies, and Team Members.
+   - **Navigation**: Automatically configures the Primary and Footer menus.
 
-## 🛠️ Developer & Documentation Reference
-
-### Page Templates
-- `front-page.php`: The high-ticket acquisition system landing page.
-- `template-about.php`: Agency mission and team showcase.
-- `template-services.php`: Detailed breakdown of B2B frameworks.
-- `template-contact.php`: Conversion-optimized application page.
-
-### Customizer Logic
-All content is handled via the `premium_b2b_customize_register` function in `functions.php`. Content is safely output using `esc_html()` and `get_theme_mod()`.
-
-### Live Site vs Preview Consistency
-The theme implements `Selective Refresh Partials` for headlines and `postMessage` transport for CSS variables. This ensures that the preview window exactly matches the live site output without full page reloads.
+### 3. Setting Your Persona
+1. Go to **1. Header & Global > Global Branding**.
+2. Select your **Design Persona**.
+3. Toggle **Dark Mode** if desired. The theme's dynamic contrast engine will handle the rest.
 
 ---
 
-## 📢 Sales & Marketing Materials for Your Agency
+## 🛠️ Developer Reference
 
-### Value Proposition
-> "Stop building websites. Start deploying Client Acquisition Engines. Our framework is optimized for the only metric that matters: B2B Conversion."
+### Core Layout Classes
+- `.hero-grid`: 1.2fr/0.8fr split for high-impact hero sections.
+- `.agitation-grid`: Responsive card grid for problem/service layouts.
+- `.mechanism-steps`: Alternating Z-pattern for process walkthroughs.
 
-### Key Selling Points for Clients:
-1. **Speed = Trust**: A site that loads in <1s signals technical authority.
-2. **SEO Optimized**: Built-in schema means Google understands exactly what you sell.
-3. **Manageability**: Your team can update any word on the site in seconds, no developer required.
+### Dynamic CSS Hook
+The theme uses the `premium_b2b_output_header_scripts` hook in `functions.php` to inject real-time Customizer variables directly into the `:root` scope, ensuring 0-latency styling updates.
 
 ---
 
+## 📢 Sales & Marketing Guide
+
+### The Value Proposition
+> "We don't build websites; we deploy Authority Engines. Most agency sites look like a commodities list; ours looks like a High-Ticket Partnership."
+
+### Key Sales Hooks:
+1. **Speed as an Authority Signal**: "In the B2B world, a slow site is a sign of operational sloppiness. Our framework loads in under 1 second."
+2. **The End of Page Builder Bloat**: "Elementor and Divi slow your site and hurt your SEO. We use native WordPress core engineering for maximum longevity."
+3. **Lead Capture Mastery**: "Embed your Calendly directly into our elite modal system. No more messy redirects or lost prospects."
+
+---
 *Developed by Jules - Elite WordPress Core Engineer*

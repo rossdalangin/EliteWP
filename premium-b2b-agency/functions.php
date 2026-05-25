@@ -144,6 +144,12 @@ add_filter( 'script_loader_tag', 'premium_b2b_defer_scripts', 10, 3 );
 
 /**
  * Register Customizer settings.
+ *
+ * This function engineers the entire backend management suite. It utilizes
+ * hierarchical Panels, Selective Refresh for headlines, and postMessage
+ * transport for real-time CSS variable injection.
+ *
+ * @param WP_Customize_Manager $wp_customize Customizer object.
  */
 function premium_b2b_customize_register( $wp_customize ) {
 
@@ -588,6 +594,10 @@ add_action( 'customize_preview_init', 'premium_b2b_customize_preview_js' );
 
 /**
  * Handle Content Regeneration.
+ *
+ * An engineering-grade routine that purges existing sample data (tagged with
+ * _premium_b2b_sample) and regenerates a fresh, high-converting B2B ecosystem.
+ * Automatically configures menus, static front pages, and custom post types.
  */
 function premium_b2b_handle_regeneration() {
 	if ( get_theme_mod( 'regen_sample_content' ) ) {
